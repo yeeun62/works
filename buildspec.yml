@@ -9,12 +9,9 @@ phases:
   build:
     commands:
       - npm run build
-      - npm run start
+      - npm run export
 
 artifacts:
   files:
-    - .next/**/*
-    - locales/**/*
-    - static/**/*
-    - package.json
-    - next.config.js
+    - "**/*"
+  base-directory: "dist"
