@@ -4,6 +4,7 @@ phases:
   pre_build:
     commands:
       - cd client
+      - npm install -g next
       - npm install
   build:
     commands:
@@ -11,5 +12,8 @@ phases:
 
 artifacts:
   files:
-    - "**/*"
-  base-directory: client/build
+    - .next/**/*
+    - locales/**/*
+    - static/**/*
+    - package.json
+    - next.config.js
