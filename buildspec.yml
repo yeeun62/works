@@ -14,4 +14,4 @@ phases:
 artifacts:
   files:
     - "**/*"
-  base-directory: client/pages
+  base-directory: client/.next/server/pages
