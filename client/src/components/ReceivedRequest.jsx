@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ReceivedRequest(list) {
   return (
     <>
@@ -11,12 +13,19 @@ export default function ReceivedRequest(list) {
         <ul>
           {list.length ? (
             list.map((el, i) => {
-              <li key={i} className="requestList">
-                <p className="writer">{el.requester}</p>
-                <p className="title">{el.title}</p>
-                <p className="result">{el.result}</p>
-                <p className="date">{el.createdDate}</p>
-              </li>;
+              <Link
+                href={{
+                  pathname: `/purchases/${el.id}`,
+                  query: { id: el.id },
+                }}
+              >
+                <li key={i} className="requestList">
+                  <p className="writer">{el.requester}</p>
+                  <p className="title">{el.title}</p>
+                  <p className="result">{el.result}</p>
+                  <p className="date">{el.createdDate}</p>
+                </li>
+              </Link>;
             })
           ) : (
             <p>받은 요청이 없습니다 🙌</p>
