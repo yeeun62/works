@@ -45,7 +45,7 @@ export default function MyPage() {
 export async function getServerSideProps(context) {
   console.log(context.req);
   const list;
-  await axios.get(`${process.env.WORKS_USER}/doc`).then((res) => {
+  await axios.get(`${process.env.TEMPLATE_API}/user/doc`).then((res) => {
     list = {
       myRequest: res.data.myRequest,
       myResponse: res.data.myResponse,
