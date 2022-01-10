@@ -5,7 +5,6 @@ export default function Template({ modalHandler }) {
 	const [sendList, setSendList] = useState([]);
 
 	const [form, setForm] = useState({
-		title: "비품 신청",
 		responser: "",
 		productName: "",
 		productInfo: "",
@@ -92,12 +91,7 @@ export default function Template({ modalHandler }) {
 						<option>대상 선택하기</option>
 						{sendList.map((send, i) => {
 							return (
-								<option
-									key={i}
-									onChange={formHandler}
-									name={responser}
-									onChange={formHandler}
-								>
+								<option key={i} onChange={formHandler} name={responser}>
 									{send.name}
 								</option>
 							);
