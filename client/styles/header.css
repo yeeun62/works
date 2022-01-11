@@ -1,6 +1,6 @@
 header {
-  width: 70%;
-  height: 3rem;
+  width: 100%;
+  height: 4rem;
   margin: auto;
   border-bottom: 1px solid #ddd;
   display: flex;
@@ -9,9 +9,86 @@ header {
 
 header h1 {
   color: #e0de1b;
-  font-size: 3rem;
+  font-size: 2rem;
+  line-height: 4rem;
 }
 
 .navButtonList {
-  height: 3rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navButtonList .navBtn {
+  margin-right: 10px;
+}
+
+.modal-dim {
+  background: rgba(200, 200, 200, 50%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.signModal {
+  width: 20rem;
+  height: 30rem;
+  background: #fff;
+  z-index: 500;
+  position: absolute;
+  top: 100px;
+  left: calc(-10rem + 50%);
+}
+
+.signUp-modal {
+  height: 40rem;
+}
+
+.signModal h1 {
+  text-align: center;
+}
+
+.signModal form {
+  margin: 1rem auto;
+  width: 13rem;
+}
+
+.signModal form label {
+  //text-align: center;
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.signModal form input {
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.signIn-modal form input:focus {
+  border: 2px solid #00adc7;
+}
+
+.signModal form .signBtn {
+  margin-top: 30px;
+  position: absolute;
+  left: 40%;
+  bottom: 100px;
+}
+
+.signUp-modal form .signBtn {
+  bottom: 30px;
+}
+
+.signModal .closeModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: none;
 }
