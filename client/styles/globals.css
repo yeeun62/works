@@ -5,11 +5,11 @@
 @tailwind utilities;
 
 .wrapper {
-  width: 70%;
-  margin: auto;
+	width: 70%;
+	margin: auto;
 }
 @media screen and (max-width: 768px) {
-  .wrapper {
-    width: 100%;
-  }
+	.wrapper {
+		width: 100%;
+	}
 }
