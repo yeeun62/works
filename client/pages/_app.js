@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../src/components/Header";
 import Head from "next/head";
 import "../styles/globals.css";
+import "../styles/header.css";
 
 function MyApp({ Component, pageProps }) {
   const [isSignIn, setIsSignInLogin] = useState(false);
