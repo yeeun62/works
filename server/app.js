@@ -3,6 +3,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const { sequelize } = require("./models");
+const server = require("http").createServer(app);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -24,6 +25,6 @@ app.get("/", (req, res) => {
 	res.send("template 서버");
 });
 
-app.listen(80, () => console.log("template 서버 실행"));
+server.listen(80, () => console.log("template 서버 실행"));
 // sequelize.sync({ alter: true }
 // console.log("template 서버 실행")
