@@ -2,8 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Template({ modalHandler }) {
-  const [sendList, setSendList] = useState([]);
-
+	const [sendList, setSendList] = useState([]);
   const [form, setForm] = useState({
     responser: "",
     productName: "",
@@ -14,11 +13,11 @@ export default function Template({ modalHandler }) {
     reason: "",
   });
 
-  let requester;
+	let requester;
 
-  const formHandler = (name, value) => {
-    setForm({ ...form, [name]: value });
-  };
+	const formHandler = (name, value) => {
+		setForm({ ...form, [name]: value });
+	};
 
   const postForm = async () => {
     if (Object.values(form).filter((e) => e.length <= 0).length)
