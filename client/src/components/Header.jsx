@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import logo from "../../public/handle_logo.png";
+import Head from "next/head";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import axios from "axios";
@@ -21,9 +20,15 @@ export default function Header({ isSignIn, signInHandler }) {
 
   return (
     <header className="header w-9/12 h-1.5 m-auto bg-blend-multiply absolute top-0 border-b-slate-300 flex-auto">
-      <h1>
-        <Image src={logo} alt="handle logo" width={100} height={100}></Image>
-      </h1>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+          rel="stylesheet"
+        ></link>
+      </Head>
+      <Link href="/">
+        <h1 className="handle-logo-font">handle</h1>
+      </Link>
       <div className="navButtonList">
         {isSignIn ? (
           <Link href="/myPage">
@@ -32,11 +37,6 @@ export default function Header({ isSignIn, signInHandler }) {
             </button>
           </Link>
         ) : null}
-        <Link href="/">
-          <button type="button" className="btn">
-            템플릿 페이지
-          </button>
-        </Link>
         {isSignIn ? (
           <button type="button" onClick={getSignOut} className="btn">
             sign out
