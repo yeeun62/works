@@ -33,7 +33,7 @@ export default function SignUp({ signInHandler, suModalHandler }) {
     let { email, name, password, phoneNumber } = signUpInfo;
     if (!Object.values(signUpInfo).filter((el) => !el.length).length) {
       await axios
-        .post(`${process.env.WORKS_USER}/signup`, {
+        .post(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/signup`, {
           email,
           name,
           password,

@@ -16,11 +16,12 @@ export default function MyRequest({ list }) {
               <li key={el.id} className="requestList">
                 <Link
                   href={{
-                    pathname: `/purchases/${el.id}`,
+                    pathname: `/purchases/[id]`,
                     query: { id: el.id },
                   }}
+                  as={`/purchases/[id]`}
                 >
-                  <p className="writer">{el.requester}</p>
+                  <p className="requester">{el.requester}</p>
                   <p className="title">{el.title}</p>
                   <p className="result">{el.result}</p>
                   <p className="date">{el.updatedAt}</p>

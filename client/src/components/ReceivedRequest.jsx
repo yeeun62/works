@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ReceivedRequest(list) {
+export default function ReceivedRequest({ list }) {
   return (
     <>
       <div className="RequestContainer">

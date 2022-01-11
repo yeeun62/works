@@ -12,11 +12,15 @@ export default function Header({ isSignIn, signInHandler }) {
   const siModalHandler = () => setSimodal(!siModal);
   const suModalHandler = () => setSumodal(!suModal);
   const getSignOut = () => {
-    axios.get(`${process.env.WORKS_USER}/signout`);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/signout`)
+      .then((res) => {
+        if (res.status === 200) signInHandler(false);
+      });
   };
 
   return (
-    <header className="w-full m-auto bg-blend-multiply absolute top-0 border-b-slate-300 flex-auto">
+    <header className="w-9/12 h-1.5 m-auto bg-blend-multiply absolute top-0 border-b-slate-300 flex-auto">
       <h1>
         <Image src={logo} alt="handle logo" width={100} height={100}></Image>
       </h1>
@@ -34,14 +38,7 @@ export default function Header({ isSignIn, signInHandler }) {
           </button>
         </Link>
         {isSignIn ? (
-          <button
-            type="button"
-            onClick={() => {
-              signInHandler(false);
-              getSignOut();
-            }}
-            className="btn"
-          >
+          <button type="button" onClick={getSignOut} className="btn">
             sign out
           </button>
         ) : (

@@ -5,7 +5,6 @@ export default function Template({ modalHandler }) {
   const [sendList, setSendList] = useState([]);
 
   const [form, setForm] = useState({
-    title: "비품 신청",
     responser: "",
     productName: "",
     productInfo: "",
@@ -26,7 +25,7 @@ export default function Template({ modalHandler }) {
       alert("모든 칸을 채워주세요😃");
     else {
       await axios
-        .post(process.env.WORKS_PURCHASE, form, {
+        .post(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/purchase`, form, {
           headers: { handleToken: requester },
         })
         .then((res) => {
@@ -92,12 +91,7 @@ export default function Template({ modalHandler }) {
             <option>대상 선택하기</option>
             {sendList.map((send, i) => {
               return (
-                <option
-                  key={i}
-                  onChange={formHandler}
-                  name={responser}
-                  onChange={formHandler}
-                >
+                <option key={i} onChange={formHandler} name={responser}>
                   {send.name}
                 </option>
               );
@@ -113,10 +107,14 @@ export default function Template({ modalHandler }) {
 }
 
 export async function getServerSideProps(context) {
-  console.log(context.req);
-  //setSendList -> 보낼 사람 목록 요청해서 받아오기.
-  //requester = context.req.headers.cookies;
+  let sendList;
+  await axios
+    .get(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user`)
+    .then((res) => {
+      sendList;
+    });
+
   return {
-    props: {}, // will be passed to the page component as props
+    props: { sendList }, // will be passed to the page component as props
   };
 }
