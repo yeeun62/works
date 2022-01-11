@@ -23,30 +23,34 @@ export default function SignIn({ signInHandler, siModalHandler }) {
   };
 
   return (
-    <div className="signIn dim">
-      <div className="signIn modal">
-        <h1>SIGN IN</h1>
-        <form>
+    <div className="signIn-modal signModal">
+      <h1>로그인</h1>
+      <form>
+        <label>
+          이메일
           <input
             name="email"
             type="text"
             placeholder="e-mail@gmail.com"
             onChange={(e) => signInInfoHandler(e.target.name, e.target.value)}
           ></input>
+        </label>
+        <label>
+          비밀번호
           <input
             name="password"
             type="password"
             placeholder="password"
             onChange={(e) => signInInfoHandler(e.target.name, e.target.value)}
           ></input>
-          <button type="button" onClick={requestSignIn}>
-            SIGN IN
-          </button>
-        </form>
-        <button type="button" onClick={siModalHandler}>
-          닫기
+        </label>
+        <button className="btn signBtn" type="button" onClick={requestSignIn}>
+          로그인
         </button>
-      </div>
+      </form>
+      <button className="btn closeModal" type="button" onClick={siModalHandler}>
+        X
+      </button>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Header from "../src/components/Header";
 import Head from "next/head";
 import "../styles/globals.css";
 import "../styles/header.css";
+import "../styles/temPage.css";
 
 function MyApp({ Component, pageProps }) {
   const [isSignIn, setIsSignInLogin] = useState(false);
