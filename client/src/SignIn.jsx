@@ -11,7 +11,10 @@ export default function SignIn({ signInHandler, siModalHandler }) {
 	const requestSignIn = async () => {
 		if (signInInfo.id.length > 0 && signInInfo.pw.length > 0) {
 			await axios
-				.post(`${process.env.TEMPLATE_API}/user/signin`, signInInfo)
+				.post(
+					`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/signin`,
+					signInInfo
+				)
 				.then((res) => {
 					if (res.status === 200) signInHandler(true);
 					else console.log(res);

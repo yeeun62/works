@@ -25,7 +25,7 @@ export default function Template({ modalHandler }) {
 			alert("모든 칸을 채워주세요😃");
 		else {
 			await axios
-				.post(`${process.env.TEMPLATE_API}/purchase`, form, {
+				.post(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/purchase`, form, {
 					headers: { handleToken: requester },
 				})
 				.then((res) => {

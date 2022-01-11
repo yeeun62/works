@@ -12,7 +12,7 @@ export default function Header({ isSignIn, signInHandler }) {
 	const siModalHandler = () => setSimodal(!siModal);
 	const suModalHandler = () => setSumodal(!suModal);
 	const getSignOut = () => {
-		axios.get(`${process.env.TEMPLATE_API}/user/signout`);
+		axios.get(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/signout`);
 	};
 
 	return (
