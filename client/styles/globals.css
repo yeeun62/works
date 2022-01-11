@@ -4,19 +4,12 @@
 
 @tailwind utilities;
 
-/* html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+.wrapper {
+  width: 70%;
+  margin: auto;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
 }
-
-* {
-  box-sizing: border-box;
-} */
