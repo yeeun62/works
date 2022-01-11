@@ -47,7 +47,7 @@ export default function Header({ isSignIn, signInHandler }) {
               sign in
             </button>
             <div
-              className={siModal}
+              className={siModal.toString()}
               style={{ display: siModal ? "block" : "none" }}
             >
               <SignIn
@@ -59,7 +59,7 @@ export default function Header({ isSignIn, signInHandler }) {
               sign up
             </button>
             <div
-              className={suModal}
+              className={suModal.toString()}
               style={{ display: suModal ? "block" : "none" }}
             >
               <SignUp
