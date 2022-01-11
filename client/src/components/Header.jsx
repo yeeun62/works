@@ -20,7 +20,7 @@ export default function Header({ isSignIn, signInHandler }) {
   };
 
   return (
-    <header className="w-9/12 h-1.5 m-auto bg-blend-multiply absolute top-0 border-b-slate-300 flex-auto">
+    <header className="header w-9/12 h-1.5 m-auto bg-blend-multiply absolute top-0 border-b-slate-300 flex-auto">
       <h1>
         <Image src={logo} alt="handle logo" width={100} height={100}></Image>
       </h1>
