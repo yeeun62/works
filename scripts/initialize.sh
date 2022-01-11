@@ -1,5 +1,6 @@
 #!/bin/bash
 cd /home/ubuntu/template/server
+
 sudo npm install
 sudo npm install pm2@latest -g
 sudo apt-get update
