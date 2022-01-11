@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
-    <>
+    <div className="wrapper">
       <Head>
         <title>handle works</title>
         <link
@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Header isSignIn={isSignIn} signInHandler={signInHandler}></Header>
       <Component isSignIn={isSignIn} {...pageProps} />
-    </>
+    </div>
   );
 }
 
