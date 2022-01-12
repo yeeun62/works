@@ -1,33 +1,33 @@
 .tempWrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 3rem 1rem;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 3rem 1rem;
 }
 
 .templateDiv {
-  width: 200px;
-  height: 200px;
-  border: 1px solid #ddd;
-  position: relative;
-  flex-basis: auto;
-  padding: 5px;
-  border-radius: 0.7rem;
+	width: 200px;
+	height: 200px;
+	border: 1px solid #ddd;
+	position: relative;
+	flex-basis: auto;
+	padding: 5px;
+	border-radius: 0.7rem;
 }
 
 .templateDiv h2 {
-  text-align: center;
-  height: 3rem;
-  line-height: 3rem;
-  font-weight: 700;
-  color: #666;
+	text-align: center;
+	height: 3rem;
+	line-height: 3rem;
+	font-weight: 700;
+	color: #666;
 }
 
 .templateDiv button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
 }
 
 /* template modal  */

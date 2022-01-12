@@ -34,3 +34,8 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
+// 페이지 전환시 레이아웃, 상태값 유지
+// 추가적인 데이터를 페이지로 주입 가능
+// componentDidCatch를 이용해 커스텀 에러 핸들링가능
+// 글로벌 css 이곳에 선언

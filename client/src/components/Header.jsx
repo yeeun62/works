@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import SignIn from "../SignIn";
-import SignUp from "../SignUp";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 import axios from "axios";
 
 export default function Header({ isSignIn, signInHandler }) {
@@ -72,10 +72,7 @@ export default function Header({ isSignIn, signInHandler }) {
               className="modal-dim"
               style={{ display: siModal ? "block" : "none" }}
             >
-              <SignIn
-                // signInHandler={signInHandler}
-                siModalHandler={siModalHandler}
-              ></SignIn>
+              <SignIn siModalHandler={siModalHandler}></SignIn>
             </div>
             <button
               type="button"
@@ -88,10 +85,7 @@ export default function Header({ isSignIn, signInHandler }) {
               className="modal-dim"
               style={{ display: suModal ? "block" : "none" }}
             >
-              <SignUp
-                //signInHandler={suModalHandler}
-                suModalHandler={suModalHandler}
-              ></SignUp>
+              <SignUp suModalHandler={suModalHandler}></SignUp>
             </div>
           </>
         )}
