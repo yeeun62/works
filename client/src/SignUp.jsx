@@ -27,22 +27,32 @@ export default function SignUp({ signInHandler, suModalHandler }) {
       (name === "password" && value === signUpInfo.passwordConfirm)
     )
       setIsSame("input true");
+
+    console.log(signUpInfo);
   };
 
   const requestSignUp = async () => {
     let { email, name, password, phoneNumber } = signUpInfo;
     if (!Object.values(signUpInfo).filter((el) => !el.length).length) {
-      await axios
-        .post(`${process.env.TEMPLATE_API}/user/signup`, {
-          email,
-          name,
-          password,
-          phoneNumber,
-        })
-        .then((res) => {
-          // email 겹치는지 확인하는 기능 나중에 추가
-          if (res.status === 200) signInHandler(true);
-        });
+      try {
+        await axios
+          .post(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/signup`, {
+            email,
+            name,
+            password,
+            phoneNumber,
+          })
+          .then((res) => {
+            // email 겹치는지 확인하는 기능 나중에 추가
+            if (res.status === 200) {
+              console.log(res);
+              console.log(signInHandler);
+              signInHandler(true);
+            }
+          });
+      } catch (err) {
+        console.log(err);
+      }
     } else alert("모든 칸을 입력하세요! 😺");
   };
 

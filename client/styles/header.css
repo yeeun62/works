@@ -2,15 +2,18 @@ header {
   width: 100%;
   height: 4rem;
   margin: auto;
-  border-bottom: 1px solid #ddd;
+  //border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
+  box-shadow: inset 0px -0.5px 3px #f0f0f0;
 }
 
 header h1 {
   color: #e0de1b;
   font-size: 2rem;
   line-height: 4rem;
+  cursor: pointer;
+  padding-left: 10px;
 }
 
 .navButtonList {
@@ -25,22 +28,25 @@ header h1 {
 }
 
 .modal-dim {
-  background: rgba(200, 200, 200, 50%);
+  background: rgba(0, 0, 0, 10%);
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .signModal {
   width: 20rem;
   height: 30rem;
   background: #fff;
-  z-index: 500;
+  z-index: 1500;
   position: absolute;
   top: 100px;
   left: calc(-10rem + 50%);
+  border-radius: 1rem;
 }
 
 .signUp-modal {

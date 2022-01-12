@@ -4,12 +4,14 @@ import Head from "next/head";
 import "../styles/globals.css";
 import "../styles/header.css";
 import "../styles/temPage.css";
+import "../styles/myPage.css";
+import "../styles/purchaseDetail.css";
 
 function MyApp({ Component, pageProps }) {
-  const [isSignIn, setIsSignInLogin] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(false);
 
   const signInHandler = (b) => {
-    setIsSignInLogin(b);
+    setIsSignIn(b);
   };
 
   return (
@@ -22,7 +24,11 @@ function MyApp({ Component, pageProps }) {
         ></link>
       </Head>
       <Header isSignIn={isSignIn} signInHandler={signInHandler}></Header>
-      <Component isSignIn={isSignIn} {...pageProps} />
+      <Component
+        isSignIn={isSignIn}
+        signInHandler={signInHandler}
+        {...pageProps}
+      />
     </div>
   );
 }

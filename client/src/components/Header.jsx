@@ -36,7 +36,7 @@ export default function Header({ isSignIn, signInHandler }) {
             <>
               <Link href="/myPage">
                 <button type="button" className="btn navBtn">
-                  마이 페이지
+                  내 문서함
                 </button>
               </Link>
               <button type="button" className="btn navBtn">
@@ -51,7 +51,7 @@ export default function Header({ isSignIn, signInHandler }) {
                   className="btn navBtn"
                   onClick={getSignOut}
                 >
-                  템플릿 페이지
+                  템플릿 작성
                 </button>
               </Link>
               <button type="button" className="btn navBtn">
@@ -73,7 +73,7 @@ export default function Header({ isSignIn, signInHandler }) {
               style={{ display: siModal ? "block" : "none" }}
             >
               <SignIn
-                signInHandler={signInHandler}
+                // signInHandler={signInHandler}
                 siModalHandler={siModalHandler}
               ></SignIn>
             </div>
@@ -89,7 +89,7 @@ export default function Header({ isSignIn, signInHandler }) {
               style={{ display: suModal ? "block" : "none" }}
             >
               <SignUp
-                signInHandler={suModalHandler}
+                //signInHandler={suModalHandler}
                 suModalHandler={suModalHandler}
               ></SignUp>
             </div>
