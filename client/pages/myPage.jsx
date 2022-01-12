@@ -42,18 +42,18 @@ export default function MyPage() {
 	);
 }
 
-export async function getServerSideProps(context) {
-  let list;
-  await axios
-    .get(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/doc`)
-    .then((res) => {
-      list = {
-        myRequest: res.data.myRequest,
-        myResponse: res.data.myResponse,
-      };
-    });
+// export async function getServerSideProps(context) {
+//   let list;
+//   await axios
+//     .get(`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/doc`)
+//     .then((res) => {
+//       list = {
+//         myRequest: res.data.myRequest,
+//         myResponse: res.data.myResponse,
+//       };
+//     });
 
-  return {
-    props: { list }, // will be passed to the page component as props
-  };
-}
+//   return {
+//     props: { list }, // will be passed to the page component as props
+//   };
+// }
