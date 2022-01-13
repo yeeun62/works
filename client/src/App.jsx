@@ -6,7 +6,7 @@ import Mypage from "./pages/Mypage";
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="w-3/5 m-auto">
+			<div className="w-3/5 m-auto mb-10">
 				<Routes>
 					<Route path="/" element={<Templatepage />} />
 					<Route path="/mypage" element={<Mypage />} />
