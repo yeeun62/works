@@ -1,86 +1,86 @@
 .myPageWrapper {
-  //border: 1px solid blue;
-  width: 100%;
-  padding-top: 2rem;
+	/* border: 1px solid blue; */
+	width: 100%;
+	padding-top: 2rem;
 }
 
 .myPageWrapper .tabButton {
-  //border: 1px solid red;
+	/* border: 1px solid red; */
 }
 
 .myPageWrapper .tabButton button {
-  width: 50%;
-  height: 3rem;
-  line-height: 3rem;
-  border-radius: 1rem 2rem 0 0;
-  background: rgba(224, 221, 27, 20%);
-  box-shadow: inset -2px -4px 15px #e3e2b8;
+	width: 50%;
+	height: 3rem;
+	line-height: 3rem;
+	border-radius: 1rem 2rem 0 0;
+	background: rgba(224, 221, 27, 20%);
+	box-shadow: inset -2px -4px 15px #e3e2b8;
 }
 
 .myPageWrapper .tabButton .trueTab {
-  background: #e0de1b;
-  box-shadow: none;
+	background: #e0de1b;
+	box-shadow: none;
 }
 
 .myPageWrapper .tabMenu {
-  width: 100%;
-  padding: 10px;
-  background: #e0de1b;
+	width: 100%;
+	padding: 10px;
+	background: #e0de1b;
 }
 
 .myPageWrapper .RequestContainer {
-  padding: 10px 0;
+	padding: 10px 0;
 }
 
 .myPageWrapper .RequestContainer .header,
 .myPageWrapper .RequestContainer ul .requestList {
-  display: flex;
-  border-bottom: 1px solid #999;
-  justify-content: space-between;
-  padding-bottom: 1rem;
-  align-items: stretch;
+	display: flex;
+	border-bottom: 1px solid #999;
+	justify-content: space-between;
+	padding-bottom: 1rem;
+	align-items: stretch;
 }
 
 .myPageWrapper .RequestContainer .header p {
-  display: block;
-  border-right: 1px solid #999;
-  width: 25%;
-  text-align: center;
+	display: block;
+	border-right: 1px solid #999;
+	width: 25%;
+	text-align: center;
 }
 
 .myPageWrapper .RequestContainer .header p:last-child {
-  border: none;
+	border: none;
 }
 
 .myPageWrapper .RequestContainer ul {
-  width: 96%;
-  height: 30rem;
-  margin: 1rem auto 0;
-  background: #fff;
+	width: 96%;
+	height: 30rem;
+	margin: 1rem auto 0;
+	background: #fff;
 }
 
 .myPageWrapper .RequestContainer ul .requestList {
-  height: 2.5rem;
-  line-height: 2.5rem;
-  border-bottom: 1px dashed #999;
-  cursor: pointer;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	border-bottom: 1px dashed #999;
+	cursor: pointer;
 }
 
 .myPageWrapper .RequestContainer ul .requestList p {
-  text-align: center;
-  display: block;
-  width: 25%;
-  height: 100%;
-  /* border-right: 1px solid #999; */
+	text-align: center;
+	display: block;
+	width: 25%;
+	height: 100%;
+	/* border-right: 1px solid #999; */
 }
 
 .myPageWrapper .RequestContainer ul .requestList p:last-child {
-  border: none;
+	border: none;
 }
 
 .RequestContainer .noRequest {
-  width: 100%;
-  text-align: center;
-  height: 30rem;
-  line-height: 30rem;
+	width: 100%;
+	text-align: center;
+	height: 30rem;
+	line-height: 30rem;
 }
