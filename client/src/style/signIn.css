@@ -1,0 +1,121 @@
+header {
+  width: 100%;
+  height: 4rem;
+  margin: auto;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+header h1 {
+  color: #e0de1b;
+  font-size: 2rem;
+  line-height: 4rem;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.navButtonList {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navButtonList .navBtn {
+  margin-right: 10px;
+}
+
+.modal-dim {
+  background: rgba(0, 0, 0, 10%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.signModal {
+  border-radius: 1rem;
+  width: 20rem;
+  height: 30rem;
+  background: #fff;
+  z-index: 500;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.signUp-modal {
+  height: 40rem;
+}
+
+.signModal h1 {
+  text-align: center;
+}
+
+.signModal form {
+  margin: 1rem auto;
+  width: 13rem;
+}
+
+.signModal form label {
+  display: block;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.signModal form input {
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.signIn-modal form input:focus {
+  border: 2px solid #00adc7;
+}
+
+.signModal form .signBtn {
+  margin-top: 30px;
+  position: absolute;
+  left: 40%;
+  bottom: 100px;
+}
+
+.signUp-modal form .signBtn {
+  bottom: 30px;
+}
+
+.signModal .closeModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: none;
+}
+
+.warring {
+  font-size: 0.6rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0.2rem;
+  color: red;
+}
+
+.emailLabel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkEmailBtn {
+  font-size: 0.6rem;
+  font-weight: bold;
+  border-radius: 0.1rem;
+  padding: 0.1rem;
+  color: #fff;
+  background-color: #00adc7;
+}

@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Lobster|Noto+Sans+TC&display=swap");
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "GmarketSansLight";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a:link,
+a:visited,
+a:active,
+a:hover {
+  font-style: unset;
+  text-decoration: unset;
+  color: #282828;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+body,
+input,
+textarea {
+  font-family: "GmarketSansLight", "Noto Sans TC", sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.bold {
+  font-family: "GmarketSansMedium", sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo,
+.handle-logo-font {
+  font-family: "Lobster", cursive;
+}
+
+button[type="button"],
+button[type="submit"],
+.handle-button,
+.handle-primary-button {
+  display: inline-block;
+  font-family: "GmarketSansLight", "Noto Sans TC", sans-serif;
+  color: #282828;
+  background-color: #e0de1b;
+  border: 1px solid #e0de1b;
+  border-bottom-left-radius: 7px;
+  padding: 5px 7px;
 }
