@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
-	const handleToken = req.headers.handletoken;
+	const handleToken = req.cookies.handleToken;
 	if (!handleToken) {
 		return res.status(404).json({ message: "로그인이 되어있지 않습니다." });
 	}
