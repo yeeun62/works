@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import "yup-phone";
 import axios from "axios";
 
-export default function SignUp({ modalHandler }) {
+export default function SignUp({ signupHandler }) {
 	const [emailCheck, setEmailCheck] = useState(false);
 
 	const { handleSubmit, handleChange, values, touched, errors, handleBlur } =
@@ -21,7 +21,7 @@ export default function SignUp({ modalHandler }) {
 					.email("이메일 형식이 맞지 않습니다")
 					.required("이메일을 입력해주세요"),
 				name: Yup.string()
-					.max(5, "이름이 맞습니까..?!")
+					.max(10, "이름이 맞습니까..?!")
 					.required("이름을 입력해주세요."),
 				password: Yup.string()
 					.min(5, "비밀번호는 5자리 이상이여야 합니다")
@@ -31,7 +31,7 @@ export default function SignUp({ modalHandler }) {
 					.required("비빌번호 확인을 입력해주세요"),
 				phoneNumber: Yup.string()
 					.matches(/^[0-9\b -]{0,13}$/, "숫자만 입력해주세요")
-					.min(11, "11자리를 초과할 수 없습니다.")
+					.max(11, "11자리를 초과할 수 없습니다.")
 					.required("휴대폰번호를 입력해주세요"),
 			}),
 			onSubmit: (values) => {
@@ -47,7 +47,7 @@ export default function SignUp({ modalHandler }) {
 		if (values.email) {
 			try {
 				let emailCheck = await axios.post(
-					`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/signup`,
+					`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
 					{ email: values.email },
 					{ withCredentials: true }
 				);
@@ -66,12 +66,14 @@ export default function SignUp({ modalHandler }) {
 	const signUp = async () => {
 		delete values.passwordConfirm;
 		let signup = await axios.post(
-			`${process.env.NEXT_PUBLIC_TEMPLATE_API_URL}/user/signup`,
+			`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
 			values,
 			{ withCredentials: true }
 		);
 		if (signup.status === 200) {
+			signupHandler();
 			window.alert(signup.data.message);
+			window.location.replace("/");
 		}
 	};
 
@@ -162,11 +164,7 @@ export default function SignUp({ modalHandler }) {
 					회원가입
 				</button>
 			</form>
-			<button
-				className="btn closeModal"
-				type="button"
-				onClick={() => modalHandler(false)}
-			>
+			<button className="btn closeModal" type="button" onClick={signupHandler}>
 				X
 			</button>
 		</div>

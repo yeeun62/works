@@ -1,10 +1,10 @@
 import Header from "../components/Header";
 import Template from "../components/Template";
 
-const Templatepage = () => {
+const Templatepage = ({ userInfo }) => {
 	return (
 		<>
-			<Header />
+			<Header userInfo={userInfo} />
 			<Template />
 		</>
 	);
