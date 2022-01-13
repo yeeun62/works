@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
 					.status(200)
 					.cookie("handleToken", userToken, {
 						httpOnly: true,
+						secure: false, // 나중에 지우기
 					})
 					.json({ message: "로그인에 성공하였습니다🥳" });
 			}

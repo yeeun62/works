@@ -1,4 +1,5 @@
 module.exports = (req, res) => {
+	console.log("들어옴");
 	res
 		.cookie("handleToken", "", {
 			httpOnly: true,

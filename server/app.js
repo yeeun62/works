@@ -1,9 +1,12 @@
 const express = require("express");
-const app = express();
 const cookieParser = require("cookie-parser");
+const app = express();
 const cors = require("cors");
 const { sequelize } = require("./models");
 const server = require("http").createServer(app);
+
+const userRouter = require("./router/user");
+const purchaseRouter = require("./router/purchase");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -15,9 +18,6 @@ app.use(
 	})
 );
 
-const userRouter = require("./router/user");
-const purchaseRouter = require("./router/purchase");
-
 app.use("/user", userRouter);
 app.use("/purchase", purchaseRouter);
 
@@ -26,5 +26,5 @@ app.get("/", (req, res) => {
 });
 
 server.listen(80, () => console.log("template 서버 실행"));
-// sequelize.sync({ alter: true }
+// sequelize.sync({ alter: true })
 // console.log("template 서버 실행")

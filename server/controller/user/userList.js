@@ -2,6 +2,7 @@ const { users } = require("../../models");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
+	console.log(req.cookies);
 	const handleToken = req.cookies.handleToken;
 	const userInfo = await jwt.verify(handleToken, process.env.TOKEN);
 	try {
