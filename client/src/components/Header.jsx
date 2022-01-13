@@ -45,7 +45,7 @@ const Header = ({ userInfo }) => {
 			>
 				<SignUp signupHandler={signupHandler}></SignUp>
 			</Modal>
-			<header className="flex justify-between h-16 border-b-[1px] mb-20">
+			<header className="flex justify-between h-16 border-b-[1px] mb-20 px-3">
 				<p className="logo text-[#E0DE1B] text-3xl cursor-pointer leading-[4rem]">
 					handle
 				</p>
