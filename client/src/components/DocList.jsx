@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 export default function DocList({ list }) {
-	console.log(list);
 	const navigate = useNavigate();
 
 	return (
@@ -26,7 +25,11 @@ export default function DocList({ list }) {
 								>
 									<p className="requester">{el.requester}</p>
 									<p className="title">{el.title}</p>
-									<p className="result">{el.result ? "승인" : "거절"}</p>
+									<p className="result">{el.result
+                        ? "승인"
+                        : el.result == null
+                        ? "대기중"
+                        : "거절"}</p>
 									<p className="date">{el.createdAt.slice(0, 10)}</p>
 								</li>
 							);
