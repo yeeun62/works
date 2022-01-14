@@ -1,6 +1,46 @@
+import { useState, useEffect } from "react";
 import "../modal/modal.css";
+import axios from "axios";
 
+//! 인풋값없을시 서버에러시!
 const PurchaseModal = ({ modalHandler }) => {
+	const [userList, setUserList] = useState(null);
+	const [purcharseForm, setPurcharseForm] = useState({
+		responser: "",
+		productName: "",
+		productInfo: "",
+		quantity: "",
+		price: "",
+		totalPrice: "",
+		reason: "",
+	});
+
+	const purchaseFormHandler = (e) => {
+		setPurcharseForm({ ...purcharseForm, [e.target.name]: e.target.value });
+	};
+
+	useEffect(async () => {
+		let userList = await axios.get(
+			`${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
+			{
+				withCredentials: true,
+			}
+		);
+		setUserList(userList.data.data);
+	}, []);
+
+	const postPurcharseHanler = async () => {
+		let postPurcharse = await axios.post(
+			`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
+			purcharseForm,
+			{ withCredentials: true }
+		);
+		if (postPurcharse.status === 200) {
+			modalHandler();
+			window.alert(postPurcharse.data.message);
+		}
+	};
+
 	return (
 		<div className="flex">
 			<div className="w-8/12 p-4 border-r">
@@ -13,6 +53,7 @@ const PurchaseModal = ({ modalHandler }) => {
 						<p>품명</p>
 						<input
 							className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
+							onChange={purchaseFormHandler}
 							type="text"
 							name="productName"
 							placeholder="마우스"
@@ -22,6 +63,7 @@ const PurchaseModal = ({ modalHandler }) => {
 						<p>상품 정보(링크)</p>
 						<input
 							className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
+							onChange={purchaseFormHandler}
 							type="text"
 							name="productInfo"
 							placeholder="로지텍 마우스"
@@ -31,6 +73,7 @@ const PurchaseModal = ({ modalHandler }) => {
 						<p>수량</p>
 						<input
 							className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
+							onChange={purchaseFormHandler}
 							type="text"
 							name="quantity"
 							placeholder="2"
@@ -40,6 +83,7 @@ const PurchaseModal = ({ modalHandler }) => {
 						<p>단가</p>
 						<input
 							className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
+							onChange={purchaseFormHandler}
 							type="text"
 							name="price"
 							placeholder="10,000"
@@ -49,6 +93,7 @@ const PurchaseModal = ({ modalHandler }) => {
 						<p>금액</p>
 						<input
 							className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
+							onChange={purchaseFormHandler}
 							type="text"
 							name="totalPrice"
 							placeholder="20,000"
@@ -58,27 +103,33 @@ const PurchaseModal = ({ modalHandler }) => {
 						<p>사유</p>
 						<input
 							className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
+							onChange={purchaseFormHandler}
 							type="text"
 							name="reason"
 							placeholder="로지텍 마우스가 굉장히 좋습니다."
 						/>
 					</label>
-					<button type="button" className="mt-6">
+					<button type="button" className="mt-6" onClick={postPurcharseHanler}>
 						작성하기
 					</button>
 				</form>
 			</div>
 			<div className="p-4 relative items-center">
 				<p className="text-s">받을분을 선택해주세요👇</p>
-				<select className="border w-40">
+				<select
+					className="border w-40"
+					onChange={purchaseFormHandler}
+					name="responser"
+				>
 					<option>대상 선택하기</option>
-					{/* {sendList.map((send, i) => {
+					{userList &&
+						userList.map((user) => {
 							return (
-								<option key={i} onChange={formHandler} name={responser}>
-									{send.name}
+								<option key={user.id} value={user.id}>
+									{user.name}
 								</option>
 							);
-						})} */}
+						})}
 				</select>
 			</div>
 			<button className="absolute right-7" onClick={modalHandler}>
