@@ -6,6 +6,8 @@ export default function PurchaseDetail({ templateInfo }) {
   console.log(templateInfo);
   const [isMe, setIsMe] = useState(true);
 
+  useEffect(() => {}, []);
+
   const approvalHandler = async (b) => {
     await axios
       .post(`${process.env.REACT_APP_TEMPLATE_API_URL}??`, b)

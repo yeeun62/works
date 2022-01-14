@@ -7,6 +7,7 @@ import axios from "axios";
 
 const Header = ({ userInfo }) => {
   let location = useLocation();
+  console.log(userInfo);
 
   const [openSignin, setOpenSignin] = useState(false);
   const [openSignup, setOpenSignup] = useState(false);
