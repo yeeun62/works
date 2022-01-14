@@ -7,19 +7,19 @@ import "./App.css";
 import axios from "axios";
 
 function App() {
-	const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
 
-	useEffect(async () => {
-		try {
-			let user = await axios.get(
-				`${process.env.REACT_APP_TEMPLATE_API_URL}/user/userInfo`,
-				{
-					withCredentials: true,
-				}
-			);
-			setUserInfo(user.data.userInfo);
-		} catch {}
-	}, []);
+  useEffect(async () => {
+    try {
+      let user = await axios.get(
+        `${process.env.REACT_APP_TEMPLATE_API_URL}/user/userInfo`,
+        {
+          withCredentials: true,
+        }
+      );
+      setUserInfo(user.data.userInfo);
+    } catch {}
+  }, []);
 
 	return (
 		<BrowserRouter>
