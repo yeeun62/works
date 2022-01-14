@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../style/PurchaseDetail.css";
 
-export default function Templateidpage({ templateInfo }) {
+export default function PurchaseDetail({ templateInfo }) {
+  console.log(templateInfo);
   const [isMe, setIsMe] = useState(true);
 
   const approvalHandler = async (b) => {
@@ -12,14 +13,6 @@ export default function Templateidpage({ templateInfo }) {
         console.log(res);
       });
   };
-
-  // useEffect(() => {
-  //   let path = window.location.pathname;
-  //   console.log(path);
-
-  //   let res = axios.get(`${process.env.REACT_APP_TEMPLATE_API_URL}`);
-
-  // }, [isMe]);
 
   return (
     <>

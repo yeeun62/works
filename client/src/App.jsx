@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Templatepage from "./pages/Templatepage";
 import Mypage from "./pages/Mypage";
-import PurchaseDetail from "./pages/purchaseDetail";
+import PurchaseDetail from "./pages/PurchaseDetail";
 
 function App() {
   return (

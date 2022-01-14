@@ -14,7 +14,7 @@ export default function DocList({ list, userInfo }) {
           {list.length ? (
             list.map((el) => {
               <li key={el.id} className="requestList">
-                <Link to={`/template:${el.id}`} state={{ templateInfo: el }}>
+                <Link to="/purchase" state={{ templateInfo: el }}>
                   <p className="requester">{el.requester}</p>
                   <p className="title">{el.title}</p>
                   <p className="result">{el.result}</p>
