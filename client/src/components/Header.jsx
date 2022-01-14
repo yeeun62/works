@@ -6,27 +6,27 @@ import SignUp from "../modal/SignUp";
 import axios from "axios";
 
 const Header = ({ userInfo }) => {
-  let location = useLocation();
-  const navigate = useNavigate();
+	let location = useLocation();
+	const navigate = useNavigate();
 
-  const [openSignin, setOpenSignin] = useState(false);
-  const [openSignup, setOpenSignup] = useState(false);
+	const [openSignin, setOpenSignin] = useState(false);
+	const [openSignup, setOpenSignup] = useState(false);
 
-  const signinHandler = () => {
-    setOpenSignin(!openSignin);
-  };
-  const signupHandler = () => {
-    setOpenSignup(!openSignup);
-  };
+	const signinHandler = () => {
+		setOpenSignin(!openSignin);
+	};
+	const signupHandler = () => {
+		setOpenSignup(!openSignup);
+	};
 
-  const signoutHandler = async () => {
-    let signout = await axios.get(
-      `${process.env.REACT_APP_TEMPLATE_API_URL}/user/signout`,
-      { withCredentials: true }
-    );
-    window.alert(signout.data.message);
-    window.location.replace("/");
-  };
+	const signoutHandler = async () => {
+		let signout = await axios.get(
+			`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signout`,
+			{ withCredentials: true }
+		);
+		window.alert(signout.data.message);
+		window.location.replace("/");
+	};
 
   return (
     <>
