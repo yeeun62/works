@@ -4,12 +4,12 @@ import Header from "../components/Header";
 import DocList from "../components/DocList";
 import "../style/mypage.css";
 
-const Mypage = () => {
-	let userInfo = {
-		name: "박은빈",
-		email: "dmdqld24@gmail.com",
-		phoneNumber: "01083191050",
-	};
+const Mypage = ({ userInfo }) => {
+	// let userInfo = {
+	// 	name: "박은빈",
+	// 	email: "dmdqld24@gmail.com",
+	// 	phoneNumber: "01083191050",
+	// };
 	const [tabMenu, setTabMenu] = useState(false);
 	const [list, setList] = useState({ myRequest: [], myResponse: [] });
 
@@ -43,7 +43,7 @@ const Mypage = () => {
 
 	return (
 		<>
-			<Header></Header>
+			<Header userInfo={userInfo} />
 			<div className="myPageWrapper">
 				<div className="tabButton">
 					<button

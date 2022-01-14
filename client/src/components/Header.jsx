@@ -1,12 +1,13 @@
 import Modal from "react-modal";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SignIn from "../modal/SignIn";
 import SignUp from "../modal/SignUp";
 import axios from "axios";
 
 const Header = ({ userInfo }) => {
 	let location = useLocation();
+	const navigate = useNavigate();
 
 	const [openSignin, setOpenSignin] = useState(false);
 	const [openSignup, setOpenSignup] = useState(false);
@@ -49,13 +50,27 @@ const Header = ({ userInfo }) => {
 				<p className="logo text-[#E0DE1B] text-3xl cursor-pointer leading-[4rem]">
 					handle
 				</p>
-				<div className="flex justify-around w-40 items-center">
+				<div className="flex justify-around w-50 items-center">
 					{userInfo ? (
 						<>
 							{location.pathname === "/" ? (
-								<button type="button">문서함</button>
+								<button
+									type="button"
+									onClick={() => {
+										navigate("/mypage");
+									}}
+								>
+									문서함
+								</button>
 							) : (
-								<button type="button">템플릿 페이지</button>
+								<button
+									type="button"
+									onClick={() => {
+										navigate("/");
+									}}
+								>
+									템플릿 페이지
+								</button>
 							)}
 							<button type="button" onClick={signoutHandler}>
 								로그아웃
