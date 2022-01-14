@@ -49,7 +49,7 @@ const Header = ({ userInfo }) => {
         <p className="logo text-[#E0DE1B] text-3xl cursor-pointer leading-[4rem]">
           handle
         </p>
-        <div className="flex justify-around w-50 items-center">
+        <div className="flex justify-around w-40 items-center">
           {userInfo ? (
             <>
               {location.pathname === "/" ? (

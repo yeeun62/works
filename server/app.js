@@ -1,15 +1,15 @@
+const { sequelize } = require("./models");
 const express = require("express");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
-const cors = require("cors");
-const { sequelize } = require("./models");
 const server = require("http").createServer(app);
 
 const userRouter = require("./router/user");
 const purchaseRouter = require("./router/purchase");
 
-app.use(express.json());
 app.use(cookieParser());
+app.use(express.json());
 app.use(
 	cors({
 		origin: true,
