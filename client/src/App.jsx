@@ -21,17 +21,20 @@ function App() {
     } catch {}
   }, []);
 
-	return (
-		<BrowserRouter>
-			<div className="w-3/5 m-auto mb-10 md:min-w-full">
-				<Routes>
-					<Route path="/" element={<Templatepage userInfo={userInfo} />} />
-					<Route path="/mypage" element={<Mypage userInfo={userInfo} />} />
-					<Route path="/purchase/:id" element={<PurchaseDetail />} />
-				</Routes>
-			</div>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <div className="w-3/5 m-auto mb-10 md:min-w-full">
+        <Routes>
+          <Route path="/" element={<Templatepage userInfo={userInfo} />} />
+          <Route path="/mypage" element={<Mypage userInfo={userInfo} />} />
+          <Route
+            path="/purchase/:id"
+            element={<PurchaseDetail userInfo={userInfo} />}
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;

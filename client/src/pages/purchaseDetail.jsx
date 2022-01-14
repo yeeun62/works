@@ -1,16 +1,32 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "../components/Header";
 import "../style/PurchaseDetail.css";
 
-export default function PurchaseDetail({ templateInfo }) {
-  console.log(templateInfo);
+export default function PurchaseDetail({ userInfo }) {
+  const [templateInfo, setTemplateInfo] = useState({});
+  const [id, setId] = useState(window.location.pathname.slice(10));
   const [isMe, setIsMe] = useState(true);
 
-  useEffect(() => {}, []);
+  useEffect(async () => {
+    let res = await axios.get(
+      `${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+    setTemplateInfo(res.data.data);
+    console.log(templateInfo);
+    //setIsMe(res.data.data.responser.name === userInfo.name);
+  }, []);
+
+  console.log(templateInfo);
 
   const approvalHandler = async (b) => {
     await axios
-      .post(`${process.env.REACT_APP_TEMPLATE_API_URL}??`, b)
+      .post(`${process.env.REACT_APP_TEMPLATE_API_URL}/${id}`, b, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res);
       });
@@ -18,7 +34,8 @@ export default function PurchaseDetail({ templateInfo }) {
 
   return (
     <>
-      {templateInfo ? (
+      <Header userInfo={userInfo}></Header>
+      {Object.values(templateInfo).length > 0 ? (
         <div className="templateContainer">
           <div className="top">
             <h1>🖥 {templateInfo.title}</h1>
