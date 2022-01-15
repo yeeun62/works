@@ -19,15 +19,15 @@ const PurchaseModal = ({ modalHandler }) => {
 		setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.value });
 	};
 
-	useEffect(async () => {
-		let userList = await axios.get(
-			`${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
-			{
-				withCredentials: true,
-			}
-		);
-		setUserList(userList.data.data);
-	}, []);
+  useEffect(async () => {
+    let userList = await axios.get(
+      `${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
+      {
+        withCredentials: true,
+      }
+    );
+    setUserList(userList.data.data);
+  }, []);
 
 	const postPurchaseHandler = async () => {
 		let postPurchase = await axios.post(

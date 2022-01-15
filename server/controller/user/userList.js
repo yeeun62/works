@@ -2,7 +2,6 @@ const { users } = require("../../models");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
-	//! 시퀄알아보기
 	const handleToken = req.cookies.handleToken;
 	const userInfo = await jwt.verify(handleToken, process.env.TOKEN);
 	let userEmail = userInfo.email;
