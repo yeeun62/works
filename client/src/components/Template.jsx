@@ -1,6 +1,6 @@
 import "../style/TemPage.css";
 import Modal from "react-modal";
-import PurchaseModal from "../modal/PurcharseModal";
+import PurchaseModal from "../modal/PurchaseModal";
 import { useState } from "react";
 
 const Template = () => {

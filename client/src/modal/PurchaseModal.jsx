@@ -5,7 +5,7 @@ import axios from "axios";
 //! 인풋값없을시 서버에러시!
 const PurchaseModal = ({ modalHandler }) => {
 	const [userList, setUserList] = useState(null);
-	const [purcharseForm, setPurcharseForm] = useState({
+	const [purchaseForm, setPurchaseForm] = useState({
 		responser: "",
 		productName: "",
 		productInfo: "",
@@ -16,7 +16,7 @@ const PurchaseModal = ({ modalHandler }) => {
 	});
 
 	const purchaseFormHandler = (e) => {
-		setPurcharseForm({ ...purcharseForm, [e.target.name]: e.target.value });
+		setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.value });
 	};
 
 	useEffect(async () => {
@@ -29,15 +29,15 @@ const PurchaseModal = ({ modalHandler }) => {
 		setUserList(userList.data.data);
 	}, []);
 
-	const postPurcharseHanler = async () => {
-		let postPurcharse = await axios.post(
+	const postPurchaseHandler = async () => {
+		let postPurchase = await axios.post(
 			`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
-			purcharseForm,
+			purchaseForm,
 			{ withCredentials: true }
 		);
-		if (postPurcharse.status === 200) {
+		if (postPurchase.status === 200) {
 			modalHandler();
-			window.alert(postPurcharse.data.message);
+			window.alert(postPurchase.data.message);
 		}
 	};
 
@@ -109,7 +109,7 @@ const PurchaseModal = ({ modalHandler }) => {
 							placeholder="로지텍 마우스가 굉장히 좋습니다."
 						/>
 					</label>
-					<button type="button" className="mt-6" onClick={postPurcharseHanler}>
+					<button type="button" className="mt-6" onClick={postPurchaseHandler}>
 						작성하기
 					</button>
 				</form>
