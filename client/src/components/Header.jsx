@@ -4,29 +4,30 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import SignIn from "../modal/SignIn";
 import SignUp from "../modal/SignUp";
 import axios from "axios";
+import "../modal/modal.css";
 
 const Header = ({ userInfo }) => {
-	let location = useLocation();
-	const navigate = useNavigate();
+  let location = useLocation();
+  const navigate = useNavigate();
 
-	const [openSignin, setOpenSignin] = useState(false);
-	const [openSignup, setOpenSignup] = useState(false);
+  const [openSignin, setOpenSignin] = useState(false);
+  const [openSignup, setOpenSignup] = useState(false);
 
-	const signinHandler = () => {
-		setOpenSignin(!openSignin);
-	};
-	const signupHandler = () => {
-		setOpenSignup(!openSignup);
-	};
+  const signinHandler = () => {
+    setOpenSignin(!openSignin);
+  };
+  const signupHandler = () => {
+    setOpenSignup(!openSignup);
+  };
 
-	const signoutHandler = async () => {
-		let signout = await axios.get(
-			`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signout`,
-			{ withCredentials: true }
-		);
-		window.alert(signout.data.message);
-		window.location.replace("/");
-	};
+  const signoutHandler = async () => {
+    let signout = await axios.get(
+      `${process.env.REACT_APP_TEMPLATE_API_URL}/user/signout`,
+      { withCredentials: true }
+    );
+    window.alert(signout.data.message);
+    window.location.replace("/");
+  };
 
   return (
     <>
@@ -35,6 +36,7 @@ const Header = ({ userInfo }) => {
         onRequestClose={signinHandler}
         overlayClassName="overlay"
         ariaHideApp={false}
+        className="content"
       >
         <SignIn signinHandler={signinHandler}></SignIn>
       </Modal>
@@ -43,6 +45,7 @@ const Header = ({ userInfo }) => {
         onRequestClose={signupHandler}
         overlayClassName="overlay"
         ariaHideApp={false}
+        className="content"
       >
         <SignUp signupHandler={signupHandler}></SignUp>
       </Modal>
