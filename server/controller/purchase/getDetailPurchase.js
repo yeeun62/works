@@ -15,10 +15,9 @@ module.exports = async (req, res) => {
 
     findPurchase.responser = await users.findOne({
       where: { id: findPurchase.responser },
-      attributes: ["name"],
+      attributes: ["name", "email"],
     });
 
-    console.log("앙아아아어리ㅏ어라ㅣㅇ러아ㅣ", findPurchase);
     if (findPurchase) {
       res.status(200).json({ data: findPurchase });
     } else if (!findPurchase) {

@@ -3,10 +3,9 @@ import axios from "axios";
 import Header from "../components/Header";
 import "../style/PurchaseDetail.css";
 
-export default function PurchaseDetail({ userInfo }) {
-  const [templateInfo, setTemplateInfo] = useState({});
+export default function PurchaseDetail({ userInfo, isMe }) {
+  const [templateInfo, setTemplateInfo] = useState(null);
   const [id, setId] = useState(window.location.pathname.slice(10));
-  const [isMe, setIsMe] = useState(true);
 
   useEffect(async () => {
     let res = await axios.get(
@@ -16,8 +15,6 @@ export default function PurchaseDetail({ userInfo }) {
       }
     );
     setTemplateInfo(res.data.data);
-    console.log(templateInfo);
-    //setIsMe(res.data.data.responser.name === userInfo.name);
   }, []);
 
   console.log(templateInfo);
@@ -35,11 +32,11 @@ export default function PurchaseDetail({ userInfo }) {
   return (
     <>
       <Header userInfo={userInfo}></Header>
-      {Object.values(templateInfo).length > 0 ? (
+      {templateInfo ? (
         <div className="templateContainer">
           <div className="top">
             <h1>🖥 {templateInfo.title}</h1>
-            <p>작성자 {templateInfo.requester}</p>
+            <p>작성자 {templateInfo.requester.name}</p>
             <p>작성일 {templateInfo.updatedAt}</p>
           </div>
           <div className="body">
@@ -64,7 +61,7 @@ export default function PurchaseDetail({ userInfo }) {
               </li>
             </ul>
           </div>
-          {isMe ? (
+          {isMe && (
             <div className="temButtonWrap">
               <button
                 type="button"
@@ -81,7 +78,7 @@ export default function PurchaseDetail({ userInfo }) {
                 거절
               </button>
             </div>
-          ) : null}
+          )}
         </div>
       ) : (
         <p>정보가 없습니다.</p>

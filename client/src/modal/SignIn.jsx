@@ -52,10 +52,10 @@ export default function SignIn({ signinHandler }) {
   };
 
   return (
-    <div className="signIn-modal signModal">
-      <h1>로그인</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className="rounded-2xl w-80 h-120">
+      <h1 className="text-center">로그인</h1>
+      <form onSubmit={handleSubmit} className="mx-auto my-4">
+        <label className="block m-auto mt-4">
           이메일
           <input
             name="email"
