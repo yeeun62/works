@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
 	const handleToken = req.cookies.handleToken;
+
 	try {
 		const userInfo = await jwt.verify(handleToken, process.env.TOKEN);
 
@@ -13,10 +14,10 @@ module.exports = async (req, res) => {
 		let myRequestList = await Promise.all(
 			myRequest.map(async (res) => {
 				let list = await users
-					.findOne({ where: { id: res.responser } })
+					.findOne({ where: { id: res.requester } })
 					.then((el) => {
 						return {
-							id: el.id,
+							id: res.id,
 							requester: el.name,
 							title: res.title,
 							result: res.result,
@@ -39,7 +40,7 @@ module.exports = async (req, res) => {
 					.findOne({ where: { id: res.requester } })
 					.then((el) => {
 						return {
-							id: el.id,
+							id: res.id,
 							requester: el.name,
 							title: res.title,
 							result: res.result,

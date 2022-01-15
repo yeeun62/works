@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 
 module.exports = async (req, res) => {
-	console.log(req);
 	const handleToken = req.cookies.handleToken;
 	const {
 		responser,

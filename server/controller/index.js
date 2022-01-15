@@ -10,4 +10,5 @@ module.exports = {
 	// purchase
 	postPurchase: require("./purchase/postPurchase"),
 	getDetailPurchase: require("./purchase/getDetailPurchase"),
+	purchaseRequest: require("./purchase/purchaseRequest"),
 };
