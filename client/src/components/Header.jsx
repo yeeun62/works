@@ -36,7 +36,7 @@ const Header = ({ userInfo }) => {
         onRequestClose={signinHandler}
         overlayClassName="overlay"
         ariaHideApp={false}
-        className="content"
+        className="content signModal"
       >
         <SignIn signinHandler={signinHandler}></SignIn>
       </Modal>
@@ -45,7 +45,7 @@ const Header = ({ userInfo }) => {
         onRequestClose={signupHandler}
         overlayClassName="overlay"
         ariaHideApp={false}
-        className="content"
+        className="content signModal"
       >
         <SignUp signupHandler={signupHandler}></SignUp>
       </Modal>
