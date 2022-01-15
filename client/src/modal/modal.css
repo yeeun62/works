@@ -1,9 +1,7 @@
 .content {
   position: fixed;
   background: #fff;
-  width: 60%;
   min-width: calc(250px + 5rem);
-  height: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -17,7 +15,15 @@
   padding: 0.8rem;
   z-index: 5;
 }
-*/ .overlay {
+
+/* .signModal {
+  border-radius: 1rem;
+  width: 20rem;
+  height: 30rem;
+  z-index: 500;
+} */
+
+.overlay {
   position: fixed;
   top: 0;
   left: 0;

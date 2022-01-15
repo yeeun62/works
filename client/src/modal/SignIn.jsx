@@ -52,12 +52,13 @@ export default function SignIn({ signinHandler }) {
   };
 
   return (
-    <div className="rounded-2xl w-80 h-120">
+    <div>
       <h1 className="text-center">로그인</h1>
       <form onSubmit={handleSubmit} className="mx-auto my-4">
         <label className="block m-auto mt-4">
           이메일
           <input
+            className="border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8"
             name="email"
             type="text"
             placeholder="e-mail@gmail.com"
@@ -72,6 +73,7 @@ export default function SignIn({ signinHandler }) {
         <label>
           비밀번호
           <input
+            className="border border-solid border-neutral-300"
             name="password"
             type="password"
             placeholder="password"
@@ -83,11 +85,11 @@ export default function SignIn({ signinHandler }) {
         {touched.password && errors.password ? (
           <div className="warring">{errors.password}</div>
         ) : null}
-        <button className="btn signBtn" type="submit">
+        <button className="btn mt-40 absolute inset-x-1/2" type="submit">
           로그인
         </button>
       </form>
-      <button className="btn closeModal" type="button" onClick={signinHandler}>
+      <button className="btn closeModal " type="button" onClick={signinHandler}>
         X
       </button>
     </div>
