@@ -36,7 +36,7 @@ const Header = ({ userInfo }) => {
 				onRequestClose={signinHandler}
 				overlayClassName="overlay"
 				ariaHideApp={false}
-				className="content"
+				className="content signModal"
 			>
 				<SignIn signinHandler={signinHandler}></SignIn>
 			</Modal>
@@ -45,11 +45,11 @@ const Header = ({ userInfo }) => {
 				onRequestClose={signupHandler}
 				overlayClassName="overlay"
 				ariaHideApp={false}
-				className="content"
+				className="content signModal"
 			>
 				<SignUp signupHandler={signupHandler}></SignUp>
 			</Modal>
-			<header className="flex justify-between h-16 border-b-[1px] mb-10 px-3">
+			<header className="flex justify-between h-16 border-b-[1px] mb-20 px-3">
 				<Link to="/">
 					<p className="logo text-[#E0DE1B] text-3xl cursor-pointer leading-[4rem]">
 						handle

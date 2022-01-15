@@ -15,6 +15,14 @@
 	padding: 0.8rem;
 	z-index: 5;
 }
+
+/* .signModal {
+  border-radius: 1rem;
+  width: 20rem;
+  height: 30rem;
+  z-index: 500;
+} */
+
 .overlay {
 	position: fixed;
 	top: 0;
