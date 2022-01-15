@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
 			price,
 			totalPrice,
 			reason,
+			result,
 		} = findPurchase;
 
 		const { id, name, createdAt } = requestUser;
@@ -38,6 +39,7 @@ module.exports = async (req, res) => {
 			price,
 			totalPrice,
 			reason,
+			result,
 		};
 
 		res.status(200).json({ data });

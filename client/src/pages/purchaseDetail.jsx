@@ -81,7 +81,16 @@ export default function PurchaseDetail({ userInfo }) {
 							</li>
 						</ul>
 					</div>
-					{isMe && (
+					{templateInfo.result === null ? null : templateInfo.result ? (
+						<p className="text-center text-sky-500 font-bold">
+							승인된 요청입니다🥳
+						</p>
+					) : (
+						<p className="text-center text-rose-500 font-bold">
+							거절된 요청입니다🥲
+						</p>
+					)}
+					{templateInfo.result === null && isMe && (
 						<div className="temButtonWrap">
 							<button
 								type="button"

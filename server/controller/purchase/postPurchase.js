@@ -47,10 +47,8 @@ module.exports = async (req, res) => {
 			try {
 				await axios.post(`${process.env.HANDLE_API_URL}/msg/aligo`, {
 					receiver: requesterInfo.phoneNumber,
-					msg: `
-          확인이 필요한 비품동의서가 있습니다.
-				  https://works.handle.market/purchase/${newPurchase.id}
-				  `,
+					msg: `확인이 필요한 비품동의서가 있습니다.
+				  https://works.handle.market/purchase/${newPurchase.id}`,
 				});
 			} catch (err) {
 				res.status(500).send("알리고 에러");

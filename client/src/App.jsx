@@ -10,15 +10,13 @@ function App() {
 	const [userInfo, setUserInfo] = useState(null);
 
 	useEffect(async () => {
-		try {
-			let user = await axios.get(
-				`${process.env.REACT_APP_TEMPLATE_API_URL}/user/userInfo`,
-				{
-					withCredentials: true,
-				}
-			);
-			setUserInfo(user.data.userInfo);
-		} catch {}
+		let user = await axios.get(
+			`${process.env.REACT_APP_TEMPLATE_API_URL}/user/userInfo`,
+			{
+				withCredentials: true,
+			}
+		);
+		setUserInfo(user.data.userInfo);
 	}, []);
 
 	return (
