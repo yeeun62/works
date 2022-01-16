@@ -4,6 +4,11 @@ module.exports = {
     extend: {
       screens: {
         md: { max: "768px" },
+        sm: { max: "500px" },
+        lg: { min: "768px" },
+      },
+      colors: {
+        blue: "#00adc7",
       },
     },
   },
