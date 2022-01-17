@@ -1,4 +1,5 @@
-const { users, purchaseAgreement } = require("../../models");
+const { handle_works_purchase_agreements } = require("../../models");
+const users = require("../../models/handle_works_users");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 
@@ -30,7 +31,7 @@ module.exports = async (req, res) => {
 			totalPrice &&
 			reason
 		) {
-			let newPurchase = await purchaseAgreement.create({
+			let newPurchase = await handle_works_purchase_agreements.create({
 				requester: userInfo.id,
 				responser,
 				title: "비품 신청",

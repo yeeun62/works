@@ -41,13 +41,23 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-const { users, purchaseAgreement } = sequelize.models;
+const { handle_works_users, handle_works_purchase_agreements } =
+	sequelize.models;
 
-users.hasMany(purchaseAgreement, { foreignKey: "requester" });
-purchaseAgreement.belongsTo(users, { foreignKey: "requester" });
+handle_works_users.hasMany(handle_works_purchase_agreements, {
+	foreignKey: "requester",
+});
+handle_works_purchase_agreements.belongsTo(handle_works_users, {
+	foreignKey: "requester",
+});
 
-users.hasMany(purchaseAgreement, { foreignKey: "responser" });
-purchaseAgreement.belongsTo(users, { foreignKey: "responser" });
+handle_works_users.hasMany(handle_works_purchase_agreements, {
+	foreignKey: "responser",
+});
+handle_works_purchase_agreements.belongsTo(handle_works_users, {
+	foreignKey: "responser",
+});
 
 module.exports = db;
