@@ -19,7 +19,6 @@ export default function PurchaseDetail({ userInfo }) {
 					withCredentials: true,
 				}
 			);
-			console.log("ddddd", purchaseData);
 			setTemplateInfo(purchaseData.data.data);
 			setIsMe(purchaseData.data.data.responser === userInfo.id);
 		}
@@ -44,9 +43,7 @@ export default function PurchaseDetail({ userInfo }) {
 					withCredentials: true,
 				}
 			);
-			console.log(response);
-			if (response.status === 200) {
-			}
+			window.location.replace("/");
 		}
 	};
 
