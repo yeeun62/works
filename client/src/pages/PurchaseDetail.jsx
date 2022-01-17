@@ -5,10 +5,11 @@ import { signinModal } from "../redux/modules/users";
 import axios from "axios";
 import Header from "../components/Header";
 import "../style/PurchaseDetail.css";
+import { getURL } from "next/dist/shared/lib/utils";
 
 export default function PurchaseDetail() {
-	const user = useSelector((state) => state.users);
-	const dispatch = useDispatch();
+  const user = useSelector((state) => state.users);
+  const dispatch = useDispatch();
 
 	const navigate = useNavigate();
 	let location = useLocation();
@@ -33,7 +34,7 @@ export default function PurchaseDetail() {
 			setTemplateInfo(purchaseData.data.data);
 			setIsMe(purchaseData.data.data.responser === user.userInfo.id);
 		}
-	}, [user.isLogin]);
+	}, [user.isLogin])
 
 	const responseHandler = async (boolean) => {
 		let result;
@@ -61,7 +62,7 @@ export default function PurchaseDetail() {
 	return (
 		<>
 			<Header />
-			<p className="cursor-pointer pl-8" onClick={() => navigate("/mypage")}>
+			<p className="cursor-pointer pl-8 inline" onClick={() => navigate("/mypage")}>
 				🔙 문서함으로 이동
 			</p>
 			{templateInfo ? (

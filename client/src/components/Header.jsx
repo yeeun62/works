@@ -10,15 +10,15 @@ import axios from "axios";
 import "../modal/modal.css";
 
 const Header = () => {
-	const user = useSelector((state) => state.users);
-	const dispatch = useDispatch();
+  const user = useSelector((state) => state.users);
+  const dispatch = useDispatch();
 
-	let location = useLocation();
-	const navigate = useNavigate();
+  let location = useLocation();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		dispatch(getUserInfo());
-	}, []);
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
 
 	const signinHandler = () => {
 		dispatch(signinModal());
@@ -65,12 +65,12 @@ const Header = () => {
 				<div className="flex justify-around w-50 items-center">
 					{user.isLogin ? (
 						<>
-							<div className="tooltip rounded-full border mr-4 sm:mr-2 border-yellowGreen w-7 h-7 text-center leading-7 cursor-pointer hover:bg-[#e0de1b]">
-								{user.userInfo.name.slice(0, 1)}
-								<div className="tooltipInner bg-[#e0de1b] p-4 min-w-fit text-white text-left font-bold rounded-2xl shadow-xl hidden text-xs">
-									이메일 {user.userInfo.email} <br /> 이름 {user.userInfo.name}
-								</div>
-							</div>
+						 <div className="tooltip rounded-full border mr-4 sm:mr-2 border-yellowGreen w-7 h-7 text-center leading-7 cursor-pointer hover:bg-[#e0de1b]">
+                {user.userInfo.name.slice(0, 1)}
+                <div className="tooltipInner bg-[#e0de1b] p-4 w-56 text-white text-left font-bold rounded-2xl shadow-xl hidden text-xs">
+                  이메일 {user.userInfo.email} <br /> 이름 {user.userInfo.name}
+                </div>
+              </div>
 							{location.pathname === "/" ? (
 								<button
 									type="button"
