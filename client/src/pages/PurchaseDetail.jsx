@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signinModal } from "../redux/modules/users";
 import axios from "axios";
 import Header from "../components/Header";
 import "../style/PurchaseDetail.css";
 
-export default function PurchaseDetail({ userInfo }) {
+export default function PurchaseDetail() {
+	const user = useSelector((state) => state.users);
+	const dispatch = useDispatch();
+
 	let location = useLocation();
-	const navigate = useNavigate();
 	const id = location.pathname.slice(10);
 
 	const [templateInfo, setTemplateInfo] = useState(null);
 	const [isMe, setIsMe] = useState(true);
 
 	useEffect(async () => {
-		if (userInfo) {
+		if (user.isLogin) {
+			dispatch(signinModal());
 			let purchaseData = await axios.get(
 				`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/${id}`,
 				{
@@ -21,9 +26,11 @@ export default function PurchaseDetail({ userInfo }) {
 				}
 			);
 			setTemplateInfo(purchaseData.data.data);
-			setIsMe(purchaseData.data.data.responser === userInfo.id);
+			setIsMe(purchaseData.data.data.responser === user.userInfo.id);
+		} else {
+			dispatch(signinModal());
 		}
-	}, [userInfo]);
+	}, [user.isLogin]);
 
 	const responseHandler = async (boolean) => {
 		let result;
@@ -50,7 +57,7 @@ export default function PurchaseDetail({ userInfo }) {
 
 	return (
 		<>
-			<Header userInfo={userInfo} />
+			<Header />
 			{templateInfo ? (
 				<div className="templateContainer">
 					<div className="top">

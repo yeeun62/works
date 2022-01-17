@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 export default function SignIn({ signinHandler }) {
+	let location = useLocation();
+
 	const { handleSubmit, handleChange, values, touched, errors, handleBlur } =
 		useFormik({
 			initialValues: {
@@ -33,7 +35,7 @@ export default function SignIn({ signinHandler }) {
 			if (signin.status === 200) {
 				signinHandler();
 				window.alert("환영합니다💕");
-				window.location.replace("/");
+				window.location.replace(location.pathname);
 			}
 		} catch (err) {
 			console.log(err);

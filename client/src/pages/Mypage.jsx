@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import DocList from "../components/DocList";
 import "../style/mypage.css";
 
-const Mypage = ({ userInfo }) => {
+const Mypage = () => {
 	const [tabMenu, setTabMenu] = useState(false);
 	const [list, setList] = useState({ myRequestList: [], myResponseList: [] });
 
@@ -29,7 +29,7 @@ const Mypage = ({ userInfo }) => {
 
 	return (
 		<>
-			<Header userInfo={userInfo} />
+			<Header />
 			<div className="myPageWrapper">
 				<div className="tabButton">
 					<button
