@@ -9,6 +9,10 @@ module.exports = {
       },
       colors: {
         blue: "#00adc7",
+        yellowGreen: "#e0de1b",
+      },
+      minWidth: {
+        mobile: "320px",
       },
     },
   },
