@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         blue: "#00adc7",
       },
+      minWidth: {
+        mobile: "320px",
+      },
     },
   },
   plugins: [],
