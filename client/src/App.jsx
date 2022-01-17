@@ -16,6 +16,7 @@ function App() {
         withCredentials: true,
       }
     );
+    console.log(user);
     setUserInfo(user.data.userInfo);
   }, []);
 
