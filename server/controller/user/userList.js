@@ -1,4 +1,4 @@
-const { users } = require("../../models");
+const { handle_works_users } = require("../../models");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 	const userInfo = await jwt.verify(handleToken, process.env.TOKEN);
 	let userEmail = userInfo.email;
 	try {
-		const allUser = await users.findAll();
+		const allUser = await handle_works_users.findAll();
 		let userList = [];
 		allUser.forEach((el) => {
 			if (el.email !== userEmail) {

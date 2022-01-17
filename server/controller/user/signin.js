@@ -1,10 +1,10 @@
-const { users } = require("../../models");
+const { handle_works_users } = require("../../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
 	const { email, password } = req.body;
-	const findUser = await users.findOne({ where: { email } });
+	const findUser = await handle_works_users.findOne({ where: { email } });
 
 	try {
 		if (!findUser) {

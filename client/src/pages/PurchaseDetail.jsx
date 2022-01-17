@@ -10,16 +10,20 @@ export default function PurchaseDetail() {
 	const user = useSelector((state) => state.users);
 	const dispatch = useDispatch();
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 	let location = useLocation();
 	const id = location.pathname.slice(10);
 
-  const [templateInfo, setTemplateInfo] = useState(null);
-  const [isMe, setIsMe] = useState(true);
+	const [templateInfo, setTemplateInfo] = useState(null);
+	const [isMe, setIsMe] = useState(true);
 
 	useEffect(async () => {
-		if (user.isLogin) {
-			dispatch(signinModal());
+		if (!user.isLogin) {
+			return dispatch(signinModal());
+		} else if (user.isLogin) {
+			if (user.signinModal) {
+				dispatch(signinModal());
+			}
 			let purchaseData = await axios.get(
 				`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/${id}`,
 				{
@@ -28,40 +32,38 @@ export default function PurchaseDetail() {
 			);
 			setTemplateInfo(purchaseData.data.data);
 			setIsMe(purchaseData.data.data.responser === user.userInfo.id);
-		} else {
-			dispatch(signinModal());
 		}
 	}, [user.isLogin]);
 
-  const responseHandler = async (boolean) => {
-    let result;
-    if (boolean) {
-      result = "승인";
-    } else {
-      result = "거절";
-    }
-    if (window.confirm(`요청을 ${result}하시겠습니까??`)) {
-      let response = await axios.post(
-        `${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/request`,
-        {
-          requestResult: boolean,
-          requesterId: templateInfo.userId,
-          purchaseId: templateInfo.purchaseId,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      window.location.replace(location.pathname);
-    }
-  };
+	const responseHandler = async (boolean) => {
+		let result;
+		if (boolean) {
+			result = "승인";
+		} else {
+			result = "거절";
+		}
+		if (window.confirm(`요청을 ${result}하시겠습니까??`)) {
+			let response = await axios.post(
+				`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/request`,
+				{
+					requestResult: boolean,
+					requesterId: templateInfo.userId,
+					purchaseId: templateInfo.purchaseId,
+				},
+				{
+					withCredentials: true,
+				}
+			);
+			window.location.replace(location.pathname);
+		}
+	};
 
 	return (
 		<>
 			<Header />
-          <p className="cursor-pointer pl-8" onClick={() => navigate("/mypage")}>
-        🔙 문서함으로 이동
-      </p>
+			<p className="cursor-pointer pl-8" onClick={() => navigate("/mypage")}>
+				🔙 문서함으로 이동
+			</p>
 			{templateInfo ? (
 				<div className="templateContainer">
 					<div className="top">

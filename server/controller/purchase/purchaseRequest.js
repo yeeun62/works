@@ -1,12 +1,12 @@
-const { users, purchaseAgreement } = require("../../models");
-const jwt = require("jsonwebtoken");
+const { handle_works_purchase_agreements } = require("../../models");
+const users = require("../../models/handle_works_users");
 const axios = require("axios");
 
 module.exports = async (req, res) => {
 	const { requestResult, requesterId, purchaseId } = req.body;
 
 	const findRequestUser = await users.findOne({ where: { id: requesterId } });
-	const findPurchase = await purchaseAgreement.update(
+	const findPurchase = await handle_works_purchase_agreements.update(
 		{ result: requestResult },
 		{
 			where: { id: purchaseId },

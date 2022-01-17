@@ -26,7 +26,7 @@ const Header = () => {
 	const signupHandler = () => {
 		dispatch(signupModal());
 	};
-  
+
 	const signoutHandler = async () => {
 		let signout = await axios.get(
 			`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signout`,
@@ -65,19 +65,19 @@ const Header = () => {
 				<div className="flex justify-around w-50 items-center">
 					{user.isLogin ? (
 						<>
-                          <div className="tooltip rounded-full border mr-4 sm:mr-2 border-yellowGreen w-7 h-7 text-center leading-7 cursor-pointer hover:bg-[#e0de1b]">
-                {userInfo.name.slice(0, 1)}
-                <div className="tooltipInner bg-[#e0de1b] p-4 min-w-fit text-white text-left font-bold rounded-2xl shadow-xl hidden text-xs">
-                  이메일 {userInfo.email} <br /> 이름 {userInfo.name}
-                </div>
-              </div>
+							<div className="tooltip rounded-full border mr-4 sm:mr-2 border-yellowGreen w-7 h-7 text-center leading-7 cursor-pointer hover:bg-[#e0de1b]">
+								{user.userInfo.name.slice(0, 1)}
+								<div className="tooltipInner bg-[#e0de1b] p-4 min-w-fit text-white text-left font-bold rounded-2xl shadow-xl hidden text-xs">
+									이메일 {user.userInfo.email} <br /> 이름 {user.userInfo.name}
+								</div>
+							</div>
 							{location.pathname === "/" ? (
 								<button
 									type="button"
 									onClick={() => {
 										navigate("/mypage");
 									}}
-								 className="mr-4 sm:mr-2"
+									className="mr-4 sm:mr-2"
 								>
 									문서함
 								</button>
@@ -92,7 +92,11 @@ const Header = () => {
 									템플릿 페이지
 								</button>
 							)}
-							<button type="button" onClick={signoutHandler}  className="sm:min-w-fit">
+							<button
+								type="button"
+								onClick={signoutHandler}
+								className="sm:min-w-fit"
+							>
 								로그아웃
 							</button>
 						</>

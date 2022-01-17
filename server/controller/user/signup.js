@@ -1,11 +1,11 @@
-const { users } = require("../../models");
+const { handle_works_users } = require("../../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
 	const { name, email, password, phoneNumber } = req.body;
 
-	let findUser = await users.findOne({ where: { email } });
+	let findUser = await handle_works_users.findOne({ where: { email } });
 
 	let userInfo = {
 		name,
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 						console.log("bcrypt 에러!");
 						throw err;
 					} else {
-						let newUser = await users.create({
+						let newUser = await handle_works_users.create({
 							...userInfo,
 							password: hash,
 						});
