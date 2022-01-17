@@ -79,7 +79,7 @@ export default function SignUp({ signupHandler }) {
 
 	return (
 		<div
-			className="rounded-2xl m-auto signModal overflow-scroll"
+			className="rounded-2xl m-auto signModal overflow-auto"
 			style={{ height: "35rem" }}
 		>
 			<h1 className="text-center text-xl">회원가입</h1>
