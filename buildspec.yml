@@ -4,14 +4,12 @@ phases:
   pre_build:
     commands:
       - cd client
-      - npm install -g next
       - npm install
   build:
     commands:
       - npm run build
-      - npm run export
 
 artifacts:
   files:
     - "**/*"
-  base-directory: client/.next/server/pages
+  base-directory: client/build
