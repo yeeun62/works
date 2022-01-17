@@ -1,5 +1,7 @@
-const { handle_works_purchase_agreements } = require("../../models");
-const users = require("../../models/handle_works_users");
+const {
+	handle_works_purchase_agreements,
+	handle_works_users,
+} = require("../../models");
 
 module.exports = async (req, res) => {
 	const purchasetId = req.params.id;
@@ -9,7 +11,7 @@ module.exports = async (req, res) => {
 			where: { id: purchasetId },
 		});
 
-		let requestUser = await users.findOne({
+		let requestUser = await handle_works_users.findOne({
 			where: { id: findPurchase.requester },
 		});
 
@@ -49,3 +51,4 @@ module.exports = async (req, res) => {
 		res.status(500).json({ messsage: "서버에러입니다" });
 	}
 };
+handle_works_purchase_agreements;

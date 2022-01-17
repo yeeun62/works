@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     productInfo: DataTypes.STRING,
     quantity: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
+    totalPrice: DataTypes.INTEGER,
     reason: DataTypes.STRING,
     result: DataTypes.BOOLEAN
   }, {

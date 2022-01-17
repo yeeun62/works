@@ -1,11 +1,15 @@
-const { handle_works_purchase_agreements } = require("../../models");
-const users = require("../../models/handle_works_users");
+const {
+	handle_works_purchase_agreements,
+	handle_works_users,
+} = require("../../models");
 const axios = require("axios");
 
 module.exports = async (req, res) => {
 	const { requestResult, requesterId, purchaseId } = req.body;
 
-	const findRequestUser = await users.findOne({ where: { id: requesterId } });
+	const findRequestUser = await handle_works_users.findOne({
+		where: { id: requesterId },
+	});
 	const findPurchase = await handle_works_purchase_agreements.update(
 		{ result: requestResult },
 		{
