@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
 	let userInfo = {
 		name,
 		email,
-		password,
 		phoneNumber,
 	};
 
@@ -24,10 +23,11 @@ module.exports = async (req, res) => {
 						console.log("bcrypt 에러!");
 						throw err;
 					} else {
-						await users.create({
+						let newUser = await users.create({
 							...userInfo,
 							password: hash,
 						});
+						userInfo.id = newUser.id;
 						const userToken = await jwt.sign(userInfo, process.env.TOKEN);
 						res
 							.cookie("handleToken", userToken, { httpOnly: true })
