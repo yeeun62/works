@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "../components/Header";
 import "../style/PurchaseDetail.css";
 
 export default function PurchaseDetail({ userInfo }) {
 	let location = useLocation();
+	const navigate = useNavigate();
 	const id = location.pathname.slice(10);
 
 	const [templateInfo, setTemplateInfo] = useState(null);
@@ -43,7 +44,7 @@ export default function PurchaseDetail({ userInfo }) {
 					withCredentials: true,
 				}
 			);
-			window.location.replace("/");
+			window.location.replace(location.pathname);
 		}
 	};
 
