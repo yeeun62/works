@@ -1,4 +1,7 @@
-const { handle_works_purchase_agreements } = require("../../models");
+const {
+	handle_works_purchase_agreements,
+	handle_works_users,
+} = require("../../models");
 const users = require("../../models/handle_works_users");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
@@ -21,7 +24,9 @@ module.exports = async (req, res) => {
 
 	try {
 		const userInfo = await jwt.verify(handleToken, process.env.TOKEN);
-		const requesterInfo = await users.findOne({ where: { id: responser } });
+		const requesterInfo = await handle_works_users.findOne({
+			where: { id: responser },
+		});
 		if (
 			responser &&
 			productName &&
