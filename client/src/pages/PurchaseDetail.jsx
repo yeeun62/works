@@ -1,29 +1,37 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signinModal } from "../redux/modules/users";
 import axios from "axios";
 import Header from "../components/Header";
 import "../style/PurchaseDetail.css";
 
-export default function PurchaseDetail({ userInfo }) {
-  let location = useLocation();
+export default function PurchaseDetail() {
+	const user = useSelector((state) => state.users);
+	const dispatch = useDispatch();
+
   const navigate = useNavigate();
-  const id = location.pathname.slice(10);
+	let location = useLocation();
+	const id = location.pathname.slice(10);
 
   const [templateInfo, setTemplateInfo] = useState(null);
   const [isMe, setIsMe] = useState(true);
 
-  useEffect(async () => {
-    if (userInfo) {
-      let purchaseData = await axios.get(
-        `${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-      setTemplateInfo(purchaseData.data.data);
-      setIsMe(purchaseData.data.data.responser === userInfo.id);
-    }
-  }, [userInfo]);
+	useEffect(async () => {
+		if (user.isLogin) {
+			dispatch(signinModal());
+			let purchaseData = await axios.get(
+				`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/${id}`,
+				{
+					withCredentials: true,
+				}
+			);
+			setTemplateInfo(purchaseData.data.data);
+			setIsMe(purchaseData.data.data.responser === user.userInfo.id);
+		} else {
+			dispatch(signinModal());
+		}
+	}, [user.isLogin]);
 
   const responseHandler = async (boolean) => {
     let result;
@@ -48,76 +56,72 @@ export default function PurchaseDetail({ userInfo }) {
     }
   };
 
-  return (
-    <>
-      <Header userInfo={userInfo} />
-      <p className="cursor-pointer pl-8" onClick={() => navigate("/mypage")}>
+	return (
+		<>
+			<Header />
+          <p className="cursor-pointer pl-8" onClick={() => navigate("/mypage")}>
         🔙 문서함으로 이동
       </p>
-      {templateInfo ? (
-        <div className="templateContainer">
-          <div className="top">
-            <h1>🖥 {templateInfo.title}</h1>
-            <p>작성자 {templateInfo.name}</p>
-            <p>작성일 {templateInfo.createdAt.slice(0, 10)}</p>
-          </div>
-          <div className="body">
-            <ul>
-              <li>
-                품명 <span>{templateInfo.productName}</span>
-              </li>
-              <li>
-                상품 정보 <span>{templateInfo.productInfo}</span>
-              </li>
-              <li>
-                수량 <span>{templateInfo.quantity}</span>
-              </li>
-              <li>
-                단가 <span>{templateInfo.price}</span>
-              </li>
-              <li>
-                금액 <span>{templateInfo.totalPrice}</span>
-              </li>
-              <li>
-                사유 <span>{templateInfo.reason}</span>
-              </li>
-            </ul>
-          </div>
-          {templateInfo.result === null ? (
-            <p className="text-center font-bold mb-7">
-              대기 중인 요청입니다 🤔
-            </p>
-          ) : templateInfo.result ? (
-            <p className="text-center text-sky-500 font-bold">
-              승인된 요청입니다 🥳
-            </p>
-          ) : (
-            <p className="text-center text-rose-500 font-bold">
-              거절된 요청입니다 🥲
-            </p>
-          )}
-          {templateInfo.result === null && isMe && (
-            <div className="temButtonWrap">
-              <button
-                type="button"
-                className="temBtnApproval btn"
-                onClick={() => responseHandler(true)}
-              >
-                승인
-              </button>
-              <button
-                type="button"
-                className="temBtnReject btn"
-                onClick={() => responseHandler(false)}
-              >
-                거절
-              </button>
-            </div>
-          )}
-        </div>
-      ) : (
-        <p>정보가 없습니다.</p>
-      )}
-    </>
-  );
+			{templateInfo ? (
+				<div className="templateContainer">
+					<div className="top">
+						<h1>🖥 {templateInfo.title}</h1>
+						<p>작성자 {templateInfo.name}</p>
+						<p>작성일 {templateInfo.createdAt.slice(0, 10)}</p>
+					</div>
+					<div className="body">
+						<ul>
+							<li>
+								품명 <span>{templateInfo.productName}</span>
+							</li>
+							<li>
+								상품 정보 <span>{templateInfo.productInfo}</span>
+							</li>
+							<li>
+								수량 <span>{templateInfo.quantity}</span>
+							</li>
+							<li>
+								단가 <span>{templateInfo.price}</span>
+							</li>
+							<li>
+								금액 <span>{templateInfo.totalPrice}</span>
+							</li>
+							<li>
+								사유 <span>{templateInfo.reason}</span>
+							</li>
+						</ul>
+					</div>
+					{templateInfo.result === null ? null : templateInfo.result ? (
+						<p className="text-center text-sky-500 font-bold">
+							승인된 요청입니다🥳
+						</p>
+					) : (
+						<p className="text-center text-rose-500 font-bold">
+							거절된 요청입니다🥲
+						</p>
+					)}
+					{templateInfo.result === null && isMe && (
+						<div className="temButtonWrap">
+							<button
+								type="button"
+								className="temBtnApproval btn"
+								onClick={() => responseHandler(true)}
+							>
+								승인
+							</button>
+							<button
+								type="button"
+								className="temBtnReject btn"
+								onClick={() => responseHandler(false)}
+							>
+								거절
+							</button>
+						</div>
+					)}
+				</div>
+			) : (
+				<p>정보가 없습니다.</p>
+			)}
+		</>
+	);
 }
