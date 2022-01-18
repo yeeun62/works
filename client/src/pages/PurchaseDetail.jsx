@@ -24,14 +24,24 @@ export default function PurchaseDetail() {
 			if (user.signinModal) {
 				dispatch(signinModal());
 			}
-			let purchaseData = await axios.get(
-				`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/${id}`,
-				{
-					withCredentials: true,
+			try {
+				let purchaseData = await axios.get(
+					`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/${id}`,
+					{
+						withCredentials: true,
+					}
+				);
+				setTemplateInfo(purchaseData.data.data);
+				setIsMe(purchaseData.data.data.responser === user.userInfo.id);
+			} catch (err) {
+				if (
+					err.response.status === 401 &&
+					err.response.data.message === "접근권한이 없습니다😅"
+				) {
+					window.alert(err.response.data.message);
+					navigate("/");
 				}
-			);
-			setTemplateInfo(purchaseData.data.data);
-			setIsMe(purchaseData.data.data.responser === user.userInfo.id);
+			}
 		}
 	}, [user.isLogin]);
 
