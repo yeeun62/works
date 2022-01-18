@@ -129,7 +129,7 @@ export default function SignUp({ signupHandler }) {
             className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
             name="password"
             type="password"
-            placeholder="password"
+            placeholder="비밀번호는 5자리 이상이여야 합니다"
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.password}
@@ -144,7 +144,7 @@ export default function SignUp({ signupHandler }) {
             className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
             name="passwordConfirm"
             type="password"
-            placeholder="password"
+            placeholder="비밀번호와 같이 한 번 더 입력해주세요"
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.passwordConfirm}
@@ -163,6 +163,7 @@ export default function SignUp({ signupHandler }) {
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.phoneNumber}
+            // 폰번호 형식에 대한 가이드 -> placeholder의 내용이 밸류가 들어가는 순간 다른 곳에서 보이게 하기.
           />
         </label>
         {touched.phoneNumber && errors.phoneNumber ? (
