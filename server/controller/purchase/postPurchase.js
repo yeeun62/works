@@ -2,7 +2,6 @@ const {
   handle_works_purchase_agreements,
   handle_works_users,
 } = require("../../models");
-const users = require("../../models/handle_works_users");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 
@@ -59,6 +58,24 @@ module.exports = async (req, res) => {
       } catch (err) {
         res.status(500).send("알리고 에러");
         console.log(err);
+      }
+
+      const resName = await handle_works_users.findOne({
+        where: { id: req.body.responser },
+        attributes: ["name"],
+      });
+
+      try {
+        await axios.post(
+          process.env.SLACK_URL,
+          {
+            text: `${resName.name}님에게 확인이 필요한 비품동의서가 있습니다.
+        https://works.handle.market/purchase/${newPurchase.id}`,
+          },
+          { headers: { "Content-type": "application/json" } }
+        );
+      } catch (err) {
+        console.log("슬랙캐치에러", err);
       }
     } else {
       res.status(400).json({ message: "parameter가 불충분합니다" });

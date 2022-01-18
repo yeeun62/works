@@ -34,4 +34,21 @@ module.exports = async (req, res) => {
     console.log(err);
     res.status(500).json({ message: "서버에러입니다" });
   }
+
+  const reqName = await handle_works_users.findOne({
+    where: { id: req.body.requesterId },
+    attributes: ["name"],
+  });
+
+  try {
+    await axios.post(
+      process.env.SLACK_URL,
+      {
+        text: `${reqName.name}님이 요청하신 비품동의서가 ${result}되었습니다!`,
+      },
+      { headers: { "Content-type": "application/json" } }
+    );
+  } catch (err) {
+    console.log("슬랙캐치에러", err);
+  }
 };
