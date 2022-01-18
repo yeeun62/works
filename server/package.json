@@ -1,5 +1,6 @@
 {
 	"dependencies": {
+		"@slack/web-api": "^6.5.1",
 		"axios": "^0.24.0",
 		"bcrypt": "^5.0.1",
 		"cookie-parser": "^1.4.6",
