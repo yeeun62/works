@@ -5,15 +5,15 @@ const {
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
-  const purchasetId = req.params.id;
-  const handleToken = req.cookies.handleToken;
+	const purchaseId = req.params.purchaseId;
+	const handleToken = req.cookies.handleToken;
 
   try {
     const userInfo = await jwt.verify(handleToken, process.env.TOKEN);
 
-    let findPurchase = await handle_works_purchase_agreements.findOne({
-      where: { id: purchasetId },
-    });
+		let findPurchase = await handle_works_purchase_agreements.findOne({
+			where: { purchaseId },
+		});
 
     let requestUser = await handle_works_users.findOne({
       where: { id: findPurchase.requester },

@@ -12,7 +12,14 @@ module.exports = async (req, res) => {
 
 		let myRequest = await handle_works_purchase_agreements.findAll({
 			where: { requester: userInfo.id },
-			attributes: ["id", "responser", "title", "result", "createdAt"],
+			attributes: [
+				"id",
+				"purchaseId",
+				"responser",
+				"title",
+				"result",
+				"createdAt",
+			],
 		});
 
 		let myRequestList = await Promise.all(
@@ -25,6 +32,7 @@ module.exports = async (req, res) => {
 					.then((el) => {
 						return {
 							id: res.id,
+							purchaseId: res.purchaseId,
 							requester: el.name,
 							title: res.title,
 							result: res.result,
@@ -39,7 +47,14 @@ module.exports = async (req, res) => {
 			where: {
 				responser: userInfo.id,
 			},
-			attributes: ["id", "requester", "title", "result", "createdAt"],
+			attributes: [
+				"id",
+				"purchaseId",
+				"requester",
+				"title",
+				"result",
+				"createdAt",
+			],
 		});
 
 		let myResponserList = await Promise.all(
@@ -49,6 +64,7 @@ module.exports = async (req, res) => {
 					.then((el) => {
 						return {
 							id: res.id,
+							purchaseId: res.purchaseId,
 							requester: el.name,
 							title: res.title,
 							result: res.result,
