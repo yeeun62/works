@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import "../modal/modal.css";
 import axios from "axios";
-//const { WebClient } = require("@slack/web-api");
 
 //! 인풋값없을시 서버에러시!
 const PurchaseModal = ({ modalHandler }) => {
-  // const token = process.env.SLACK_TOKEN_ACCESS;
-  // const web = new WebClient(token);
   const [userList, setUserList] = useState(null);
   const [purchaseForm, setPurchaseForm] = useState({
     responser: "",
@@ -79,16 +76,6 @@ const PurchaseModal = ({ modalHandler }) => {
               ></input>
             </label>
             <label className="block my-4">
-              <p>수량</p>
-              <input
-                className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
-                onChange={purchaseFormHandler}
-                type="text"
-                name="quantity"
-                placeholder="2"
-              />
-            </label>
-            <label className="block my-4">
               <p>단가</p>
               <input
                 className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
@@ -99,6 +86,16 @@ const PurchaseModal = ({ modalHandler }) => {
               />
             </label>
             <label className="block my-4">
+              <p>수량</p>
+              <input
+                className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
+                onChange={purchaseFormHandler}
+                type="text"
+                name="quantity"
+                placeholder="2"
+              />
+            </label>
+            <label className="block my-4">
               <p>금액</p>
               <input
                 className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
@@ -106,6 +103,7 @@ const PurchaseModal = ({ modalHandler }) => {
                 type="text"
                 name="totalPrice"
                 placeholder="20,000"
+                value={purchaseForm.price * purchaseForm.quantity}
               />
             </label>
             <label className="block my-4">
