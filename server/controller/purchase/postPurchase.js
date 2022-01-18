@@ -17,6 +17,8 @@ module.exports = async (req, res) => {
     reason,
   } = req.body;
 
+  console.log(req.body);
+
   if (!handleToken) {
     return res.status(401).json({ mesage: "로그인을 해주세요" });
   }

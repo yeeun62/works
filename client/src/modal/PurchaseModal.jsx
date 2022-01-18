@@ -19,6 +19,8 @@ const PurchaseModal = ({ modalHandler }) => {
     setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.value });
   };
 
+  let total = purchaseForm.price * purchaseForm.quantity;
+
   useEffect(async () => {
     let userList = await axios.get(
       `${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
@@ -30,6 +32,8 @@ const PurchaseModal = ({ modalHandler }) => {
   }, []);
 
   const postPurchaseHandler = async () => {
+    purchaseForm.totalPrice = purchaseForm.price * purchaseForm.quantity;
+
     let postPurchase = await axios.post(
       `${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
       purchaseForm,
@@ -99,7 +103,7 @@ const PurchaseModal = ({ modalHandler }) => {
               <p>금액</p>
               <input
                 className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
-                onChange={purchaseFormHandler}
+                //onChange={purchaseFormHandler}
                 type="text"
                 name="totalPrice"
                 placeholder="20,000"
