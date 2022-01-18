@@ -11,7 +11,6 @@ const Mypage = () => {
 	const tabHandler = (boolean) => {
 		setTabMenu(boolean);
 	};
-
 	useEffect(() => {
 		axios
 			.get(`${process.env.REACT_APP_TEMPLATE_API_URL}/user/doc`, {
