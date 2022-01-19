@@ -15,7 +15,7 @@ const PurchaseModal = ({ modalHandler }) => {
     price: "",
     totalPrice: "",
     reason: "",
-    file: "",
+    // file: "",
   });
 
   const purchaseFormHandler = (e) => {
@@ -28,44 +28,45 @@ const PurchaseModal = ({ modalHandler }) => {
       console.log(e.target.files[0]);
       setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.files[0] });
     }
-    if (e.target.name === "responser") {
-      if (e.target.value === "all") setResponserName("");
-      else
-        setResponserName(...userList.filter((el) => el.id == e.target.value));
-    }
 
-    if (e.target.name === "productInfo") {
-      console.log(e.target.value);
-    }
-  };
+		if (e.target.name === "responser") {
+			if (e.target.value === "all") {
+				setResponserName("");
+			} else {
+				let findUser = userList.filter(
+					(el) => el.id === Number(e.target.value)
+				);
+				setResponserName(findUser[0].name);
+			}
+		}
 
-  useEffect(async () => {
-    let userList = await axios.get(
-      `${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
-      {
-        withCredentials: true,
-      }
-    );
-    setUserList(userList.data.data);
-  }, []);
+		if (e.target.name === "productInfo") {
+			//console.log(e.target.value);
+		}
+	};
+  
+	useEffect(async () => {
+		let userList = await axios.get(
+			`${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
+			{
+				withCredentials: true,
+			}
+		);
+		setUserList(userList.data.data);
+	}, []);
 
-  const postPurchaseHandler = async () => {
-    setPurchaseForm({
-      ...purchaseForm,
-      totalPrice: purchaseForm.price * purchaseForm.quantity,
-    });
 
-    let postPurchase = await axios.post(
-      `${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
-      purchaseForm,
-      { withCredentials: true }
-    );
+	const postPurchaseHandler = async () => {
+		setPurchaseForm({
+			...purchaseForm,
+			totalPrice: purchaseForm.quantity * purchaseForm.price,
+		});
 
-    if (postPurchase.status === 200) {
-      modalHandler();
-      window.alert(postPurchase.data.message);
-    }
-  };
+		let postPurchase = await axios.post(
+			`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
+			purchaseForm,
+			{ withCredentials: true }
+		);
 
   return (
     <div className="lg:flex">
@@ -179,7 +180,7 @@ const PurchaseModal = ({ modalHandler }) => {
                 );
               })}
           </select>
-          {responserName.name ? (
+          {responserName ? (
             <div
               id="senderNotice"
               className="border-y dashed  mt-8 text-sm text-center leading-[1.5rem] py-4"

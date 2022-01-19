@@ -145,143 +145,143 @@ export default function SignUp({ signupHandler }) {
     }
   };
 
-  return (
-    <div
-      className="rounded-2xl  signModal overflow-auto"
-      style={{ height: "35rem" }}
-    >
-      <h1 className="text-center text-xl">회원가입</h1>
-      <form onSubmit={handleSubmit} className="m-auto my-4 w-60">
-        <label className="block m-auto mt-6 relative">
-          <div className="emailLabel">
-            <span>이메일</span>
-          </div>
-          <input
-            className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
-            name="email"
-            type="text"
-            placeholder="e-mail@gmail.com"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.email}
-            autoComplete="off"
-          />
-        </label>
-        {touched.email && errors.email ? (
-          <div className="warning">{errors.email}</div>
-        ) : (
-          <div className="warning">{emailComment}</div>
-        )}
-        <label className="block m-auto mt-6">
-          이름
-          <input
-            className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
-            name="name"
-            type="text"
-            placeholder="홍길동"
-            autoComplete="off"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.name}
-          ></input>
-        </label>
-        {touched.name && errors.name && (
-          <div className="warning">{errors.name}</div>
-        )}
-        <label className="block m-auto mt-6">
-          비밀번호
-          <input
-            className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
-            name="password"
-            type="password"
-            placeholder="비밀번호는 5자리 이상이여야 합니다"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.password}
-          />
-        </label>
-        {touched.password && <div className="warning">{errors.password}</div>}
-        {values.password.length &&
-        values.password.length < 5 &&
-        !touched.password ? (
-          <p className="warning">비밀번호는 5자리 이상이여야 합니다</p>
-        ) : null}
-        <label className="block m-auto mt-6">
-          비밀번호 확인
-          <input
-            className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
-            name="passwordConfirm"
-            type="password"
-            placeholder="비밀번호를 한 번 더 입력해주세요."
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.passwordConfirm}
-          />
-        </label>
-        {touched.passwordConfirm && errors.passwordConfirm && (
-          <div className="warning">{errors.passwordConfirm}</div>
-        )}
-        <label className="block m-auto mt-6 relative">
-          휴대폰번호
-          <input
-            className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
-            name="phoneNumber"
-            type="text"
-            autoComplete="off"
-            // onKeyDown={isNumber}
-            placeholder="010-1234-5678"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            value={values.phoneNumber}
-          />
-          {values.phoneNumber.length === 13 &&
-            !errors.phoneNumber &&
-            !phoneInput &&
-            !phoneCheck && (
-              <button
-                className="text-xs font-bold rounded-sm p-0.5 bg-[#00adc7] absolute right-0 h-6 -top-1"
-                type="button"
-                onClick={phoneNumberConflictHandler}
-              >
-                본인 인증
-              </button>
-            )}
-          {phoneCheck && (
-            <p className="text-xs font-bold absolute right-0 top-1 text-[#00adc7]">
-              본인인증 확인 완료!
-            </p>
-          )}
-        </label>
-        {touched.phoneNumber && errors.phoneNumber && (
-          <div className="warning">{errors.phoneNumber}</div>
-        )}
-        {phoneInput && (
-          <label className="block m-auto mt-6 relative">
-            인증번호
-            <input
-              className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
-              name="phoneNumber"
-              type="text"
-              onChange={(e) => setAuthInput(e.target.value)}
-            />
-            {authInput.length === 4 && (
-              <button
-                className="text-xs font-bold rounded-sm p-0.5 bg-[#00adc7] absolute right-0 h-6 -top-1"
-                type="button"
-                onClick={phoneNumberAuthHandler}
-              >
-                인증 하기
-              </button>
-            )}
-          </label>
-        )}
-        <button className="mt-5 ml-[5rem]" type="submit">
-          회원가입
-        </button>
-      </form>
-      <button className="absolute top-3 right-5" onClick={signupHandler}>
-        X
-      </button>
-    </div>
-  );
+	return (
+		<div
+			className="rounded-2xl  signModal overflow-auto"
+			style={{ height: "35rem" }}
+		>
+			<h1 className="text-center text-xl">회원가입</h1>
+			<form onSubmit={handleSubmit} className="m-auto my-4 w-60">
+				<label className="block m-auto mt-6 relative">
+					<div className="emailLabel">
+						<span>이메일</span>
+					</div>
+					<input
+						className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
+						name="email"
+						type="text"
+						placeholder="e-mail@gmail.com"
+						onBlur={handleBlur}
+						onChange={handleChange}
+						value={values.email}
+						autoComplete="off"
+					/>
+				</label>
+				{touched.email && errors.email ? (
+					<div className="warning">{errors.email}</div>
+				) : (
+					<div className="warning">{emailComment}</div>
+				)}
+				<label className="block m-auto mt-6">
+					이름
+					<input
+						className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
+						name="name"
+						type="text"
+						placeholder="홍길동"
+						autoComplete="off"
+						onBlur={handleBlur}
+						onChange={handleChange}
+						value={values.name}
+					></input>
+				</label>
+				{touched.name && errors.name && (
+					<div className="warning">{errors.name}</div>
+				)}
+				<label className="block m-auto mt-6">
+					비밀번호
+					<input
+						className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
+						name="password"
+						type="password"
+						placeholder="비밀번호는 5자리 이상이여야 합니다"
+						onBlur={handleBlur}
+						onChange={handleChange}
+						value={values.password}
+					/>
+				</label>
+				{touched.password && <div className="warning">{errors.password}</div>}
+				{values.password.length &&
+				values.password.length < 5 &&
+				!touched.password ? (
+					<p className="warning">비밀번호는 5자리 이상이여야 합니다</p>
+				) : null}
+				<label className="block m-auto mt-6">
+					비밀번호 확인
+					<input
+						className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
+						name="passwordConfirm"
+						type="password"
+						placeholder="비밀번호를 한 번 더 입력해주세요."
+						onBlur={handleBlur}
+						onChange={handleChange}
+						value={values.passwordConfirm}
+					/>
+				</label>
+				{touched.passwordConfirm && errors.passwordConfirm && (
+					<div className="warning">{errors.passwordConfirm}</div>
+				)}
+				<label className="block m-auto mt-6 relative">
+					휴대폰번호
+					<input
+						className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
+						name="phoneNumber"
+						type="text"
+						autoComplete="off"
+						// onKeyDown={isNumber}
+						placeholder="010-1234-5678"
+						onBlur={handleBlur}
+						onChange={handleChange}
+						value={values.phoneNumber}
+					/>
+					{values.phoneNumber.length === 13 &&
+						!errors.phoneNumber &&
+						!phoneInput &&
+						!phoneCheck && (
+							<button
+								className="text-xs font-bold rounded-sm p-0.5 bg-[#00adc7] absolute right-0 h-6 -top-1"
+								type="button"
+								onClick={phoneNumberConflictHandler}
+							>
+								본인 인증
+							</button>
+						)}
+					{phoneCheck && (
+						<p className="text-xs font-bold absolute right-0 top-1 text-[#00adc7]">
+							본인인증 확인 완료!
+						</p>
+					)}
+				</label>
+				{touched.phoneNumber && errors.phoneNumber && (
+					<div className="warning">{errors.phoneNumber}</div>
+				)}
+				{phoneInput && (
+					<label className="block m-auto mt-6 relative">
+						인증번호
+						<input
+							className=" w-60 border border-solid border-neutral-300 focus: focus:border-solid focus:border-neutral-300 h-8 pl-1"
+							name="phoneNumber"
+							type="text"
+							onChange={(e) => setAuthInput(e.target.value)}
+						/>
+						{authInput.length === 4 && (
+							<button
+								className="text-xs font-bold rounded-sm p-0.5 bg-[#00adc7] absolute right-0 h-6 -top-1"
+								type="button"
+								onClick={phoneNumberAuthHandler}
+							>
+								인증 하기
+							</button>
+						)}
+					</label>
+				)}
+				<button className="mt-5 ml-[5rem]" type="submit">
+					회원가입
+				</button>
+			</form>
+			<button className="absolute top-3 right-5" onClick={signupHandler}>
+				X
+			</button>
+		</div>
+	);
 }
