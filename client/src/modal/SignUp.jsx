@@ -200,10 +200,10 @@ export default function SignUp({ signupHandler }) {
 						value={values.password}
 					/>
 				</label>
-				{touched.password && errors.password && (
-					<div className="warning">{errors.password}</div>
-				)}
-				{values.password.length && !errors.password && !touched.password ? (
+				{touched.password && <div className="warning">{errors.password}</div>}
+				{values.password.length &&
+				values.password.length < 5 &&
+				!touched.password ? (
 					<p className="warning">비밀번호는 5자리 이상이여야 합니다</p>
 				) : null}
 				<label className="block m-auto mt-6">
