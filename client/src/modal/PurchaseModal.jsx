@@ -5,7 +5,7 @@ import axios from "axios";
 //! 인풋값없을시 서버에러시!
 const PurchaseModal = ({ modalHandler }) => {
   const [userList, setUserList] = useState(null);
-  const [responserName, setName] = useState(""); // resonser name 표시 위한 state
+  const [responserName, setResponserName] = useState(""); // responser name 표시 위한 state
   const [ogImg, setOgImg] = useState("");
   const [purchaseForm, setPurchaseForm] = useState({
     responser: {},
@@ -19,18 +19,19 @@ const PurchaseModal = ({ modalHandler }) => {
   });
 
   const purchaseFormHandler = (e) => {
-    console.log(e.target.value);
     setPurchaseForm({
       ...purchaseForm,
-      [e.target.name]: { ...e.target.value },
+      [e.target.name]: e.target.value,
     });
 
-    if (e.target.file) {
+    if (e.target.files) {
+      console.log(e.target.files[0]);
       setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.files[0] });
     }
     if (e.target.name === "responser") {
-      if (e.target.value === "all") setName("");
-      else setName(...userList.filter((el) => el.id == e.target.value));
+      if (e.target.value === "all") setResponserName("");
+      else
+        setResponserName(...userList.filter((el) => el.id == e.target.value));
     }
 
     if (e.target.name === "productInfo") {
@@ -49,8 +50,10 @@ const PurchaseModal = ({ modalHandler }) => {
   }, []);
 
   const postPurchaseHandler = async () => {
-    purchaseForm.totalPrice = purchaseForm.price * purchaseForm.quantity;
-    purchaseForm.responser = purchaseForm.responser.id;
+    setPurchaseForm({
+      ...purchaseForm,
+      totalPrice: purchaseForm.price * purchaseForm.quantity,
+    });
 
     let postPurchase = await axios.post(
       `${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
@@ -66,8 +69,8 @@ const PurchaseModal = ({ modalHandler }) => {
 
   return (
     <div className="lg:flex">
-      <div className="lg:w-full  lg:flex sm:w-full sm:h-full sm:overflow-auto sm:py-8">
-        <div className="lg:w-8/12 lg:p-4 lg:border-r sm:w-full sm:h-full sm:relative">
+      <div className="lg:w-full  lg:flex md:w-full md:h-full md:overflow-auto md:py-8">
+        <div className="lg:w-8/12 lg:p-4 lg:border-r md:w-full md:h-full md:relative">
           <button className="absolute right-7 sm:top-px" onClick={modalHandler}>
             X
           </button>
@@ -111,8 +114,9 @@ const PurchaseModal = ({ modalHandler }) => {
               <input
                 className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
                 onChange={purchaseFormHandler}
-                type="text"
+                type="number"
                 name="price"
+                id="priceInput"
                 placeholder="10,000"
               />
             </label>
@@ -121,32 +125,44 @@ const PurchaseModal = ({ modalHandler }) => {
               <input
                 className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
                 onChange={purchaseFormHandler}
-                type="text"
+                type="number"
+                min="0"
                 name="quantity"
                 placeholder="2"
               />
             </label>
-            <label className="block my-4">
-              <p>총액</p>
-              <div className="w-1/2 border-b border-[#c3c3c3] rounded-sm h-7 pl-1 relative">
-                수량 x 단가 ={" "}
-                <span className="text-rose-800 font-bold absolute right-0">
-                  {purchaseForm.price * purchaseForm.quantity} 원
-                </span>
+            <div className="lg:flex w-full flex-wrap">
+              <label className="block my-4 lg:flex-[1_1_40%] md:mb-4">
+                <p>총액</p>
+                <div className="lg:w-9/12 md:w-full border-b border-[#c3c3c3] rounded-sm h-7 pl-1 relative">
+                  수량 x 단가 ={" "}
+                  <span className="text-rose-800 font-bold absolute right-0 ">
+                    {purchaseForm.price && purchaseForm.quantity
+                      ? Number(purchaseForm.price) *
+                        Number(purchaseForm.quantity)
+                      : 0}{" "}
+                    원
+                  </span>
+                </div>
+              </label>
+              <div className="lg:w-9/12 md:w-full flex h-10 my-4 lg:flex-[1_1_40%] md:mt-4 md:m-auto">
+                <label className="block h-10  handle-button">
+                  관련된 파일첨부
+                  <input
+                    type="file"
+                    onChange={purchaseFormHandler}
+                    name="file"
+                    style={{ display: "none", lineHeight: "2.5rem" }}
+                  />
+                </label>
+                <p className="border-b w-1/2 text-xs h-10 leading-[2.5rem] ml-4">
+                  {purchaseForm.file ? purchaseForm.file.name : null}
+                </p>
               </div>
-            </label>
-            <label className="block my-4 handle-button">
-              관련된 파일첨부
-              <input
-                type="file"
-                onChange={purchaseFormHandler}
-                name="file"
-                style={{ display: "none" }}
-              />
-            </label>
+            </div>
           </form>
         </div>
-        <div className="select lg:top-10 lg:right-0 lg:w-2/5  p-4 relative items-center sm:block sm:mb-5 sm:m-auto">
+        <div className="select lg:top-10 lg:right-0 lg:w-2/5 p-4 relative items-center md:block md:mb-5 md:m-auto">
           <p className="text-s">받을 분을 선택해주세요👇</p>
           <select
             className="border w-40"
@@ -166,7 +182,7 @@ const PurchaseModal = ({ modalHandler }) => {
           {responserName.name ? (
             <div
               id="senderNotice"
-              className="border-b dashed border-t mt-8 text-sm text-center leading-[1.5rem] py-4"
+              className="border-y dashed  mt-8 text-sm text-center leading-[1.5rem] py-4"
               style={{ wordBreak: "keep-all" }}
             >
               {responserName.name}님에게 비품동의서 알림이 sms로 보내집니다.
@@ -174,13 +190,15 @@ const PurchaseModal = ({ modalHandler }) => {
           ) : null}
         </div>
       </div>
-      <button
-        type="button"
-        className="lg:mt-6 sm:m-auto lg:absolute lg:bottom-10 lg:right-10"
-        onClick={postPurchaseHandler}
-      >
-        작성하기
-      </button>
+      <div className="w-20 m-auto">
+        <button
+          type="button"
+          className="lg:mt-6 lg:absolute lg:bottom-10 lg:right-10"
+          onClick={postPurchaseHandler}
+        >
+          작성하기
+        </button>
+      </div>
     </div>
   );
 };
