@@ -17,6 +17,10 @@ module.exports = {
       },
       lineHeight: {
         20: "1.5rem",
+        10: "2.5rem",
+      },
+      flex: {
+        auto: "1 1 40%",
       },
     },
   },
