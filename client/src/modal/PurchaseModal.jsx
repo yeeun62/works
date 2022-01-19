@@ -185,7 +185,7 @@ const PurchaseModal = ({ modalHandler }) => {
 							className="border-y dashed  mt-8 text-sm text-center leading-[1.5rem] py-4"
 							style={{ wordBreak: "keep-all" }}
 						>
-							{responserName.name}님에게 비품동의서 알림이 sms로 보내집니다.
+							{responserName}님에게 비품동의서 알림이 sms로 보내집니다.
 						</div>
 					) : null}
 				</div>
