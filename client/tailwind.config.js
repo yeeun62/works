@@ -10,9 +10,13 @@ module.exports = {
       colors: {
         blue: "#00adc7",
         yellowGreen: "#e0de1b",
+        deepGray: "#282828",
       },
       minWidth: {
         mobile: "320px",
+      },
+      lineHeight: {
+        20: "1.5rem",
       },
     },
   },
