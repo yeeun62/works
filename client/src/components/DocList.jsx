@@ -1,48 +1,12 @@
 import { Link } from "react-router-dom";
 
 export default function DocList({ list, tabMenu, filter }) {
-  const listArray = (filter, list) => {
-    if (filter === "all") {
-      return list.map((el) => {
-        let purchaseId = `/purchase/${el.purchaseId}`;
-        return (
-          <Link key={el.purchaseId} to={purchaseId}>
-            <li className="requestList">
-              <p className="requester">{el.requester}</p>
-              <p className="title">{el.title}</p>
-              <p className="result">
-                {el.result ? "승인" : el.result == null ? "대기중" : "거절"}
-              </p>
-              <p className="date">{el.createdAt.slice(0, 10)}</p>
-            </li>
-          </Link>
-        );
-      });
-    } else {
-      let filtered = list.filter((el) => {
-        return el.result === filter;
-      });
-
-      return filtered.map((el) => {
-        let purchaseId = `/purchase/${el.purchaseId}`;
-        return (
-          <Link key={el.purchaseId} to={purchaseId}>
-            <li className="requestList">
-              <p className="requester">{el.requester}</p>
-              <p className="title">{el.title}</p>
-              <p className="result">
-                {el.result ? "승인" : el.result == null ? "대기중" : "거절"}
-              </p>
-              <p className="date">{el.createdAt.slice(0, 10)}</p>
-            </li>
-          </Link>
-        );
-      });
-    }
+  const listArr = (list, filter) => {
+    if (filter === "all") return list;
+    return list.filter((el) => {
+      return `${el.result}` == filter;
+    });
   };
-  console.log("그냥 리스트", list, "필터", filter);
-
-  console.log("리스트어레이", listArray(filter, list));
 
   return (
     <div className="RequestContainer">
@@ -58,22 +22,29 @@ export default function DocList({ list, tabMenu, filter }) {
       </div>
       <ul>
         {list.length ? (
-          // list.map((el) => {
-          //   let purchaseId = `/purchase/${el.purchaseId}`;
-          //   return (
-          //     <Link key={el.purchaseId} to={purchaseId}>
-          //       <li className="requestList">
-          //         <p className="requester">{el.requester}</p>
-          //         <p className="title">{el.title}</p>
-          //         <p className="result">
-          //           {el.result ? "승인" : el.result == null ? "대기중" : "거절"}
-          //         </p>
-          //         <p className="date">{el.createdAt.slice(0, 10)}</p>
-          //       </li>
-          //     </Link>
-          //   );
-          // })
-          listArray(filter, list)
+          listArr(list, filter).length ? (
+            listArr(list, filter).map((el) => {
+              let purchaseId = `/purchase/${el.purchaseId}`;
+              return (
+                <Link key={el.purchaseId} to={purchaseId}>
+                  <li className="requestList">
+                    <p className="requester">{el.requester}</p>
+                    <p className="title">{el.title}</p>
+                    <p className="result">
+                      {el.result
+                        ? "승인"
+                        : el.result == null
+                        ? "대기중"
+                        : "거절"}
+                    </p>
+                    <p className="date">{el.createdAt.slice(0, 10)}</p>
+                  </li>
+                </Link>
+              );
+            })
+          ) : (
+            <p className="noRequest"> 요청이 없습니다 🙌</p>
+          )
         ) : (
           <p className="noRequest"> 요청이 없습니다 🙌</p>
         )}
