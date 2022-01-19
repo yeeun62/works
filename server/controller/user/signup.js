@@ -5,7 +5,15 @@ const bcrypt = require("bcrypt");
 module.exports = async (req, res) => {
 	const { name, email, password, phoneNumber } = req.body;
 
-	let findUser = await handle_works_users.findOne({ where: { email } });
+	let existEmail;
+	let existPhoneNumber;
+	if (email) {
+		existEmail = await handle_works_users.findOne({ where: { email } });
+	} else if (phoneNumber) {
+		existPhoneNumber = await handle_works_users.findOne({
+			where: { phoneNumber },
+		});
+	}
 
 	let userInfo = {
 		name,
@@ -13,8 +21,13 @@ module.exports = async (req, res) => {
 		phoneNumber,
 	};
 
-	if (findUser) {
+	if (existEmail) {
 		return res.status(409).json({ message: "사용중인 이메일입니다🥲" });
+	} else if (existPhoneNumber) {
+		return res.status(409).json({
+			message:
+				"해당 휴대폰번호로 가입된 계정이 있습니다. 한 휴대폰번호로 한 번만 가입이 가능합니다🥲",
+		});
 	} else {
 		if (password) {
 			bcrypt.genSalt(10, (err, salt) => {
@@ -37,7 +50,7 @@ module.exports = async (req, res) => {
 				});
 			});
 		} else {
-			return res.status(200).json({ message: "사용가능한 이메일입니다🥳" });
+			return res.status(200).json({ message: "사용중인 유저가 없습니다🥳" });
 		}
 	}
 };
