@@ -10,6 +10,7 @@
 		"jsonwebtoken": "^8.5.1",
 		"mysql2": "^2.3.3",
 		"nodemon": "^2.0.15",
+		"open-graph-scraper": "^4.11.0",
 		"save": "^2.4.0",
 		"sequelize": "^6.12.5"
 	},

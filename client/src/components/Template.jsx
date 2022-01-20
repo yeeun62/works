@@ -30,7 +30,6 @@ const Template = () => {
       >
         <PurchaseModal modalHandler={modalHandler} />
       </Modal>
-      {/* sm:w-1/2 sm:h-x sm:m-4 */}
       <div className="templateDiv rounded-xl p-2 relative border border-[#ddd]">
         <h2 className="text-center sm:h-1/2 leading-12 block text-slate-700">
           🖥 비품 신청

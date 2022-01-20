@@ -6,7 +6,7 @@ module.exports = {
         md: { max: "768px" },
         sm: { max: "500px" },
         lg: { min: "768px" },
-        ml: { max: "1300px", min: "768px" },
+        ml: { max: "1300px", min: "500px" },
       },
       colors: {
         blue: "#00adc7",
@@ -24,9 +24,6 @@ module.exports = {
       flex: {
         2: "1 1 40%", //2단
         3: "1 1 30%", //3단
-      },
-      width: {
-        200: "200px",
       },
     },
   },
