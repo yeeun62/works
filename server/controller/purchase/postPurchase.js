@@ -86,6 +86,8 @@ module.exports = async (req, res) => {
 			// } catch (err) {
 			// 	console.log("슬랙캐치에러", err);
 			// }
+
+      // const getUser = app.client.conversations.members({});
 		} else {
 			res.status(400).json({ message: "parameter가 불충분합니다" });
 		}
