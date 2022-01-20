@@ -4,56 +4,61 @@ import axios from "axios";
 
 //! 인풋값없을시 서버에러시!
 const PurchaseModal = ({ modalHandler }) => {
-	const [userList, setUserList] = useState(null);
-	const [responserName, setResponserName] = useState(""); // responser name 표시 위한 state
-	const [ogImg, setOgImg] = useState("");
-	const [purchaseForm, setPurchaseForm] = useState({
-		responser: {},
-		productName: "",
-		productInfo: "",
-		quantity: "",
-		price: "",
-		totalPrice: "",
-		reason: "",
-		// file: "",
-	});
+  const [userList, setUserList] = useState(null);
+  const [responserName, setResponserName] = useState(""); // responser name 표시 위한 state
+  const [ogImg, setOgImg] = useState("");
+  const [purchaseForm, setPurchaseForm] = useState({
+    responser: {},
+    productName: "",
+    productInfo: "",
+    quantity: "",
+    price: "",
+    totalPrice: "",
+    reason: "",
+    // file: "",
+  });
 
-	const purchaseFormHandler = (e) => {
-		setPurchaseForm({
-			...purchaseForm,
-			[e.target.name]: e.target.value,
-		});
+  const purchaseFormHandler = (e) => {
+    setPurchaseForm({
+      ...purchaseForm,
+      [e.target.name]: e.target.value,
+    });
+    if (purchaseForm.price && purchaseForm.quantity) {
+      setPurchaseForm({
+        ...purchaseForm,
+        totalPrice: purchaseForm.price * purchaseForm.quantity,
+      });
+    }
 
-		if (e.target.files) {
-			console.log(e.target.files[0]);
-			setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.files[0] });
-		}
+    if (e.target.files) {
+      console.log(e.target.files[0]);
+      setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.files[0] });
+    }
 
-		if (e.target.name === "responser") {
-			if (e.target.value === "all") {
-				setResponserName("");
-			} else {
-				let findUser = userList.filter(
-					(el) => el.id === Number(e.target.value)
-				);
-				setResponserName(findUser[0].name);
-			}
-		}
+    if (e.target.name === "responser") {
+      if (e.target.value === "all") {
+        setResponserName("");
+      } else {
+        let findUser = userList.filter(
+          (el) => el.id === Number(e.target.value)
+        );
+        setResponserName(findUser[0].name);
+      }
+    }
+  };
 
-		if (e.target.name === "productInfo") {
-			//console.log(e.target.value);
-		}
-	};
+  useEffect(async () => {
+    let userList = await axios.get(
+      `${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
+      {
+        withCredentials: true,
+      }
+    );
+    setUserList(userList.data.data);
+  }, []);
 
-	useEffect(async () => {
-		let userList = await axios.get(
-			`${process.env.REACT_APP_TEMPLATE_API_URL}/user`,
-			{
-				withCredentials: true,
-			}
-		);
-		setUserList(userList.data.data);
-	}, []);
+  const postPurchaseHandler = async () => {
+    console.log(purchaseForm);
 
 	const postPurchaseHandler = async () => {
 		setPurchaseForm({

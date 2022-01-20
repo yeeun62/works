@@ -33,7 +33,7 @@ const Mypage = () => {
       <Header />
       <div className="myPageWrapper">
         <select
-          className="filterDoc mb-4 border-b border-[#282828] p-0.5"
+          className="filterDoc mb-4 border-b border-[#282828] p-0.5 ml-4"
           onChange={(e) => setFilter(e.target.value)}
         >
           <option value="all">모든 문서</option>
