@@ -9,7 +9,7 @@ export default function DocList({ list, tabMenu, filter }) {
   };
 
   return (
-    <div className="RequestContainer">
+    <div className="RequestContainer overflow-hidden">
       <div className="header">
         {tabMenu ? (
           <p className="writer">요청자</p>
@@ -20,14 +20,14 @@ export default function DocList({ list, tabMenu, filter }) {
         <p className="result">결과</p>
         <p className="date">요청일</p>
       </div>
-      <ul>
+      <ul className="sm:overflow-x-scroll sm:text-sm">
         {list.length ? (
           listArr(list, filter).length ? (
             listArr(list, filter).map((el) => {
               let purchaseId = `/purchase/${el.purchaseId}`;
               return (
                 <Link key={el.purchaseId} to={purchaseId}>
-                  <li className="requestList">
+                  <li className="requestList sm:text-xs">
                     <p className="requester">{el.requester}</p>
                     <p className="title">{el.title}</p>
                     <p className="result">
