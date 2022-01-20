@@ -5,43 +5,45 @@ import axios from "axios";
 //! 인풋값없을시 서버에러시!
 const PurchaseModal = ({ modalHandler }) => {
 	const [userList, setUserList] = useState(null);
-	const [responserName, setResponserName] = useState(""); // responser name 표시 위한 state
-	const [ogImg, setOgImg] = useState("");
+	const [responserName, setResponserName] = useState("");
+	const [ogInfo, setOgInfo] = useState(null);
 	const [purchaseForm, setPurchaseForm] = useState({
-		responser: {},
+		responser: 0,
 		productName: "",
 		productInfo: "",
-		quantity: "",
-		price: "",
-		totalPrice: "",
+		quantity: 0,
+		price: 0,
+		totalPrice: 0,
 		reason: "",
-		// file: "",
 	});
 
 	const purchaseFormHandler = (e) => {
-		setPurchaseForm({
-			...purchaseForm,
-			[e.target.name]: e.target.value,
-		});
-
-		if (e.target.files) {
-			console.log(e.target.files[0]);
-			setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.files[0] });
+		if (purchaseForm.quantity && purchaseForm.price) {
+			console.log(Number(purchaseForm.quantity) * Number(purchaseForm.price));
+			setPurchaseForm({
+				...purchaseForm,
+				totalPrice: String(
+					Number(purchaseForm.quantity) * Number(purchaseForm.price)
+				),
+			});
+			setPurchaseForm({
+				...purchaseForm,
+				[e.target.name]: e.target.value,
+			});
+		} else {
+			setPurchaseForm({
+				...purchaseForm,
+				[e.target.name]: e.target.value,
+			});
 		}
+	};
 
-		if (e.target.name === "responser") {
-			if (e.target.value === "all") {
-				setResponserName("");
-			} else {
-				let findUser = userList.filter(
-					(el) => el.id === Number(e.target.value)
-				);
-				setResponserName(findUser[0].name);
-			}
-		}
-
-		if (e.target.name === "productInfo") {
-			//console.log(e.target.value);
+	const choiceUserHandler = (e) => {
+		if (e.target.value === "all") {
+			setResponserName("");
+		} else {
+			let findUser = userList.filter((el) => el.id === Number(e.target.value));
+			setResponserName(findUser[0].name);
 		}
 	};
 
@@ -55,22 +57,50 @@ const PurchaseModal = ({ modalHandler }) => {
 		setUserList(userList.data.data);
 	}, []);
 
-	const postPurchaseHandler = async () => {
-		setPurchaseForm({
-			...purchaseForm,
-			totalPrice: purchaseForm.quantity * purchaseForm.price,
-		});
+	// if (e.target.files) {
+	// 	console.log(e.target.files[0]);
+	// 	setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.files[0] });
+	// }
 
-		let postPurchase = await axios.post(
-			`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
-			purchaseForm,
-			{ withCredentials: true }
-		);
+	const ogHandler = (e) => {
+		axios
+			.post(
+				`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase/og`,
+				{ url: e.target.value },
+				{ withCredentials: true }
+			)
+			.then((el) => {
+				setOgInfo(el.data.data);
+			})
+			.catch((err) => {
+				if (err.response.status === 404) {
+					setOgInfo(null);
+				}
+			});
 	};
+
+	const postPurchaseHandler = async () => {
+		try {
+			let postPurcharse = await axios.post(
+				`${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
+				purchaseForm,
+				{ withCredentials: true }
+			);
+			if (postPurcharse.status === 200) {
+				modalHandler();
+				window.alert(postPurcharse.data.message);
+			}
+		} catch (err) {
+			if (err.response === 400) {
+				window.alert("모든칸을 입력해주세요!");
+			}
+		}
+	};
+
 	return (
 		<div className="lg:flex">
-			<div className="lg:w-full  lg:flex md:w-full md:h-full md:overflow-auto md:py-8">
-				<div className="lg:w-8/12 lg:p-4 lg:border-r md:w-full md:h-full md:relative">
+			<div className="lg:w-full lg:flex">
+				<div className="lg:w-8/12 lg:p-4 lg:border-r md:relative">
 					<button className="absolute right-7 sm:top-px" onClick={modalHandler}>
 						X
 					</button>
@@ -89,16 +119,29 @@ const PurchaseModal = ({ modalHandler }) => {
 								placeholder="마우스"
 							/>
 						</label>
-						<label className="block my-4">
+						<label className={`block ${ogInfo ? "mt-4 mb-1" : "my-4"}`}>
 							<p>상품 정보(링크)</p>
 							<input
 								className="w-full border border-[#c3c3c3] rounded-sm h-7 pl-1"
 								onChange={purchaseFormHandler}
+								onBlur={ogHandler}
 								type="text"
 								name="productInfo"
 								placeholder="로지텍 마우스"
 							></input>
 						</label>
+						{ogInfo && (
+							<div
+								className="flex justify-between border-solid border border-[#ccc] rounded p-0.5 cursor-pointer"
+								onClick={() => window.open(ogInfo.url, "_blank")}
+							>
+								<img className="w-28 mr-4" src={ogInfo.imgUrl} />
+								<div>
+									<p className="text-sm font-semibold">{ogInfo.title}</p>
+									<p className="text-xs text-zinc-800">{ogInfo.desc}</p>
+								</div>
+							</div>
+						)}
 						<label className="block my-4">
 							<p>사유</p>
 							<input
@@ -135,7 +178,7 @@ const PurchaseModal = ({ modalHandler }) => {
 							<label className="block my-4 lg:flex-[1_1_40%] md:mb-4">
 								<p>총액</p>
 								<div className="lg:w-9/12 md:w-full border-b border-[#c3c3c3] rounded-sm h-7 pl-1 relative">
-									수량 x 단가 ={" "}
+									<span className="text-xs">수량 x 단가 = </span>
 									<span className="text-rose-800 font-bold absolute right-0 ">
 										{purchaseForm.price && purchaseForm.quantity
 											? Number(purchaseForm.price) *
@@ -145,9 +188,9 @@ const PurchaseModal = ({ modalHandler }) => {
 									</span>
 								</div>
 							</label>
-							<div className="lg:w-9/12 md:w-full flex h-10 my-4 lg:flex-[1_1_40%] md:mt-4 md:m-auto">
-								<label className="block h-10  handle-button">
-									파일첨부
+							<div className="lg:w-9/12 md:w-full flex my-4 lg:flex-[1_1_40%] md:mt-4 md:m-auto lg:h-7 lg:mt-7">
+								<label className="cursor-pointer">
+									📎 파일첨부
 									<input
 										type="file"
 										onChange={purchaseFormHandler}
@@ -155,7 +198,7 @@ const PurchaseModal = ({ modalHandler }) => {
 										style={{ display: "none", lineHeight: "2.5rem" }}
 									/>
 								</label>
-								<p className="border-b w-1/2 text-xs h-10 leading-[2.5rem] ml-4">
+								<p className="border-b w-1/2 text-xs leading-[2.5rem] ml-4">
 									{purchaseForm.file ? purchaseForm.file.name : null}
 								</p>
 							</div>
@@ -166,7 +209,10 @@ const PurchaseModal = ({ modalHandler }) => {
 					<p className="text-s">받을 분을 선택해주세요👇</p>
 					<select
 						className="border w-40"
-						onChange={purchaseFormHandler}
+						onChange={(e) => {
+							choiceUserHandler(e);
+							purchaseFormHandler(e);
+						}}
 						name="responser"
 					>
 						<option value="all">대상 선택하기</option>
@@ -185,7 +231,7 @@ const PurchaseModal = ({ modalHandler }) => {
 							className="border-y dashed  mt-8 text-sm text-center leading-[1.5rem] py-4"
 							style={{ wordBreak: "keep-all" }}
 						>
-							{responserName.name}님에게 비품동의서 알림이 sms로 보내집니다.
+							{responserName}님에게 비품동의서 알림이 sms로 보내집니다.
 						</div>
 					) : null}
 				</div>

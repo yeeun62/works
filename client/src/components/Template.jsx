@@ -24,7 +24,7 @@ const Template = () => {
 			<Modal
 				isOpen={purchase.purchaseModal}
 				onRequestClose={modalHandler}
-				className="content w-3/5 md:w-full"
+				className="content w-3/5 md:w-full ml:w-11/12"
 				overlayClassName="overlay"
 				ariaHideApp={false}
 			>
