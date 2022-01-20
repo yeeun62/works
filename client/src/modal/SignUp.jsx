@@ -50,7 +50,7 @@ export default function SignUp({ signupHandler }) {
 			}),
 			onSubmit: (values) => {
 				if (!emailCheck) {
-					window.alert("이메일 중복확인을 해주셔야 합니다!");
+					window.alert("다른 이메일을 입력해 주세요!");
 				} else if (!phoneCheck) {
 					window.alert("휴대폰 본인인증을 해주셔야 합니다!");
 				} else {
@@ -127,7 +127,6 @@ export default function SignUp({ signupHandler }) {
 	// 	if (47 < e.keyCode && e.keyCode < 58) {
 	// 		values.phoneNumber += e.key;
 	// 	} else {
-	// 		console.log("아님");
 	// 		values.phoneNumber += "";
 	// 	}
 	// }
@@ -145,6 +144,17 @@ export default function SignUp({ signupHandler }) {
 			window.location.replace("/");
 		}
 	};
+
+	function a(e) {
+		let check = /^[0-9]+$/;
+		if (!check.test(e)) {
+			console.log("문자임");
+			return false;
+		} else {
+			console.log("숫자임");
+			return true;
+		}
+	}
 
 	return (
 		<div
@@ -171,7 +181,16 @@ export default function SignUp({ signupHandler }) {
 				{touched.email && errors.email ? (
 					<div className="warning">{errors.email}</div>
 				) : (
-					<div className="warning">{emailComment}</div>
+					<div
+						className="warning"
+						style={
+							emailComment === "사용가능한 이메일입니다🥳"
+								? { color: "rgb(14 165 233)" }
+								: null
+						}
+					>
+						{emailComment}
+					</div>
 				)}
 				<label className="block m-auto mt-6">
 					이름
@@ -229,10 +248,19 @@ export default function SignUp({ signupHandler }) {
 						name="phoneNumber"
 						type="text"
 						autoComplete="off"
-						// onKeyDown={isNumber}
+						//onKeyDown={isNumber}
 						placeholder="010-1234-5678"
 						onBlur={handleBlur}
 						onChange={handleChange}
+						// onChange={(e) => {
+						// 	if (a(e.target.value)) {
+						// 		console.log("맞음");
+						// 		return handleChange();
+						// 	} else {
+						// 		console.log("아님");
+						// 		return;
+						// 	}
+						// }}
 						value={values.phoneNumber}
 					/>
 					{values.phoneNumber.length === 13 &&

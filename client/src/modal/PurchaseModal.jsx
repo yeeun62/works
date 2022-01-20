@@ -132,7 +132,7 @@ const PurchaseModal = ({ modalHandler }) => {
 						</label>
 						{ogInfo && (
 							<div
-								className="flex justify-between border-solid border border-[#ccc] rounded p-0.5 cursor-pointer"
+								className="flex border-solid border border-[#ccc] rounded p-0.5 cursor-pointer"
 								onClick={() => window.open(ogInfo.url, "_blank")}
 							>
 								<img className="w-28 mr-4" src={ogInfo.imgUrl} />
