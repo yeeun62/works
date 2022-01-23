@@ -1,4 +1,4 @@
-/* 768px 이하부터 */
+/* 768px ⬇️ */
 
 @media screen and (max-width: 500px) {
   .templateDiv {
@@ -8,18 +8,13 @@
   }
 }
 
-/* 768px 이상부터 */
+/* 768px ⬆️ */
 
 @media screen and (min-width: 500px) {
   .templateDiv {
-    /* width: calc(100% / 3 - 40px); */
     width: 200px;
     height: 200px;
     margin: 10px;
-  }
-
-  .templateDiv:nth-child(3n-1) {
-    margin: 10px 0;
   }
 }
 
