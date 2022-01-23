@@ -14,16 +14,12 @@
   box-shadow: inset 2px 4px 15px #7d7d7d, inset -2px -4px 15px #bfbfbf;
 }
 
-.myPageWrapper .tabButton .trueTab {
-  background: #282828;
-  box-shadow: none;
-  color: #fff;
+.myPageWrapper .is-boxed .is-active {
+  color: #282828;
 }
 
 .myPageWrapper .tabMenu {
-  width: 100%;
   padding: 10px;
-  background: #282828;
 }
 
 .myPageWrapper .RequestContainer {
@@ -31,16 +27,23 @@
 }
 
 .myPageWrapper .RequestContainer .header {
-  border-bottom: 1px solid #999;
   width: 96%;
   margin: auto;
+}
+
+.myPageWrapper .RequestContainer ul {
+  width: 96%;
+  height: auto;
+  min-height: 20rem;
+  margin: 1rem auto 10px;
+  background: #fff;
+  padding-top: 5px;
 }
 
 .myPageWrapper .RequestContainer .header,
 .myPageWrapper .RequestContainer ul .requestList {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 1rem;
   align-items: stretch;
 }
 
@@ -49,18 +52,10 @@
   border-right: 1px solid #999;
   width: 25%;
   text-align: center;
-  color: #fff;
 }
 
 .myPageWrapper .RequestContainer .header p:last-child {
   border: none;
-}
-
-.myPageWrapper .RequestContainer ul {
-  width: 96%;
-  height: 30rem;
-  margin: 1rem auto 0;
-  background: #fff;
 }
 
 .myPageWrapper .RequestContainer ul .requestList {

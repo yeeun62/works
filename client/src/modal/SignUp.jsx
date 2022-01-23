@@ -4,22 +4,22 @@ import * as Yup from "yup";
 import axios from "axios";
 
 export default function SignUp({ signupHandler }) {
-	const [emailCheck, setEmailCheck] = useState(false);
-	const [emailComment, setEmailComment] = useState("");
+  const [emailCheck, setEmailCheck] = useState(false);
+  const [emailComment, setEmailComment] = useState("");
 
-	const [phoneCheck, setPhoneCheck] = useState(false);
-	const [phoneInput, setPhoneInput] = useState(false);
+  const [phoneCheck, setPhoneCheck] = useState(false);
+  const [phoneInput, setPhoneInput] = useState(false);
 
-	const [authInput, setAuthInput] = useState("");
-	const [authNumber, setAuthNumber] = useState("");
+  const [authInput, setAuthInput] = useState("");
+  const [authNumber, setAuthNumber] = useState("");
 
-	useEffect(() => {
-		const generateRandom = function (min, max) {
-			let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
-			return ranNum;
-		};
-		setAuthNumber(generateRandom(1111, 9999));
-	}, []);
+  useEffect(() => {
+    const generateRandom = function (min, max) {
+      let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+      return ranNum;
+    };
+    setAuthNumber(generateRandom(1111, 9999));
+  }, []);
 
 	// touched: blur(input에서 나갔을때), handleBlur: input에서 나갈때, handleChange: 작성.focus등 변화가 일어날때
 	const { handleSubmit, handleChange, values, touched, errors, handleBlur } =
@@ -59,70 +59,70 @@ export default function SignUp({ signupHandler }) {
 			},
 		});
 
-	if (touched.email && values.email) {
-		axios
-			.post(
-				`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
-				{ email: values.email },
-				{ withCredentials: true }
-			)
-			.then((el) => {
-				if (el.status === 200) {
-					setEmailCheck(true);
-					setEmailComment("사용가능한 이메일입니다🥳");
-				}
-			})
-			.catch((err) => {
-				if (err.response.status === 409) {
-					setEmailCheck(false);
-					setEmailComment("이미 사용중인 이메일입니다🥲");
-				}
-			});
-	}
+  if (touched.email && values.email) {
+    axios
+      .post(
+        `${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
+        { email: values.email },
+        { withCredentials: true }
+      )
+      .then((el) => {
+        if (el.status === 200) {
+          setEmailCheck(true);
+          setEmailComment("사용가능한 이메일입니다🥳");
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 409) {
+          setEmailCheck(false);
+          setEmailComment("이미 사용중인 이메일입니다🥲");
+        }
+      });
+  }
 
-	if (values.phoneNumber.length === 3 || values.phoneNumber.length === 8) {
-		values.phoneNumber += "-";
-	}
+  if (values.phoneNumber.length === 3 || values.phoneNumber.length === 8) {
+    values.phoneNumber += "-";
+  }
 
-	const phoneNumberConflictHandler = async () => {
-		try {
-			let phoneCheck = await axios.post(
-				`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
-				{ phoneNumber: values.phoneNumber },
-				{ withCredentials: true }
-			);
-			if (phoneCheck.status === 200) {
-				setPhoneInput(true);
-				try {
-					window.alert("인증문자가 발송되었습니다.");
-					let phoneCheck = await axios.post(
-						`${process.env.REACT_APP_HANDLE_API_URL}/msg/aligo`,
-						{
-							receiver: values.phoneNumber,
-							msg: `본인 인증확인 문자입니다. 숫자 ${authNumber} 4자리를 입력해주세요`,
-						},
-						{ withCredentials: true }
-					);
-				} catch (err) {
-					console.log("알리고 에러");
-				}
-			}
-		} catch (err) {
-			console.log(err);
-			window.alert(err.response.data.message);
-		}
-	};
+  const phoneNumberConflictHandler = async () => {
+    try {
+      let phoneCheck = await axios.post(
+        `${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
+        { phoneNumber: values.phoneNumber },
+        { withCredentials: true }
+      );
+      if (phoneCheck.status === 200) {
+        setPhoneInput(true);
+        try {
+          window.alert("인증문자가 발송되었습니다.");
+          let phoneCheck = await axios.post(
+            `${process.env.REACT_APP_HANDLE_API_URL}/msg/aligo`,
+            {
+              receiver: values.phoneNumber,
+              msg: `본인 인증확인 문자입니다. 숫자 ${authNumber} 4자리를 입력해주세요`,
+            },
+            { withCredentials: true }
+          );
+        } catch (err) {
+          console.log("알리고 에러");
+        }
+      }
+    } catch (err) {
+      console.log(err);
+      window.alert(err.response.data.message);
+    }
+  };
 
-	const phoneNumberAuthHandler = () => {
-		if (Number(authInput) === authNumber) {
-			window.alert("본인인증에 성공하였습니다!");
-			setPhoneCheck(true);
-			setPhoneInput(false);
-		} else {
-			window.alert("인증번호가 일치하지 않습니다");
-		}
-	};
-
+  const phoneNumberAuthHandler = () => {
+    if (Number(authInput) === authNumber) {
+      window.alert("본인인증에 성공하였습니다!");
+      setPhoneCheck(true);
+      setPhoneInput(false);
+    } else {
+      window.alert("인증번호가 일치하지 않습니다");
+    }
+  };
+  
 	// function isNumber(e) {
 	// 	if (47 < e.keyCode && e.keyCode < 58) {
 	// 		values.phoneNumber += e.key;
@@ -131,19 +131,19 @@ export default function SignUp({ signupHandler }) {
 	// 	}
 	// }
 
-	const signUp = async () => {
-		delete values.passwordConfirm;
-		let signup = await axios.post(
-			`${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
-			values,
-			{ withCredentials: true }
-		);
-		if (signup.status === 200) {
-			signupHandler();
-			window.alert(signup.data.message);
-			window.location.replace("/");
-		}
-	};
+  const signUp = async () => {
+    delete values.passwordConfirm;
+    let signup = await axios.post(
+      `${process.env.REACT_APP_TEMPLATE_API_URL}/user/signup`,
+      values,
+      { withCredentials: true }
+    );
+    if (signup.status === 200) {
+      signupHandler();
+      window.alert(signup.data.message);
+      window.location.replace("/");
+    }
+  };
 
 	function a(e) {
 		let check = /^[0-9]+$/;

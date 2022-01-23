@@ -41,23 +41,33 @@ const Mypage = () => {
           <option value="true">승인</option>
           <option value="false">거절</option>
         </select>
-        <div className="tabButton">
-          <button
-            className={tabMenu ? "myRequest btn trueTab" : "myRequest btn"}
-            onClick={() => tabHandler(true)}
-          >
-            보낸 요청
-          </button>
-          <button
-            className={
-              tabMenu ? "receivedRequest btn" : "receivedRequest btn trueTab"
-            }
-            onClick={() => tabHandler(false)}
-          >
-            받은 요청
-          </button>
+        <div className="tabs is-boxed">
+          <ul>
+            <li
+              className={tabMenu ? "is-active w-1/2 leftTab" : "w-1/2"}
+              onClick={() => tabHandler(true)}
+            >
+              <a>
+                <span className="icon is-small">
+                  <i className="fas fa-image" aria-hidden="true"></i>
+                </span>
+                <span>보낸 요청</span>
+              </a>
+            </li>
+            <li
+              className={tabMenu ? "w-1/2" : "is-active w-1/2 rightTab"}
+              onClick={() => tabHandler(false)}
+            >
+              <a>
+                <span className="icon is-small">
+                  <i className="far fa-file-alt" aria-hidden="true"></i>
+                </span>
+                <span>받은 요청</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div className="tabMenu">
+        <div className="tabMenu w-full bg-white border border-[#ddd] text-slate-600">
           {
             <DocList
               tabMenu={tabMenu}
