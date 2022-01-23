@@ -90,16 +90,17 @@ const PurchaseModal = ({ modalHandler }) => {
 
   const postPurchaseHandler = async () => {
     try {
-      let postPurcharse = await axios.post(
+      let postPurchase = await axios.post(
         `${process.env.REACT_APP_TEMPLATE_API_URL}/purchase`,
         purchaseForm,
         { withCredentials: true }
       );
-      if (postPurcharse.status === 200) {
+      if (postPurchase.status === 200) {
         modalHandler();
-        window.alert(postPurcharse.data.message);
+        window.alert(postPurchase.data.message);
       }
     } catch (err) {
+      console.log(err);
       if (err.response === 400) {
         window.alert("모든칸을 입력해주세요!");
       }
