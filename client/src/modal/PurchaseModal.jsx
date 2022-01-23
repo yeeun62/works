@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "../modal/modal.css";
 import axios from "axios";
 
@@ -7,19 +8,35 @@ const PurchaseModal = ({ modalHandler }) => {
 	const [userList, setUserList] = useState(null);
 	const [responserName, setResponserName] = useState("");
 	const [ogInfo, setOgInfo] = useState(null);
+	const [fileName, setFileName] = useState("");
 	const [purchaseForm, setPurchaseForm] = useState({
 		responser: 0,
 		productName: "",
 		productInfo: "",
 		quantity: 0,
 		price: 0,
-		totalPrice: 0,
+		totalPrice: "30000",
 		reason: "",
+		file: "",
 	});
+
+	const fileuploadHandler = (e) => {
+		const storage = getStorage();
+		const file = e.target.files[0];
+		setFileName(e.target.files[0].name);
+		const filename = e.target.files[0].name;
+		const fileRef = ref(storage, filename);
+		uploadBytes(fileRef, file)
+			.then((el) => {
+				getDownloadURL(ref(storage, filename)).then((el) =>
+					setPurchaseForm({ ...purchaseForm, file: el })
+				);
+			})
+			.catch((err) => console.log("file upload 에러!"));
+	};
 
 	const purchaseFormHandler = (e) => {
 		if (purchaseForm.quantity && purchaseForm.price) {
-			console.log(Number(purchaseForm.quantity) * Number(purchaseForm.price));
 			setPurchaseForm({
 				...purchaseForm,
 				totalPrice: String(
@@ -56,11 +73,6 @@ const PurchaseModal = ({ modalHandler }) => {
 		);
 		setUserList(userList.data.data);
 	}, []);
-
-	// if (e.target.files) {
-	// 	console.log(e.target.files[0]);
-	// 	setPurchaseForm({ ...purchaseForm, [e.target.name]: e.target.files[0] });
-	// }
 
 	const ogHandler = (e) => {
 		axios
@@ -188,19 +200,16 @@ const PurchaseModal = ({ modalHandler }) => {
 									</span>
 								</div>
 							</label>
-							<div className="lg:w-9/12 md:w-full flex my-4 lg:flex-[1_1_40%] md:mt-4 md:m-auto lg:h-7 lg:mt-7">
+							<div className="lg:w-9/12 md:w-full flex my-4 lg:flex-[1_1_40%] md:mt-4 md:m-auto lg:mt-7">
 								<label className="cursor-pointer">
-									📎 파일첨부
+									📎 파일첨부 {fileName && `: ${fileName}`}
 									<input
 										type="file"
-										onChange={purchaseFormHandler}
+										onChange={fileuploadHandler}
 										name="file"
 										style={{ display: "none", lineHeight: "2.5rem" }}
 									/>
 								</label>
-								<p className="border-b w-1/2 text-xs leading-[2.5rem] ml-4">
-									{purchaseForm.file ? purchaseForm.file.name : null}
-								</p>
 							</div>
 						</div>
 					</form>
@@ -225,7 +234,7 @@ const PurchaseModal = ({ modalHandler }) => {
 								);
 							})}
 					</select>
-					{responserName ? (
+					{responserName && (
 						<div
 							id="senderNotice"
 							className="border-y dashed  mt-8 text-sm text-center leading-[1.5rem] py-4"
@@ -233,7 +242,7 @@ const PurchaseModal = ({ modalHandler }) => {
 						>
 							{responserName}님에게 비품동의서 알림이 sms로 보내집니다.
 						</div>
-					) : null}
+					)}
 				</div>
 				<div className="w-20 m-auto">
 					<button

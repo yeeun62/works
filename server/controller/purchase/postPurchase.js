@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
 		price,
 		totalPrice,
 		reason,
+		file,
 	} = req.body;
 
 	console.log(req.body);
@@ -41,7 +42,8 @@ module.exports = async (req, res) => {
 			quantity &&
 			price &&
 			totalPrice &&
-			reason
+			reason &&
+			file
 		) {
 			let newPurchase = await handle_works_purchase_agreements.create({
 				purchaseId: uuid.data.code,
@@ -55,6 +57,7 @@ module.exports = async (req, res) => {
 				totalPrice,
 				reason,
 				result: null,
+				file,
 			});
 			res.status(200).json({ message: "비품동의서 저장에 성공하였습니다🥳" });
 
@@ -87,7 +90,7 @@ module.exports = async (req, res) => {
 			// 	console.log("슬랙캐치에러", err);
 			// }
 
-      // const getUser = app.client.conversations.members({});
+			// const getUser = app.client.conversations.members({});
 		} else {
 			res.status(400).json({ message: "parameter가 불충분합니다" });
 		}

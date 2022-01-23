@@ -7,6 +7,7 @@ export default function SignUp({ signupHandler }) {
 	const [emailCheck, setEmailCheck] = useState(false);
 	const [emailComment, setEmailComment] = useState("");
 
+	const [phoneNumber, setPhoneNumber] = useState("");
 	const [phoneCheck, setPhoneCheck] = useState(false);
 	const [phoneInput, setPhoneInput] = useState(false);
 
@@ -44,9 +45,9 @@ export default function SignUp({ signupHandler }) {
 				passwordConfirm: Yup.string()
 					.oneOf([Yup.ref("password"), null], "비밀번호가 일치하지 않습니다.")
 					.required("비빌번호 확인을 입력해주세요"),
-				phoneNumber: Yup.string()
-					.max(13, "13자리를 초과할 수 없습니다.")
-					.required("휴대폰번호를 입력해주세요"),
+				// phoneNumber: Yup.string()
+				// 	.max(13, "13자리를 초과할 수 없습니다.")
+				// 	.required("휴대폰번호를 입력해주세요"),
 			}),
 			onSubmit: (values) => {
 				if (!emailCheck) {
@@ -123,14 +124,6 @@ export default function SignUp({ signupHandler }) {
 		}
 	};
 
-	// function isNumber(e) {
-	// 	if (47 < e.keyCode && e.keyCode < 58) {
-	// 		values.phoneNumber += e.key;
-	// 	} else {
-	// 		values.phoneNumber += "";
-	// 	}
-	// }
-
 	const signUp = async () => {
 		delete values.passwordConfirm;
 		let signup = await axios.post(
@@ -145,16 +138,25 @@ export default function SignUp({ signupHandler }) {
 		}
 	};
 
-	function a(e) {
-		let check = /^[0-9]+$/;
-		if (!check.test(e)) {
-			console.log("문자임");
-			return false;
-		} else {
-			console.log("숫자임");
-			return true;
-		}
-	}
+	// function isNumber(e) {
+	// 	if (47 < e.keyCode && e.keyCode < 58) {
+	// 		values.phoneNumber += e.key;
+	// 	} else {
+	// 		values.phoneNumber += "";
+	// 	}
+	// }
+
+	// const isNotNumber = (value) => {
+	// 	const regExp = /[a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+	// 	return regExp.test(value);
+	// };
+
+	// const phoneNumberHandler = (e) => {
+	// 	let check = /^[0-9]+$/;
+	// 	if (check.test(e.target.value)) {
+	// 	} else {
+	// 	}
+	// };
 
 	return (
 		<div
@@ -162,7 +164,11 @@ export default function SignUp({ signupHandler }) {
 			style={{ height: "35rem" }}
 		>
 			<h1 className="text-center text-xl">회원가입</h1>
-			<form onSubmit={handleSubmit} className="m-auto my-4 w-60">
+			<form
+				onSubmit={(e) => e.preventDefault()}
+				onSubmit={handleSubmit}
+				className="m-auto my-4 w-60"
+			>
 				<label className="block m-auto mt-6 relative">
 					<div className="emailLabel">
 						<span>이메일</span>
@@ -248,20 +254,24 @@ export default function SignUp({ signupHandler }) {
 						name="phoneNumber"
 						type="text"
 						autoComplete="off"
-						//onKeyDown={isNumber}
 						placeholder="010-1234-5678"
 						onBlur={handleBlur}
 						onChange={handleChange}
-						// onChange={(e) => {
-						// 	if (a(e.target.value)) {
-						// 		console.log("맞음");
-						// 		return handleChange();
-						// 	} else {
-						// 		console.log("아님");
-						// 		return;
-						// 	}
-						// }}
 						value={values.phoneNumber}
+						// onChange={(e) => {
+						// 	console.log(e.nativeEvent);
+						// 	if (
+						// 		e.nativeEvent.target.value.length === 3 ||
+						// 		e.nativeEvent.target.value.length === 8
+						// 	) {
+						// 		e.nativeEvent.target.value += "-";
+						// 	}
+						// if (e.nativeEvent.data && isNotNumber(e.nativeEvent.data)) {
+						// 	e.preventDefault();
+						// 	return null;
+						// }
+						// }}
+						maxLength="13"
 					/>
 					{values.phoneNumber.length === 13 &&
 						!errors.phoneNumber &&
