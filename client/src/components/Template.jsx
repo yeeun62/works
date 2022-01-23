@@ -18,32 +18,32 @@ const Template = () => {
 			dispatch(signinModal());
 		}
 	};
-  
-  return (
-    <>
-      <Modal
-        isOpen={purchase.purchaseModal}
-        onRequestClose={modalHandler}
-        className="content md:w-full ml:w-11/12 lg:w-8/12 md:overflow-auto ml:md:overflow-auto sm:h-screen"
-        overlayClassName="overlay"
-        ariaHideApp={false}
-      >
-        <PurchaseModal modalHandler={modalHandler} />
-      </Modal>
-      <div className="templateDiv rounded-xl p-2 relative border border-[#ddd]">
-        <h2 className="text-center sm:h-1/2 leading-12 block text-slate-700">
-          🖥 비품 신청
-        </h2>
-        <button
-          type="button"
-          onClick={modalHandler}
-          className="absolute bottom-4 right-4 sm:text-sm sm:h-fit"
-        >
-          작성하기
-        </button>
-      </div>
-    </>
-  );
+
+	return (
+		<>
+			<Modal
+				isOpen={purchase.purchaseModal}
+				onRequestClose={modalHandler}
+				className="content md:w-full ml:w-11/12 lg:w-8/12 md:overflow-auto ml:md:overflow-auto sm:h-screen"
+				overlayClassName="overlay"
+				ariaHideApp={false}
+			>
+				<PurchaseModal modalHandler={modalHandler} />
+			</Modal>
+			<div className="templateDiv rounded-xl p-2 relative border border-[#ddd]">
+				<h2 className="text-center sm:h-1/2 leading-12 block text-slate-700">
+					🖥 비품 신청
+				</h2>
+				<button
+					type="button"
+					onClick={modalHandler}
+					className="absolute bottom-4 right-4 sm:text-sm sm:h-fit"
+				>
+					작성하기
+				</button>
+			</div>
+		</>
+	);
 };
 
 export default Template;

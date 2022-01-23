@@ -1,57 +1,56 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster|Noto+Sans+TC&display=swap");
 @font-face {
-  font-family: "GmarketSansMedium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+	font-family: "GmarketSansMedium";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-  font-family: "GmarketSansLight";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
+	font-family: "GmarketSansLight";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 a:link,
 a:visited,
 a:active,
 a:hover {
-  font-style: unset;
-  text-decoration: unset;
-  color: #282828;
+	font-style: unset;
+	text-decoration: unset;
+	color: #282828;
 }
 
 body,
 input,
 textarea {
-  font-family: "GmarketSansLight", "Noto Sans TC", sans-serif;
+	font-family: "GmarketSansLight", "Noto Sans TC", sans-serif;
 }
 
 .bold {
-  font-family: "GmarketSansMedium", sans-serif;
+	font-family: "GmarketSansMedium", sans-serif;
 }
 
 .logo,
 .handle-logo-font {
-  font-family: "Lobster", cursive;
+	font-family: "Lobster", cursive;
 }
 
 button[type="button"],
 button[type="submit"],
 .handle-button,
 .handle-primary-button {
-  display: inline-block;
-  font-family: "GmarketSansLight", "Noto Sans TC", sans-serif;
-  color: #282828;
-  background-color: #e0de1b;
-  border: 1px solid #e0de1b;
-  border-bottom-left-radius: 7px;
-  padding: 5px 7px;
+	display: inline-block;
+	font-family: "GmarketSansLight", "Noto Sans TC", sans-serif;
+	color: #282828;
+	background-color: #e0de1b;
+	border: 1px solid #e0de1b;
+	border-bottom-left-radius: 7px;
+	padding: 5px 7px;
 }

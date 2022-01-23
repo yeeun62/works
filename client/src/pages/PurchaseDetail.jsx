@@ -137,6 +137,14 @@ export default function PurchaseDetail() {
 							<li>
 								금액 <span>{templateInfo.totalPrice}</span>
 							</li>
+							{templateInfo.file && (
+								<p
+									className="cursor-pointer mt-4"
+									onClick={() => window.open(templateInfo.file, "_blank")}
+								>
+									📌 첨부파일 보기
+								</p>
+							)}
 						</ul>
 					</div>
 					{templateInfo.result === null ? null : templateInfo.result ? (
