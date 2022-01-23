@@ -45,9 +45,9 @@ export default function SignUp({ signupHandler }) {
 				passwordConfirm: Yup.string()
 					.oneOf([Yup.ref("password"), null], "비밀번호가 일치하지 않습니다.")
 					.required("비빌번호 확인을 입력해주세요"),
-				// phoneNumber: Yup.string()
-				// 	.max(13, "13자리를 초과할 수 없습니다.")
-				// 	.required("휴대폰번호를 입력해주세요"),
+				phoneNumber: Yup.string()
+					.max(13, "13자리를 초과할 수 없습니다.")
+					.required("휴대폰번호를 입력해주세요"),
 			}),
 			onSubmit: (values) => {
 				if (!emailCheck) {
@@ -114,16 +114,6 @@ export default function SignUp({ signupHandler }) {
 		}
 	};
 
-	const phoneNumberAuthHandler = () => {
-		if (Number(authInput) === authNumber) {
-			window.alert("본인인증에 성공하였습니다!");
-			setPhoneCheck(true);
-			setPhoneInput(false);
-		} else {
-			window.alert("인증번호가 일치하지 않습니다");
-		}
-	};
-
 	const signUp = async () => {
 		delete values.passwordConfirm;
 		let signup = await axios.post(
@@ -135,6 +125,16 @@ export default function SignUp({ signupHandler }) {
 			signupHandler();
 			window.alert(signup.data.message);
 			window.location.replace("/");
+		}
+	};
+
+	const phoneNumberAuthHandler = () => {
+		if (Number(authInput) === authNumber) {
+			window.alert("본인인증에 성공하였습니다!");
+			setPhoneCheck(true);
+			setPhoneInput(false);
+		} else {
+			window.alert("인증번호가 일치하지 않습니다");
 		}
 	};
 
@@ -163,7 +163,7 @@ export default function SignUp({ signupHandler }) {
 			className="rounded-2xl  signModal overflow-auto"
 			style={{ height: "35rem" }}
 		>
-			<h1 className="text-center text-xl">회원가입</h1>
+			<p className="text-center text-xl">회원가입</p>
 			<form
 				onSubmit={(e) => e.preventDefault()}
 				onSubmit={handleSubmit}

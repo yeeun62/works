@@ -15,7 +15,7 @@ const PurchaseModal = ({ modalHandler }) => {
 		productInfo: "",
 		quantity: 0,
 		price: 0,
-		totalPrice: "30000",
+		totalPrice: "",
 		reason: "",
 		file: "",
 	});
@@ -42,9 +42,6 @@ const PurchaseModal = ({ modalHandler }) => {
 				totalPrice: String(
 					Number(purchaseForm.quantity) * Number(purchaseForm.price)
 				),
-			});
-			setPurchaseForm({
-				...purchaseForm,
 				[e.target.name]: e.target.value,
 			});
 		} else {
@@ -195,7 +192,7 @@ const PurchaseModal = ({ modalHandler }) => {
 										{purchaseForm.price && purchaseForm.quantity
 											? Number(purchaseForm.price) *
 											  Number(purchaseForm.quantity)
-											: 0}{" "}
+											: 0}
 										원
 									</span>
 								</div>
@@ -214,10 +211,10 @@ const PurchaseModal = ({ modalHandler }) => {
 						</div>
 					</form>
 				</div>
-				<div className="select lg:top-10 lg:right-0 lg:w-2/5 p-4 relative items-center md:block md:mb-5 md:m-auto">
+				<div className="lg:top-10 lg:right-0 lg:w-2/5 p-4 relative items-center md:block md:mb-5 md:m-auto">
 					<p className="text-s">받을 분을 선택해주세요👇</p>
 					<select
-						className="border w-40"
+						className="mb-4 border-b w-40 p-0.5 ml-4"
 						onChange={(e) => {
 							choiceUserHandler(e);
 							purchaseFormHandler(e);
