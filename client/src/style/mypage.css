@@ -8,14 +8,18 @@
   height: 3rem;
   line-height: 3rem;
   border-radius: 1rem 2rem 0 0;
-  background: #9e9e9e;
-  color: #fff;
+  color: #999;
   font-weight: 800;
-  box-shadow: inset 2px 4px 15px #7d7d7d, inset -2px -4px 15px #bfbfbf;
 }
 
-.myPageWrapper .is-boxed .is-active {
+.myPageWrapper .tabButton button:hover {
+  background: #282828;
+  color: #fff;
+}
+
+.myPageWrapper .trueTab {
   color: #282828;
+  border-bottom: 2px solid #282828;
 }
 
 .myPageWrapper .tabMenu {
