@@ -7,6 +7,7 @@ export default function SignUp({ signupHandler }) {
 	const [emailCheck, setEmailCheck] = useState(false);
 	const [emailComment, setEmailComment] = useState("");
 
+	const [phoneNumber, setPhoneNumber] = useState("");
 	const [phoneCheck, setPhoneCheck] = useState(false);
 	const [phoneInput, setPhoneInput] = useState(false);
 
@@ -50,7 +51,7 @@ export default function SignUp({ signupHandler }) {
 			}),
 			onSubmit: (values) => {
 				if (!emailCheck) {
-					window.alert("이메일 중복확인을 해주셔야 합니다!");
+					window.alert("다른 이메일을 입력해 주세요!");
 				} else if (!phoneCheck) {
 					window.alert("휴대폰 본인인증을 해주셔야 합니다!");
 				} else {
@@ -113,25 +114,6 @@ export default function SignUp({ signupHandler }) {
 		}
 	};
 
-	const phoneNumberAuthHandler = () => {
-		if (Number(authInput) === authNumber) {
-			window.alert("본인인증에 성공하였습니다!");
-			setPhoneCheck(true);
-			setPhoneInput(false);
-		} else {
-			window.alert("인증번호가 일치하지 않습니다");
-		}
-	};
-
-	// function isNumber(e) {
-	// 	if (47 < e.keyCode && e.keyCode < 58) {
-	// 		values.phoneNumber += e.key;
-	// 	} else {
-	// 		console.log("아님");
-	// 		values.phoneNumber += "";
-	// 	}
-	// }
-
 	const signUp = async () => {
 		delete values.passwordConfirm;
 		let signup = await axios.post(
@@ -146,13 +128,47 @@ export default function SignUp({ signupHandler }) {
 		}
 	};
 
+	const phoneNumberAuthHandler = () => {
+		if (Number(authInput) === authNumber) {
+			window.alert("본인인증에 성공하였습니다!");
+			setPhoneCheck(true);
+			setPhoneInput(false);
+		} else {
+			window.alert("인증번호가 일치하지 않습니다");
+		}
+	};
+
+	// function isNumber(e) {
+	// 	if (47 < e.keyCode && e.keyCode < 58) {
+	// 		values.phoneNumber += e.key;
+	// 	} else {
+	// 		values.phoneNumber += "";
+	// 	}
+	// }
+
+	// const isNotNumber = (value) => {
+	// 	const regExp = /[a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
+	// 	return regExp.test(value);
+	// };
+
+	// const phoneNumberHandler = (e) => {
+	// 	let check = /^[0-9]+$/;
+	// 	if (check.test(e.target.value)) {
+	// 	} else {
+	// 	}
+	// };
+
 	return (
 		<div
 			className="rounded-2xl  signModal overflow-auto"
 			style={{ height: "35rem" }}
 		>
-			<h1 className="text-center text-xl">회원가입</h1>
-			<form onSubmit={handleSubmit} className="m-auto my-4 w-60">
+			<p className="text-center text-xl">회원가입</p>
+			<form
+				onSubmit={(e) => e.preventDefault()}
+				onSubmit={handleSubmit}
+				className="m-auto my-4 w-60"
+			>
 				<label className="block m-auto mt-6 relative">
 					<div className="emailLabel">
 						<span>이메일</span>
@@ -171,7 +187,16 @@ export default function SignUp({ signupHandler }) {
 				{touched.email && errors.email ? (
 					<div className="warning">{errors.email}</div>
 				) : (
-					<div className="warning">{emailComment}</div>
+					<div
+						className="warning"
+						style={
+							emailComment === "사용가능한 이메일입니다🥳"
+								? { color: "rgb(14 165 233)" }
+								: null
+						}
+					>
+						{emailComment}
+					</div>
 				)}
 				<label className="block m-auto mt-6">
 					이름
@@ -229,11 +254,24 @@ export default function SignUp({ signupHandler }) {
 						name="phoneNumber"
 						type="text"
 						autoComplete="off"
-						// onKeyDown={isNumber}
 						placeholder="010-1234-5678"
 						onBlur={handleBlur}
 						onChange={handleChange}
 						value={values.phoneNumber}
+						// onChange={(e) => {
+						// 	console.log(e.nativeEvent);
+						// 	if (
+						// 		e.nativeEvent.target.value.length === 3 ||
+						// 		e.nativeEvent.target.value.length === 8
+						// 	) {
+						// 		e.nativeEvent.target.value += "-";
+						// 	}
+						// if (e.nativeEvent.data && isNotNumber(e.nativeEvent.data)) {
+						// 	e.preventDefault();
+						// 	return null;
+						// }
+						// }}
+						maxLength="13"
 					/>
 					{values.phoneNumber.length === 13 &&
 						!errors.phoneNumber &&

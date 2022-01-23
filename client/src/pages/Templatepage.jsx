@@ -7,12 +7,6 @@ const Templatepage = () => {
       <Header />
       <div className="w-full flex flex-row flex-wrap py-12 px-4 justify-between">
         <Template />
-        <Template />
-        <Template />
-        <Template />
-        <Template />
-        <Template />
-        <Template />
       </div>
     </>
   );

@@ -43,21 +43,19 @@ const Mypage = () => {
         </select>
         <div className="tabButton">
           <button
-            className={tabMenu ? "myRequest btn trueTab" : "myRequest btn"}
+            className={tabMenu ? "myRequest trueTab" : "myRequest"}
             onClick={() => tabHandler(true)}
           >
             보낸 요청
           </button>
           <button
-            className={
-              tabMenu ? "receivedRequest btn" : "receivedRequest btn trueTab"
-            }
+            className={tabMenu ? "receivedRequest" : "receivedRequest trueTab"}
             onClick={() => tabHandler(false)}
           >
             받은 요청
           </button>
         </div>
-        <div className="tabMenu">
+        <div className="tabMenu w-full bg-white border border-[#ddd] text-slate-600">
           {
             <DocList
               tabMenu={tabMenu}

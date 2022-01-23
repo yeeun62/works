@@ -33,6 +33,7 @@ module.exports = async (req, res) => {
 				totalPrice,
 				reason,
 				result,
+				file,
 				createdAt,
 			} = findPurchase;
 
@@ -52,6 +53,7 @@ module.exports = async (req, res) => {
 				totalPrice,
 				reason,
 				result,
+				file,
 			};
 			res.status(200).json({ data });
 		} else {

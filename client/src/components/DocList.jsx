@@ -16,11 +16,11 @@ export default function DocList({ list, tabMenu, filter }) {
         ) : (
           <p className="writer">작성자</p>
         )}
-        <p className="title">제목</p>
+        <p className="header_title">제목</p>
         <p className="result">결과</p>
         <p className="date">요청일</p>
       </div>
-      <ul className="sm:overflow-x-scroll sm:text-sm">
+      <ul className="sm:text-sm">
         {list.length ? (
           listArr(list, filter).length ? (
             listArr(list, filter).map((el) => {
@@ -29,7 +29,7 @@ export default function DocList({ list, tabMenu, filter }) {
                 <Link key={el.purchaseId} to={purchaseId}>
                   <li className="requestList sm:text-xs">
                     <p className="requester">{el.requester}</p>
-                    <p className="title">{el.title}</p>
+                    <p className="header_title">{el.title}</p>
                     <p className="result">
                       {el.result
                         ? "승인"
