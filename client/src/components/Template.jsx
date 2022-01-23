@@ -6,19 +6,19 @@ import { purchaseModal } from "../redux/modules/purchase";
 import { signinModal } from "../redux/modules/users";
 
 const Template = () => {
-  const purchase = useSelector((state) => state.purchase);
-  const user = useSelector((state) => state.users);
-  const dispatch = useDispatch();
+	const purchase = useSelector((state) => state.purchase);
+	const user = useSelector((state) => state.users);
+	const dispatch = useDispatch();
 
-  const modalHandler = () => {
-    if (user.userInfo.name) {
-      dispatch(purchaseModal());
-    } else {
-      window.alert("로그인을 먼저 해주세요!");
-      dispatch(signinModal());
-    }
-  };
-
+	const modalHandler = () => {
+		if (user.userInfo.name) {
+			dispatch(purchaseModal());
+		} else {
+			window.alert("로그인을 먼저 해주세요!");
+			dispatch(signinModal());
+		}
+	};
+  
   return (
     <>
       <Modal

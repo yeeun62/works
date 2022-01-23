@@ -96,7 +96,7 @@ const PurchaseModal = ({ modalHandler }) => {
       }
     }
   };
-
+  
   return (
     <div className="lg:flex">
       <div className="lg:w-full lg:flex">
