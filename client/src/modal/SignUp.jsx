@@ -15,11 +15,14 @@ export default function SignUp({ signupHandler }) {
 	const [authNumber, setAuthNumber] = useState("");
 
 	useEffect(() => {
-		const generateRandom = function (min, max) {
-			let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
-			return ranNum;
-		};
-		setAuthNumber(generateRandom(1111, 9999));
+		const chars =
+			"0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+		let randomstring = "";
+		for (let i = 0; i < 6; i++) {
+			const rnum = Math.floor(Math.random() * chars.length);
+			randomstring += chars.substring(rnum, rnum + 1);
+		}
+		setAuthNumber(randomstring);
 	}, []);
 
 	// touched: blur(input에서 나갔을때), handleBlur: input에서 나갈때, handleChange: 작성.focus등 변화가 일어날때
@@ -138,26 +141,6 @@ export default function SignUp({ signupHandler }) {
 		}
 	};
 
-	// function isNumber(e) {
-	// 	if (47 < e.keyCode && e.keyCode < 58) {
-	// 		values.phoneNumber += e.key;
-	// 	} else {
-	// 		values.phoneNumber += "";
-	// 	}
-	// }
-
-	// const isNotNumber = (value) => {
-	// 	const regExp = /[a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
-	// 	return regExp.test(value);
-	// };
-
-	// const phoneNumberHandler = (e) => {
-	// 	let check = /^[0-9]+$/;
-	// 	if (check.test(e.target.value)) {
-	// 	} else {
-	// 	}
-	// };
-
 	return (
 		<div
 			className="rounded-2xl  signModal overflow-auto"
@@ -258,19 +241,6 @@ export default function SignUp({ signupHandler }) {
 						onBlur={handleBlur}
 						onChange={handleChange}
 						value={values.phoneNumber}
-						// onChange={(e) => {
-						// 	console.log(e.nativeEvent);
-						// 	if (
-						// 		e.nativeEvent.target.value.length === 3 ||
-						// 		e.nativeEvent.target.value.length === 8
-						// 	) {
-						// 		e.nativeEvent.target.value += "-";
-						// 	}
-						// if (e.nativeEvent.data && isNotNumber(e.nativeEvent.data)) {
-						// 	e.preventDefault();
-						// 	return null;
-						// }
-						// }}
 						maxLength="13"
 					/>
 					{values.phoneNumber.length === 13 &&
@@ -303,7 +273,7 @@ export default function SignUp({ signupHandler }) {
 							type="text"
 							onChange={(e) => setAuthInput(e.target.value)}
 						/>
-						{authInput.length === 4 && (
+						{authInput.length === 6 && (
 							<button
 								className="text-xs font-bold rounded-sm p-0.5 bg-[#00adc7] absolute right-0 h-6 -top-1"
 								type="button"
