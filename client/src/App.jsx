@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TemplatePage from "./pages/TemplatePage";
 import PurchaseDetail from "./pages/PurchaseDetail";
 import DocPage from "./pages/DocPage";
+import MyPage from "./pages/MyPage";
 import "./App.css";
 import "./config";
 
@@ -13,6 +14,7 @@ function App() {
 					<Route path="/" element={<TemplatePage />} />
 					<Route path="/docpage" element={<DocPage />} />
 					<Route path="/purchase/:id" element={<PurchaseDetail />} />
+					<Route path="/mypage" element={<MyPage />}></Route>
 				</Routes>
 			</div>
 		</BrowserRouter>

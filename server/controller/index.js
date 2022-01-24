@@ -8,6 +8,8 @@ module.exports = {
 	userInfo: require("./user/info"),
 	phoneAuthCode: require("./user/phoneAuthCode"),
 	phoneAuthCheck: require("./user/phoneAuthCheck"),
+	pwcheck: require("./user/pwcheck"),
+	update: require("./user/update"),
 
 	// purchase
 	postPurchase: require("./purchase/postPurchase"),

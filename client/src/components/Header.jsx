@@ -8,6 +8,7 @@ import SignIn from "../modal/SignIn";
 import SignUp from "../modal/SignUp";
 import axios from "axios";
 import "../modal/modal.css";
+import { useState } from "react/cjs/react.development";
 
 const Header = () => {
 	const user = useSelector((state) => state.users);
@@ -15,6 +16,23 @@ const Header = () => {
 
 	let location = useLocation();
 	const navigate = useNavigate();
+
+	const [btnState, setBtnState] = useState(
+		location.pathname === "/"
+			? [
+					{ name: "내 정보", path: "/mypage" },
+					{ name: "문서함", path: "/docpage" },
+			  ]
+			: location.pathname === "/mypage"
+			? [
+					{ name: "템플릿페이지", path: "/" },
+					{ name: "문서함", path: "/docpage" },
+			  ]
+			: [
+					{ name: "템플릿페이지", path: "/" },
+					{ name: "내 정보", path: "/mypage" },
+			  ]
+	);
 
 	useEffect(() => {
 		dispatch(getUserInfo());
@@ -71,27 +89,20 @@ const Header = () => {
 									이메일 {user.userInfo.email} <br /> 이름 {user.userInfo.name}
 								</div>
 							</div>
-							{location.pathname === "/" ? (
-								<button
-									type="button"
-									onClick={() => {
-										navigate("/docpage");
-									}}
-									className="mr-4 sm:mr-2"
-								>
-									문서함
-								</button>
-							) : (
-								<button
-									type="button"
-									onClick={() => {
-										navigate("/");
-									}}
-									className="mr-4 sm:min-w-fit sm:mr-2"
-								>
-									템플릿 페이지
-								</button>
-							)}
+							<button
+								type="button"
+								onClick={() => navigate(btnState[0].path)}
+								className="mr-4 sm:min-w-fit sm:mr-2"
+							>
+								{btnState[0].name}
+							</button>
+							<button
+								type="button"
+								onClick={() => navigate(btnState[1].path)}
+								className="mr-4 sm:min-w-fit sm:mr-2"
+							>
+								{btnState[1].name}
+							</button>
 							<button
 								type="button"
 								onClick={signoutHandler}

@@ -11,5 +11,7 @@ router.post("/signup", controller.signup);
 router.post("/signin", controller.signin);
 router.post("/phoneAuthCode", controller.phoneAuthCode);
 router.post("/phoneAuthCheck", controller.phoneAuthCheck);
+router.post("/pwcheck", controller.pwcheck);
+router.post("/update", controller.update);
 
 module.exports = router;
