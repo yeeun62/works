@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Template from "../components/Template";
 
-const Templatepage = () => {
+const TemplatePage = () => {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ const Templatepage = () => {
     </>
   );
 };
-export default Templatepage;
+export default TemplatePage;
