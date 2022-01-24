@@ -129,17 +129,17 @@ export default function PurchaseDetail() {
 								사유 <span>{templateInfo.reason}</span>
 							</li>
 							<li>
-								수량 <span>{templateInfo.quantity}</span>
-							</li>
-							<li>
 								단가 <span>{templateInfo.price}</span>
 							</li>
 							<li>
-								금액 <span>{templateInfo.totalPrice}</span>
+								수량 <span>{templateInfo.quantity}</span>
+							</li>
+							<li>
+								총액 <span>{templateInfo.totalPrice}</span>
 							</li>
 							{templateInfo.file && (
 								<p
-									className="cursor-pointer mt-4"
+									className="cursor-pointer mt-4 inline-block"
 									onClick={() => window.open(templateInfo.file, "_blank")}
 								>
 									📌 첨부파일 보기

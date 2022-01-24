@@ -13,15 +13,17 @@ export default function SignUp({ signupHandler }) {
   const [authInput, setAuthInput] = useState("");
   const [authNumber, setAuthNumber] = useState("");
 
-  useEffect(() => {
-    const generateRandom = function (min, max) {
-      let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
-      return ranNum;
-    };
-    setAuthNumber(generateRandom(1111, 9999));
-  }, []);
+	useEffect(() => {
+		const chars =
+			"0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+		let randomstring = "";
+		for (let i = 0; i < 6; i++) {
+			const rnum = Math.floor(Math.random() * chars.length);
+			randomstring += chars.substring(rnum, rnum + 1);
+		}
+		setAuthNumber(randomstring);
+	}, []);
 
-  // touched: blur(input에서 나갔을때), handleBlur: input에서 나갈때, handleChange: 작성.focus등 변화가 일어날때
   const { handleSubmit, handleChange, values, touched, errors, handleBlur } =
     useFormik({
       initialValues: {
