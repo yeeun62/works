@@ -1,22 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Templatepage from "./pages/Templatepage";
+import TemplatePage from "./pages/TemplatePage";
 import PurchaseDetail from "./pages/PurchaseDetail";
-import Mypage from "./pages/Mypage";
+import DocPage from "./pages/DocPage";
+import MyPage from "./pages/MyPage";
 import "./App.css";
 import "./config";
 
 function App() {
-	return (
-		<BrowserRouter>
-			<div className="w-3/5 m-auto mb-10 md:min-w-full sm:overflow-auto sm:h-fit">
-				<Routes>
-					<Route path="/" element={<Templatepage />} />
-					<Route path="/mypage" element={<Mypage />} />
-					<Route path="/purchase/:id" element={<PurchaseDetail />} />
-				</Routes>
-			</div>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <div className="w-3/5 m-auto mb-10 md:min-w-full sm:overflow-auto sm:h-fit">
+        <Routes>
+          <Route path="/" element={<TemplatePage />} />
+          <Route path="/docpage" element={<DocPage />} />
+          <Route path="/purchase/:id" element={<PurchaseDetail />} />
+          <Route path="/mypage" element={<MyPage />}></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
