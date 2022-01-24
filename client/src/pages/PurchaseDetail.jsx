@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signinModal } from "../redux/modules/users";
 import axios from "axios";
 import Header from "../components/Header";
-import "../style/PurchaseDetail.css";
+import "../style/purchaseDetail.css";
 
 export default function PurchaseDetail() {
 	const user = useSelector((state) => state.users);

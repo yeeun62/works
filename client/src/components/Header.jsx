@@ -75,7 +75,7 @@ const Header = () => {
 								<button
 									type="button"
 									onClick={() => {
-										navigate("/mypage");
+										navigate("/docpage");
 									}}
 									className="mr-4 sm:mr-2"
 								>

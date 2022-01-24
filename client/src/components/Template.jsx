@@ -1,4 +1,4 @@
-import "../style/TemPage.css";
+import "../style/temPage.css";
 import Modal from "react-modal";
 import PurchaseModal from "../modal/PurchaseModal";
 import { useDispatch, useSelector } from "react-redux";

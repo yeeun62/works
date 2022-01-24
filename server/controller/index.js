@@ -6,6 +6,8 @@ module.exports = {
 	userList: require("./user/list"),
 	userDoc: require("./user/doc"),
 	userInfo: require("./user/info"),
+	phoneAuthCode: require("./user/phoneAuthCode"),
+	phoneAuthCheck: require("./user/phoneAuthCheck"),
 
 	// purchase
 	postPurchase: require("./purchase/postPurchase"),
