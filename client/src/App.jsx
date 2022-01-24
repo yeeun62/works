@@ -7,18 +7,18 @@ import "./App.css";
 import "./config";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="w-3/5 m-auto mb-10 md:min-w-full sm:overflow-auto sm:h-fit">
-        <Routes>
-          <Route path="/" element={<TemplatePage />} />
-          <Route path="/docpage" element={<DocPage />} />
-          <Route path="/purchase/:id" element={<PurchaseDetail />} />
-          <Route path="/mypage" element={<MyPage />}></Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<div className="w-3/5 m-auto mb-10 md:min-w-full sm:overflow-auto sm:h-fit">
+				<Routes>
+					<Route path="/" element={<TemplatePage />} />
+					<Route path="/docpage" element={<DocPage />} />
+					<Route path="/purchase/:id" element={<PurchaseDetail />} />
+					<Route path="/mypage" element={<MyPage />}></Route>
+				</Routes>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;
