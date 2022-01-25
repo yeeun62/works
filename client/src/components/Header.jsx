@@ -8,7 +8,6 @@ import SignIn from "../modal/SignIn";
 import SignUp from "../modal/SignUp";
 import axios from "axios";
 import "../modal/modal.css";
-import { useState } from "react/cjs/react.development";
 
 const Header = () => {
   const user = useSelector((state) => state.users);
@@ -17,7 +16,7 @@ const Header = () => {
   let location = useLocation();
   const navigate = useNavigate();
 
-  const [btnState, setBtnState] = useState(
+  let btnState =
     location.pathname === "/"
       ? [
           { name: "내 정보", path: "/mypage" },
@@ -31,8 +30,7 @@ const Header = () => {
       : [
           { name: "템플릿페이지", path: "/" },
           { name: "내 정보", path: "/mypage" },
-        ]
-  );
+        ];
 
   useEffect(() => {
     dispatch(getUserInfo());
