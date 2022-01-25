@@ -71,6 +71,7 @@ export default function PwUpdate() {
   return (
     <>
       <div className="pwUpdateWrapper">
+        <h1>회원정보</h1>
         새로운 비밀번호
         <label>
           <input

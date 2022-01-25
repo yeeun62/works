@@ -83,12 +83,6 @@ const Header = () => {
         <div className="flex justify-around w-50 items-center sm:text-xs sm:font-semibold">
           {user.isLogin ? (
             <>
-              {/* <div className="tooltip rounded-full border mr-4 sm:mr-2 border-yellowGreen w-7 h-7 text-center leading-7 cursor-pointer hover:bg-[#e0de1b]">
-								{user.userInfo.name.slice(0, 1)}
-								<div className="tooltipInner bg-[#e0de1b] p-4 w-56 text-white text-left font-bold rounded-2xl shadow-xl hidden text-xs">
-									이메일 {user.userInfo.email} <br /> 이름 {user.userInfo.name}
-								</div>
-							</div> */}
               <button
                 type="button"
                 onClick={() => navigate(btnState[0].path)}

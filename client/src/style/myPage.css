@@ -43,7 +43,7 @@
   margin-right: 60px;
 }
 
-.pwInput button {
+.pwInput .pwCheckBtn {
   height: 1.5rem;
   line-height: 1.5rem;
   font-size: 0.8rem;
@@ -80,4 +80,8 @@
 
 .pwUpdateWrapper .pwUpdateBtn {
   margin: auto;
+}
+
+.checkBtn {
+  margin-left: 10px;
 }
