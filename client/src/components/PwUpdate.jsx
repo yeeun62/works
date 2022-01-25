@@ -68,8 +68,8 @@ export default function PwUpdate() {
 
   return (
     <div className="pwUpdateWrapper">
-      새로운 비밀번호
       <label>
+        새로운 비밀번호
         <input
           className="pw"
           type="password"
@@ -92,7 +92,7 @@ export default function PwUpdate() {
         />
         <span style={{ color: warning.conColor }}>{warning.pwConfirm}</span>
       </label>
-      <button type="button" onClick={updateHandler}>
+      <button type="button" onClick={updateHandler} className="pwUpdateBtn">
         비밀번호 변경
       </button>
     </div>
