@@ -22,7 +22,9 @@ module.exports = async (req, res) => {
 
 		let authNum = authNumHandler();
 
-		let time = Date.parse(new Date().toLocaleString()) / 1000;
+		let time =
+			Date.parse(new Date().toLocaleString("en", { timeZone: "Asia/Seoul" })) /
+			1000;
 
 		if (findUser) {
 			return res.status(409).json({

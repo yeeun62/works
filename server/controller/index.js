@@ -9,7 +9,7 @@ module.exports = {
 	phoneAuthCode: require("./user/phoneAuthCode"),
 	phoneAuthCheck: require("./user/phoneAuthCheck"),
 	pwcheck: require("./user/pwcheck"),
-	update: require("./user/update"),
+	patchUser: require("./user/patchUser"),
 
 	// purchase
 	postPurchase: require("./purchase/postPurchase"),
