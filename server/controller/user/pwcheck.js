@@ -19,9 +19,7 @@ module.exports = async (req, res) => {
         return res
           .status(405)
           .json({ message: "비밀번호가 일치하지 않습니다 🥲" });
-      else {
-        res.status(200).json({ message: "비밀번호가 확인되었습니다 👌" });
-      }
+      else res.status(200).json({ message: "비밀번호가 확인되었습니다 👌" });
     } catch (err) {
       console.log("캐치에러", err);
       res.status(400).json({ message: "서버 에러입니다 🤖" });
