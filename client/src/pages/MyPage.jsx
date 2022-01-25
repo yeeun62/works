@@ -16,6 +16,7 @@ export default function MyPage() {
 	const [password, setPassword] = useState("");
 	const [pwCheck, setPwCheck] = useState(false);
 
+	//! 나중에 변경
 	useEffect(() => {
 		if (!user.isLogin) {
 			navigate("/");
