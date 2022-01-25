@@ -25,7 +25,6 @@ export default function PwUpdate() {
           pwColor: "red",
         });
       else if (e.target.value.length >= 5) {
-        console.log(e.target.value.length);
         setWarning({
           ...warning,
           pw: "적합한 비밀번호입니다.",
@@ -54,7 +53,6 @@ export default function PwUpdate() {
   };
 
   const updateHandler = async () => {
-    console.log({ data: newPw.pw });
     let postReq = await axios.post(
       `${process.env.REACT_APP_TEMPLATE_API_URL}/user/patchUser`,
       { data: newPw.pw },
@@ -69,37 +67,34 @@ export default function PwUpdate() {
   };
 
   return (
-    <>
-      <div className="pwUpdateWrapper">
-        <h1>회원정보</h1>
-        새로운 비밀번호
-        <label>
-          <input
-            className="pw"
-            type="password"
-            placeholder="새로운 비밀번호를 입력하세요"
-            minLength={5}
-            name="pw"
-            onChange={pwHandler}
-          />
-          <span style={{ color: warning.pwColor }}>{warning.pw}</span>
-        </label>
-        <label>
-          비밀번호 확인
-          <input
-            className="pwConfirm"
-            type="password"
-            placeholder="한 번 더 입력해주세요"
-            minLength={5}
-            name="pwConfirm"
-            onChange={pwHandler}
-          />
-          <span style={{ color: warning.conColor }}>{warning.pwConfirm}</span>
-        </label>
-        <button type="button" onClick={updateHandler} className="c">
-          비밀번호 변경
-        </button>
-      </div>
-    </>
+    <div className="pwUpdateWrapper">
+      새로운 비밀번호
+      <label>
+        <input
+          className="pw"
+          type="password"
+          placeholder="새로운 비밀번호를 입력하세요"
+          minLength={5}
+          name="pw"
+          onChange={pwHandler}
+        />
+        <span style={{ color: warning.pwColor }}>{warning.pw}</span>
+      </label>
+      <label>
+        비밀번호 확인
+        <input
+          className="pwConfirm"
+          type="password"
+          placeholder="한 번 더 입력해주세요"
+          minLength={5}
+          name="pwConfirm"
+          onChange={pwHandler}
+        />
+        <span style={{ color: warning.conColor }}>{warning.pwConfirm}</span>
+      </label>
+      <button type="button" onClick={updateHandler}>
+        비밀번호 변경
+      </button>
+    </div>
   );
 }
