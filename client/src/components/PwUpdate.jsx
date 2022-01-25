@@ -53,16 +53,24 @@ export default function PwUpdate() {
   };
 
   const updateHandler = async () => {
-    let postReq = await axios.post(
-      `${process.env.REACT_APP_TEMPLATE_API_URL}/user/patchUser`,
-      { data: newPw.pw },
-      { withCredentials: true }
-    );
-    if (postReq.status === 200) {
-      alert(postReq.data.message);
-      window.location.reload();
+    if (
+      newPw.pw.length >= 5 &&
+      warning.pwColor !== "red" &&
+      warning.conColor !== "red"
+    ) {
+      let postReq = await axios.post(
+        `${process.env.REACT_APP_TEMPLATE_API_URL}/user/patchUser`,
+        { data: newPw.pw },
+        { withCredentials: true }
+      );
+      if (postReq.status === 200) {
+        alert(postReq.data.message);
+        window.location.reload();
+      } else {
+        alert(postReq.data.message);
+      }
     } else {
-      alert(postReq.data.message);
+      alert("올바른 비밀번호가 아닙니다👻");
     }
   };
 
