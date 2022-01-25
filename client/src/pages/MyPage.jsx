@@ -79,6 +79,7 @@ export default function MyPage() {
 									/>
 									<button
 										type="button"
+										className="pwCheckBtn"
 										onClick={() => pwCheckHandler(password)}
 										style={{
 											padding: "2px",

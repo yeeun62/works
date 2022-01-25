@@ -31,19 +31,35 @@
   left: 200px;
 }
 
+@media screen and (max-width: 1200px) {
+  .userInfoWrapper ul {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .userInfoWrapper ul {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .userInfoWrapper li span {
+    left: 120px;
+  }
+
+  .userInfoWrapper .checkInput {
+    width: 70%;
+  }
+}
+
 /* pwCheck */
 
-.pwInput {
-  height: 2rem;
-  margin-top: 20px;
-  margin-left: 10px;
+.checkInput {
+  width: 80%;
+  height: 30px;
 }
 
-.pwInput .pwAuthLabel {
-  margin-right: 60px;
-}
-
-.pwInput .pwCheckBtn {
+.pwCheckBtn {
   height: 1.5rem;
   line-height: 1.5rem;
   font-size: 0.8rem;
@@ -53,8 +69,8 @@
 
 /* pwUpdate */
 
-.pwInput .pwUpdateWrapper {
-  width: 80%;
+.pwUpdateWrapper {
+  width: 50%;
   margin: auto;
 }
 
@@ -64,7 +80,7 @@
 
 .pwUpdateWrapper input {
   border: 1px solid #ddd;
-  margin: 25px 0;
+  margin: 5px 0 40px 0;
   width: 100%;
 }
 
@@ -80,8 +96,14 @@
 
 .pwUpdateWrapper .pwUpdateBtn {
   margin: auto;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+  display: block;
 }
 
-.checkBtn {
-  margin-left: 10px;
+@media screen and (max-width: 500px) {
+  .pwUpdateWrapper {
+    width: 90%;
+  }
 }
