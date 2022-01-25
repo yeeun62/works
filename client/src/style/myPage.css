@@ -31,6 +31,27 @@
   left: 200px;
 }
 
+@media screen and (max-width: 1200px) {
+  .userInfoWrapper ul {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .userInfoWrapper ul {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .userInfoWrapper li span {
+    left: 120px;
+  }
+
+  .userInfoWrapper .checkInput {
+    width: 70%;
+  }
+}
+
 /* pwCheck */
 
 .checkInput {
@@ -79,4 +100,10 @@
   line-height: 30px;
   padding: 0 5px;
   display: block;
+}
+
+@media screen and (max-width: 500px) {
+  .pwUpdateWrapper {
+    width: 90%;
+  }
 }

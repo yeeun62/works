@@ -147,7 +147,28 @@ export default function PurchaseDetail() {
               )}
             </ul>
           </div>
-          {templateInfo.result === null ? null : templateInfo.result ? (
+          {templateInfo.result === null ? (
+            isMe ? (
+              <div className="temButtonWrap">
+                <button
+                  type="button"
+                  className="temBtnApproval btn"
+                  onClick={() => responseHandler(true)}
+                >
+                  승인
+                </button>
+                <button
+                  type="button"
+                  className="temBtnReject btn"
+                  onClick={() => responseHandler(false)}
+                >
+                  거절
+                </button>
+              </div>
+            ) : (
+              <p className="text-center font-bold">대기 중인 요청입니다🤔</p>
+            )
+          ) : templateInfo.result ? (
             <p className="text-center text-sky-500 font-bold">
               승인된 요청입니다🥳
             </p>
@@ -155,24 +176,6 @@ export default function PurchaseDetail() {
             <p className="text-center text-rose-500 font-bold">
               거절된 요청입니다🥲
             </p>
-          )}
-          {templateInfo.result === null && isMe && (
-            <div className="temButtonWrap">
-              <button
-                type="button"
-                className="temBtnApproval btn"
-                onClick={() => responseHandler(true)}
-              >
-                승인
-              </button>
-              <button
-                type="button"
-                className="temBtnReject btn"
-                onClick={() => responseHandler(false)}
-              >
-                거절
-              </button>
-            </div>
           )}
         </div>
       ) : (
