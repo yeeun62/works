@@ -16,14 +16,14 @@ export default function MyPage() {
 	const [password, setPassword] = useState("");
 	const [pwCheck, setPwCheck] = useState(false);
 
-	//! 나중에 변경
-	useEffect(() => {
-		if (!user.isLogin) {
-			navigate("/");
-			window.alert("로그인을 먼저 해주세요!");
-			dispatch(signinModal());
-		}
-	}, [user]);
+	// //! 나중에 변경
+	// useEffect(() => {
+	// 	if (!user.isLogin) {
+	// 		navigate("/");
+	// 		window.alert("로그인을 먼저 해주세요!");
+	// 		dispatch(signinModal());
+	// 	}
+	// }, [user]);
 
 	const pwCheckHandler = (password) => {
 		if (password.length < 5) {
