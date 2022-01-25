@@ -1,0 +1,83 @@
+/* userInfo */
+
+.userInfoWrapper {
+  padding: 20px 0;
+}
+
+.userInfoWrapper h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #282828;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.userInfoWrapper ul {
+  width: 60%;
+  margin: auto;
+}
+
+.userInfoWrapper li {
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 10px;
+  border-bottom: 1px dashed #ddd;
+  position: relative;
+}
+
+.userInfoWrapper li span {
+  position: absolute;
+  left: 200px;
+}
+
+/* pwCheck */
+
+.pwInput {
+  height: 2rem;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.pwInput .pwAuthLabel {
+  margin-right: 60px;
+}
+
+.pwInput button {
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.8rem;
+  margin: 5px;
+  padding: 0;
+}
+
+/* pwUpdate */
+
+.pwInput .pwUpdateWrapper {
+  width: 80%;
+  margin: auto;
+}
+
+.pwUpdateWrapper label {
+  position: relative;
+}
+
+.pwUpdateWrapper input {
+  border: 1px solid #ddd;
+  margin: 25px 0;
+  width: 100%;
+}
+
+.pwUpdateWrapper label span {
+  display: block;
+  font-size: 10px;
+  position: absolute;
+  bottom: -25px;
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+
+.pwUpdateWrapper .pwUpdateBtn {
+  margin: auto;
+}

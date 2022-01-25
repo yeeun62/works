@@ -11,9 +11,9 @@ module.exports = {
 	pwcheck: require("./user/pwcheck"),
 	patchUser: require("./user/patchUser"),
 
-	// purchase
-	postPurchase: require("./purchase/postPurchase"),
-	getDetailPurchase: require("./purchase/getDetailPurchase"),
-	purchaseRequest: require("./purchase/request"),
-	ogPurchase: require("./purchase/ogPurchase"),
+  // purchase
+  postPurchase: require("./purchase/postPurchase"),
+  getDetailPurchase: require("./purchase/getDetailPurchase"),
+  purchaseRequest: require("./purchase/request"),
+  ogPurchase: require("./purchase/ogPurchase"),
 };

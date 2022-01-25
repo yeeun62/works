@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
-  console.log(req.body);
   const userInfo = await jwt.verify(req.headers.handleToken, process.env.TOKEN);
+
   if (!userInfo)
     return res.status(400).json({ message: "로그인을 먼저 해주세요" });
   else {
