@@ -93,7 +93,7 @@ export default function PurchaseDetail() {
       <Header />
       <p
         className="cursor-pointer pl-8 inline"
-        onClick={() => navigate("/mypage")}
+        onClick={() => navigate("/docpage")}
       >
         🔙 문서함으로 이동
       </p>
