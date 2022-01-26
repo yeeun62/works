@@ -1,109 +1,102 @@
 /* userInfo */
 
 .userInfoWrapper {
-  padding: 20px 0;
+	padding: 20px 0;
 }
 
 .userInfoWrapper h1 {
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #282828;
-  text-align: center;
-  margin-bottom: 2rem;
+	font-weight: 600;
+	font-size: 1.5rem;
+	color: #282828;
+	text-align: center;
+	margin-bottom: 2rem;
 }
 
 .userInfoWrapper ul {
-  width: 60%;
-  margin: auto;
+	width: 60%;
+	margin: auto;
 }
 
 .userInfoWrapper li {
-  width: 100%;
-  height: 3rem;
-  line-height: 3rem;
-  padding: 0 10px;
-  border-bottom: 1px dashed #ddd;
-  position: relative;
+	width: 100%;
+	height: 3rem;
+	line-height: 3rem;
+	padding: 0 10px;
+	border-bottom: 1px dashed #ddd;
+	position: relative;
 }
 
 .userInfoWrapper li span {
-  position: absolute;
-  left: 200px;
+	position: absolute;
+	left: 200px;
 }
 
 @media screen and (max-width: 1200px) {
-  .userInfoWrapper ul {
-    width: 80%;
-  }
+	.userInfoWrapper ul {
+		width: 80%;
+	}
 }
 
 @media screen and (max-width: 500px) {
-  .userInfoWrapper ul {
-    width: 100%;
-    font-size: 0.8rem;
-  }
+	.userInfoWrapper ul {
+		width: 100%;
+		font-size: 0.8rem;
+	}
 
-  .userInfoWrapper li span {
-    left: 120px;
-  }
+	.userInfoWrapper li span {
+		left: 120px;
+	}
 
-  .userInfoWrapper .checkInput {
-    width: 70%;
-  }
+	.userInfoWrapper .checkInput {
+		width: 70%;
+	}
 }
 
 /* pwCheck */
 
 .checkInput {
-  width: 80%;
-  height: 30px;
+	width: 80%;
+	height: 30px;
 }
 
 .pwCheckBtn {
-  height: 1.5rem;
-  line-height: 1.5rem;
-  font-size: 0.8rem;
-  margin: 5px;
-  padding: 0;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	font-size: 0.8rem;
+	margin: 5px;
+	padding: 0;
 }
 
 /* pwUpdate */
 
 .pwUpdateWrapper {
-  width: 50%;
-  margin: auto;
+	width: 50%;
+	margin: auto;
 }
 
-.pwUpdateWrapper label {
-  position: relative;
+.pwUpdateWrapper form label {
+	display: block;
+	margin: auto;
+	margin-top: 20px;
 }
 
-.pwUpdateWrapper input {
-  border: 1px solid #ddd;
-  margin: 5px 0 40px 0;
-  width: 100%;
-}
-
-.pwUpdateWrapper label span {
-  display: block;
-  font-size: 10px;
-  position: absolute;
-  bottom: -25px;
-  text-align: center;
-  width: 100%;
-  font-weight: 600;
+.pwUpdateWrapper form input {
+	border: 1px solid #ddd;
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
 }
 
 .pwUpdateWrapper .pwUpdateBtn {
-  margin: auto;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 5px;
-  display: block;
+	margin: 25px auto 0;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 5px;
+	display: block;
 }
 
 @media screen and (max-width: 500px) {
-  .pwUpdateWrapper {
-    width: 90%;
-  }
+	.pwUpdateWrapper {
+		width: 90%;
+	}
 }
