@@ -28,9 +28,12 @@ a:hover {
 }
 
 body,
-input,
 textarea {
 	font-family: "GmarketSansLight", "Noto Sans TC", sans-serif;
+}
+
+input {
+	padding-left: 3px;
 }
 
 .bold {
